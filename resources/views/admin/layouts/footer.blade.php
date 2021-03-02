@@ -2,14 +2,14 @@
 <!-- container-fluid -->
 </div>
 <!-- End Page-content -->
-@include('admin.layouts.footer')
+{{--@include('admin.layouts.footer') todo: сам себя включает --}}
 </div>
 <!-- end main content-->
 </div>
 <!-- END layout-wrapper -->
 
 <!-- Right Sidebar -->
-@include('admin.layouts.right-sidebar')
+{{--@include('admin.layouts.right-sidebar')--}}
 <!-- /Right-bar -->
 
 <!-- Right bar overlay-->

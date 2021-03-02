@@ -7,112 +7,107 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">@lang('translation.Menu')</li>
+                <li class="menu-title">Меню</li>
 
                 <li>
                     <a href="{{url('index')}}" class="waves-effect">
-                        <i class="ri-dashboard-line"></i><span class="badge badge-pill badge-success float-right">3</span>
-                        <span>@lang('translation.Dashboard')</span>
+                        <i class="ri-dashboard-line"></i>  {{--<span class="badge badge-pill badge-success float-right">3</span>--}}
+                        <span>Главная</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="calendar" class=" waves-effect">
-                        <i class="ri-calendar-2-line"></i>
-                        <span>@lang('translation.Calendar')</span>
+                        <i class="ri-folders-line"></i>
+                        <span>Заявки</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="apps-chat" class=" waves-effect">
                         <i class="ri-chat-1-line"></i>
-                        <span>@lang('translation.Chat')</span>
+                        <span>Обратный звонок</span>
                     </a>
                 </li>
 
+                <li class="menu-title">Конкурсы</li>
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-store-2-line"></i>
-                        <span>@lang('translation.Ecommerce')</span>
+                        <i class="ri-customer-service-2-fill"></i>
+                        <span>Конкурсы</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="ecommerce-products">@lang('translation.Products')</a></li>
-                        <li><a href="ecommerce-product-detail">@lang('translation.Product_Detail')</a></li>
-                        <li><a href="ecommerce-orders">@lang('translation.Orders')</a></li>
-                        <li><a href="ecommerce-customers">@lang('translation.Customers')</a></li>
-                        <li><a href="ecommerce-cart">@lang('translation.Cart')</a></li>
-                        <li><a href="ecommerce-checkout">@lang('translation.Checkout')</a></li>
-                        <li><a href="ecommerce-shops">@lang('translation.Shops')</a></li>
-                        <li><a href="ecommerce-add-product">@lang('translation.Add_Product')</a></li>
+                        <li><a href="ecommerce-products">Бесплатные</a></li>
+                        <li><a href="ecommerce-product-detail">Любительские</a></li>
+                        <li><a href="ecommerce-product-detail">Профессиональные</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-mail-send-line"></i>
-                        <span>@lang('translation.Email')</span>
+                        <i class="ri-file-settings-fill"></i>
+                        <span>Настройки</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox">@lang('translation.Inbox')</a></li>
-                        <li><a href="email-read">@lang('translation.Read_Email')</a></li>
+                        <li><a href="email-inbox">Возрастная категория</a></li>
                     </ul>
                 </li>
 
+                <li class="menu-title">Контент</li>
+
                 <li>
-                    <a href="apps-kanban-board" class=" waves-effect">
-                        <i class="ri-artboard-2-line"></i>
-                        <span>@lang('translation.Kanban_Board')</span>
+                    <a href="{{ route('admin.jury.index') }}" class=" waves-effect">
+                        <i class="ri-team-fill"></i>
+                        <span>Жюри</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.questions.index') }}" class=" waves-effect">
+                        <i class="ri-question-answer-line"></i>
+                        <span>Вопросы и ответы</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-layout-3-line"></i>
-                        <span>@lang('translation.Layouts')</span>
+                        <i class="ri-pages-line"></i>
+                        <span>Страницы</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="layouts-horizontal">@lang('translation.Horizontal')</a></li>
-                        <li><a href="layouts-light-sidebar">@lang('translation.Light_Sidebar')</a></li>
-                        <li><a href="layouts-compact-sidebar">@lang('translation.Compact_Sidebar')</a></li>
-                        <li><a href="layouts-icon-sidebar">@lang('translation.Icon_Sidebar')</a></li>
-                        <li><a href="layouts-boxed">@lang('translation.Boxed_Layout')</a></li>
-                        <li><a href="layouts-preloader">@lang('translation.Preloader')</a></li>
+                        <li><a href="#">Добавить страницу</a></li>
+                        <li><a href="layouts-light-sidebar">Все</a></li>
+                        <li><a href="layouts-compact-sidebar">Главная</a></li>
+                        <li><a href="layouts-icon-sidebar">Контакты</a></li>
                     </ul>
                 </li>
 
-                <li class="menu-title">@lang('translation.Pages')</li>
+                <li class="menu-title">Настройки</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-account-circle-line"></i>
-                        <span>@lang('translation.Authentication')</span>
+                        <span>Пользователи</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="auth-login">@lang('translation.Login')</a></li>
-                        <li><a href="auth-register">@lang('translation.Register')</a></li>
-                        <li><a href="auth-recoverpw">@lang('translation.Recover_Password')</a></li>
-                        <li><a href="auth-lock-screen">@lang('translation.Lock_Screen')</a></li>
+                        <li><a href="auth-login">======</a></li>
+
                     </ul>
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-profile-line"></i>
-                        <span>@lang('translation.Utility')</span>
+                        <i class="ri-folder-settings-line"></i>
+                        <span>Настройки</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter">@lang('translation.Starter_Page')</a></li>
-                        <li><a href="pages-maintenance">@lang('translation.Maintenance')</a></li>
-                        <li><a href="pages-comingsoon">@lang('translation.Coming_Soon')</a></li>
-                        <li><a href="pages-timeline">@lang('translation.Timeline')</a></li>
-                        <li><a href="pages-faqs">@lang('translation.FAQs')</a></li>
-                        <li><a href="pages-pricing">@lang('translation.Pricing')</a></li>
-                        <li><a href="pages-404">@lang('translation.Error_404')</a></li>
-                        <li><a href="pages-500">@lang('translation.Error_500')</a></li>
+                        <li><a href="pages-starter">Значения</a></li>
+                        <li><a href="pages-maintenance">Меню</a></li>
                     </ul>
                 </li>
 
-                <li class="menu-title">@lang('translation.Components')</li>
+                {{--<li class="menu-title">@lang('translation.Components')</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -226,7 +221,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li>--}}
 
             </ul>
         </div>

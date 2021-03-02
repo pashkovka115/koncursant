@@ -1,0 +1,701 @@
+@import "vars"
+
+
+/*==========  Desktop First  ==========*/
+@media (max-width: 1400px)
+	.main-content 
+		h1
+			font-size: 36px
+			+ p
+				font-size: 18px
+	.advant-tabs 
+		.item
+			font-size: 14px
+
+	.btn
+		font-size: 16px
+	.btn-all-contents
+		width: auto
+	header 
+		.phone
+			font-size: 18px
+
+	.contests-banners 
+		.wrapper 
+			.contests-link	
+				height: 480px
+				font-size: 32px
+				padding-bottom: 50px	
+	.advantage 
+		.red-link
+			width: 160px
+			span
+				left: -153px
+
+	.jury-banner
+		padding-bottom: 150px
+		.image
+			img
+				width: 800px
+	.advantage.advantage-free-contest 
+		.red-link 
+			span
+				left: -205px 
+
+	.contacts-page 
+		.contacts 
+			li
+				font-size: 48px
+	.contacts-info 
+		.wrapper 
+			.left
+				font-size: 32px
+@media (max-width: 1280px)
+	.info-block 
+		.item 
+			padding-right: 15px
+			h3
+				font-size: 18px
+			p
+				font-size: 14px
+		h2.title 
+			+ p
+				font-size: 24px
+	.our-clients 
+		.clients-list 
+			.item
+				font-size: 20px
+				line-height: 1.4
+	.jury-banner
+		.image
+			img
+				width: 600px
+	.contest-full-page 
+		.contest-gray-block
+			padding-left: 25px
+			padding-right: 25px
+			background-color: #F6F6F9
+			&:after
+				display: none
+
+// ≥1200px
++media-breakpoint-down(lg)
+	header 
+		nav 
+			ul 
+				li
+					margin-left: 20px
+	.discount 
+		.wrapper
+			display: block
+		.description
+			margin-top: 30px
+	.discount-form
+		display: block
+		> div
+			max-width: 100%
+		h3
+			text-align: center
+			margin-bottom: 30px
+	.jury-banner
+		padding-bottom: 50px
+	.contest-full-page 
+		.left-part
+			padding-right: 15px
+			.btn
+				width: 100%
+	.title-result 
+		.title
+			font-size: 24px
+			+ p
+				font-size: 14px
+				line-height: 1.2
+	.quiz 
+		.head-quiz 
+			.inform
+				margin-left: 50px
+				font-size: 16px
+// ≥992px
++media-breakpoint-down(md)
+	header 
+		padding-top: 0
+		.wrapper
+			justify-content: space-between
+		.logo-box
+			img
+				width: 160px
+				padding-top: 10px
+		.right-part
+			display: none
+	header.active
+		background-color: #252A34	
+	.btn-menu
+		display: block
+	.info-block 
+		padding-bottom: 60px
+		h2.title
+			margin-bottom: 30px
+		.wrapper
+			margin-top: 30px
+	.our-clients 
+		.clients-list 
+			flex-wrap: wrap
+			.item
+				min-height: 340px
+				padding: 15px
+				margin-bottom: 2px
+				flex-basis: calc(50% - 2px)	
+				width: calc(50% - 2px)	
+				.title
+					padding-left: 15px
+					padding-right: 15px
+					font-size: 18px
+				.intro
+					padding-left: 15px
+					padding-right: 15px
+					font-size: 12px
+	.carausel-main
+		padding-bottom: 100px
+		margin-top: -230px
+		.wrap
+			padding-right: 0
+		.carousel
+			margin-top: 30px
+	.contests-banners 
+		.wrapper 
+			.contests-link	
+				height: 400px
+				font-size: 24px	
+	.free-contests 
+		.contensts-list
+			flex-wrap: wrap
+	.contest-card
+		flex-basis: calc(50% - 20px)
+		margin-bottom: 40px
+
+	.advant-tabs 
+		.item
+			flex-basis: 10%
+	.advantage
+		h2.title
+			margin-bottom: 40px
+			+ p
+				margin-bottom: 40px
+		.advant-wrapper 
+			.item
+				flex-basis: 50%
+				&:nth-child(2)
+					flex-basis: 50%
+				&:last-child
+					flex-basis: 100%
+	footer 
+		padding: 100px 0 50px
+		.logo
+			margin-top: 35px
+	.inside-main-block
+		padding: 150px 0 70px
+	.jury-banner
+		padding-top: 340px
+	.contest-full-title 
+		.title-contest	
+			margin-top: 35px
+			display: block
+			margin-bottom: 35px
+	.contest-full-page 
+		.left-part
+			display: none
+	.price-list 
+		.price-title
+			display: block
+	.result-page
+		.aside
+			p.info
+				display: none
+			.latest-performances
+				display: none
+			.rank-box
+				display: none
+			.btn
+				display: none
+			.all-participants
+				display: none
+		.years-menu
+			margin: 40px 0
+		.quarter-menu
+			li
+				display: inline-block
+				margin-right: 15px
+	.result-banner-main 
+		margin-bottom: 40px
+		img
+			width: 100%
+	.title-h1
+		font-size: 36px
+	.result-list-page 
+		.result-box
+			flex-basis: calc(50% - 20px)
+	.contacts-page 
+		.contacts 
+			li
+				flex-basis: 100%
+	.contacts-info 
+		.wrapper
+			display: block
+			.right
+				padding-left: 0
+	.jury-list-page
+		.wrapper
+			.jury-member
+				flex-basis: calc(33.333% - 20px)
+	.jury-page 
+		.info-jury 
+			.image
+				flex-basis: 200px
+			.description
+				flex-basis: calc(100% - 200px)
+	.page-404 
+		.title	
+			font-size: 220px
+		.subtitle
+			font-size: 30px	
+	.quiz 
+		.head-quiz
+			display: block	
+			.inform
+				margin-top: 30px
+				margin-left: 0
+// ≥768px
++media-breakpoint-down(sm)
+	.contests-banners 
+		.wrapper
+			flex-wrap: wrap
+			.contests-link	
+				flex-basis: 100%
+				width: 100%
+	.title-block
+		display: block
+	.link-circle, .more
+		font-size: 12px
+		&:before
+			width: 40px
+			height: 40px
+			flex-shrink: 0
+	.jury
+		padding-bottom: 60px
+	.advantage 
+		padding-bottom: 0
+		padding-top: 0
+		.wrapper
+			padding-bottom: 0
+			padding-top: 60px
+			&:after
+				right: -400px
+
+
+		.advant-wrapper 
+			margin-right: 0
+			padding-right: 0
+			.item
+				flex-basis: 100% !important
+				margin-top: 30px
+		.red-link
+			position: relative
+			left: auto
+			top: auto
+			bottom: auto
+			right: auto
+			display: block
+			padding: 20px 15px
+			width: 100%
+			text-align: center
+			margin-top: 60px
+			span
+				transform: none !important
+				position: relative
+				font-size: 24px
+				left: auto !important
+				bottom: auto !important
+	.discount
+		padding: 70px 0
+		.wrapper
+			border-radius: 10px
+			background-color: #F6F6F9
+			padding: 15px
+		.percent-box 
+			.item 
+				font-size: 16px
+				.percent
+					font-size: 60px	
+					line-height: 1
+		.description
+			font-size: 14px
+	footer 
+		padding-top: 30px
+		padding-bottom: 20px
+		text-align: center
+		.social
+			justify-content: center
+		.wrapper 
+			flex-wrap: wrap
+			.f-item
+				flex-basis: 100%
+		.copyright
+			width: 100%
+	.discount-form 
+		form 
+			flex-wrap: wrap
+			.item
+				flex-basis: 100%
+				padding-left: 0
+				padding-right: 0
+				margin-bottom: 15px
+	.price-list 
+		padding-top: 40px
+		.price-item
+			display: block
+			font-size: 16px
+			h3
+				font-size: 18px
+				margin-bottom: 15px
+				padding-top: 5px
+				padding-bottom: 5px
+	.result-list-page 
+		.result-box
+			flex-basis: calc(100% - 20px)
+	.contacts-page 
+		h1
+			+ p
+				font-size: 16px
+		.contacts 
+			li
+				font-size: 38px
+				small
+					font-size: 12px
+				&:last-child
+					font-size: 25px
+	.contacts-info 
+		margin-bottom: 50px
+		.wrapper 
+			.left
+				.info
+					padding-top: 25px
+					padding-bottom: 25px
+				font-size: 24px
+			.right
+				padding-top: 50px
+				padding-bottom: 50px
+				font-size: 14px
+				padding-bottom: 10px
+	.license
+		padding-bottom: 50px
+	.faq-page 
+		.accordeon 
+			dt
+				font-size: 18px
+				justify-content: space-between
+				&:before
+					display: none
+				&:after
+					content: ""
+					width: 26px
+					height: 26px
+					margin-left: 15px
+					border-radius: 50%
+					flex-shrink: 0
+					background: #F8F8F8 url(../img/icon/arrow-down.svg) no-repeat center center
+			dt.active
+				&:before
+					background: $black url(../img/icon/arrow-top.svg) no-repeat center center			
+			dd
+				font-size: 16px	
+	.jury-list-page
+		.wrapper
+			.jury-member
+				flex-basis: calc(50% - 20px)
+	.jury-page 
+		h1
+			margin-bottom: 15px
+		.info-jury
+			display: block
+			.image
+				margin-bottom: 30px	
+			.description
+				padding-left: 0
+				.name
+					font-size: 20px
+				.pos
+					font-size: 12px	
+	.quiz-step 
+		.fields
+			margin-bottom: 0
+		.field-25,
+		.field-30,
+		.field-33,
+		.field-50,
+		.field-70
+			flex-basis: calc(100% - 20px)
+			input, .nice-select, textarea
+				margin-bottom: 15px
+		.links-question
+			margin-top: 15px
+			margin-bottom: 15px
+			padding-top: 0
+	#step-2
+		.checkbox
+			height: 0
+			margin-bottom: 0
+			padding: 0
+	#step-4
+		.diplom
+			width: 250px
+			margin-bottom: 15px
+	.quiz-step 
+		.quiz-steps-btn
+			.btn
+				padding-left: 20px
+				padding-right: 20px
+		button.add
+			width: 100%
+			padding-left: 15px
+			padding-right: 15px
+			margin-top: 10px
+		.tarif
+			flex-basis: calc(50% - 20px)
+		.detailed-cost 
+			table 
+				font-size: 12px
+				thead
+					th
+						padding: 5px
+						font-size: 12px
+				td
+					padding: 5px
+
+	#step-5
+		.field 
+			p
+				margin-top: 0
+		.text-right
+			text-align: left
+
+// ≥576px
++media-breakpoint-down(xs)
+	.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto, .col-xxl, .col-xxl-1, .col-xxl-10, .col-xxl-11, .col-xxl-12, .col-xxl-2, .col-xxl-3, .col-xxl-4, .col-xxl-5, .col-xxl-6, .col-xxl-7, .col-xxl-8, .col-xxl-9, .col-xxl-auto
+		padding-left: 15px
+		padding-right: 15px
+	.main-block
+		padding-bottom: 60px
+		min-height: auto
+		.main-content 
+			margin-top: 125px
+			h1
+				font-size: 24px	
+				margin-bottom: 15px
+				+ p
+					font-size: 14px
+					line-height: 1.6
+					margin-bottom: 15px
+			.btn-all-contents
+				width: 100%
+	.our-clients 
+		h2.title
+			margin-bottom: 30px
+		.clients-list 
+			.item
+				height: 185px
+				flex-basis: 100%
+				font-size: 15px
+				background-size: contain
+				img
+					width: 100%
+	.info-block 
+		padding-top: 60px
+		padding-bottom: 0
+		.item
+			flex-basis: 100%
+			padding-right: 0
+			.icn
+				margin-bottom: 20px
+	h2.title
+		font-size: 24px
+	.carausel-main
+		margin-top: -260px
+		padding-bottom: 70px
+		.wrap
+			font-size: 14px
+		.card
+			width: 220px
+			height: 340px
+			padding: 15px
+			h3
+				font-size: 16px
+			p
+				font-size: 14px
+	.contests-banners 
+		.wrapper 
+			.contests-1, .contests-2
+				padding: 25px 15px
+				height: 320px
+				&:after
+					left: -15px
+					right: -15px
+	.free-contests
+		padding: 60px 0
+	.contest-card
+		flex-basis: calc(100% - 20px)
+	.jury-member-carousel 
+		.jury-member
+			width: 220px
+	.jury 
+		h2.title
+			font-size: 24px
+	.jury-member 
+		h3
+			font-size: 20px
+	.advantage 
+		h2.title 
+			+ p
+				font-size: 18px
+				margin-bottom: 20px
+		.advant-wrapper 
+			.item 
+				font-size: 14px
+				h3
+					font-size: 16px
+	.inside-main-block
+		padding: 90px 0 70px
+	.jury-banner 
+		padding-top: 300px
+		padding-bottom: 0
+		.image 
+			padding-left: 50px
+		h2.title
+			font-size: 24px
+			margin-bottom: 30px
+	.discount-form
+		margin-bottom: 0
+	.contest-full-banner
+		.image-mobile
+			display: block
+		.image-desktop
+			display: none
+	.contest-full-title 
+		.age-groups 
+			ul 
+				li
+					margin-right: 0
+					flex-basis: 100%
+		.title-contest 
+			h1.title
+				font-size: 24px
+				+ p
+					font-size: 16px
+			.btn
+				width: 100%
+				font-size: 16px
+				height: 50px
+	.contest-full-page 
+		padding-top: 40px
+		padding-bottom: 40px
+		.contest-block
+			font-size: 16px
+		.contest-gray-block 
+			font-size: 14px
+			.col-lg-6
+				padding-left: 0
+				padding-right: 0
+			p.email
+				font-size: 20px
+			small
+				font-size: 12px
+			.btn
+				width: 100%
+				height: 50px
+				margin-bottom: 15px
+	.title-h1
+		font-size: 24px
+		margin-bottom: 30px
+	.years-menu
+		font-size: 20px
+		ul
+			li
+				margin-right: 20px
+				&:after
+					width: 20px
+	.contests-menu 
+		ul 
+			li 
+				span
+					display: none
+				a
+					justify-content: flex-start
+					padding-left: 0
+	.title-result
+		display: block
+	.result-page
+		padding-bottom: 50px
+		.col-lg-9
+			padding-left: 0
+			padding-right: 0
+	.jury-list-page
+		padding-bottom: 0px
+		.wrapper
+			.jury-member
+				flex-basis: calc(100% - 20px)
+				img
+					width: 100%
+	.page-404
+		.title
+			font-size: 110px
+		.subtitle
+			font-size: 24px
+			font-family: "Montserrat-SemiBold"
+		p
+			font-size: 12px
+			font-family: "Montserrat-Medium"
+			br
+				display: none
+		.btn
+			width: 100%
+			font-size: 16px
+			height: 50px
+	#step-2 
+		.type-order
+			flex-wrap: wrap
+			.btn-black
+				flex-basis: 100%
+
+@media (max-width: 380px)
+	.discount 
+		.percent-box
+			display: block
+			.item
+				margin-bottom: 0
+				&:last-child
+					padding-left: 0
+					padding-top: 15px
+					p
+						display: inline-block
+		.description	
+			margin-top: 15px
+	.jury-banner
+		padding-top: 190px
+	.quiz-step 
+		.btn-buy
+			width: 100%
+			font-size: 14px
+		.tarif
+			flex-basis: calc(100% - 20px)
+/*==========  Mobile First  ==========*/
+
+// ≤576px
++media-breakpoint-up(sm)
+
+// ≤768px
++media-breakpoint-up(md)
+
+// ≤992px
++media-breakpoint-up(lg)
+
+// ≤1200px
++media-breakpoint-up(xl)

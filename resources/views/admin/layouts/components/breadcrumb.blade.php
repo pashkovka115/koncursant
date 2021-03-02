@@ -13,6 +13,9 @@
                     @if(isset($li_3))
                     <li class="breadcrumb-item"><a href="{{ $a_3 }}">{{ $li_3 }}</a></li>
                     @endif
+                    @if(isset($active))
+                    <li class="breadcrumb-item">{{ $active }}</li>
+                    @endif
                 </ol>
             </div>
 

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') | EKOID ADMIN</title>
-    <link rel="shortcut icon" href="{{ URL::asset('/assets/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{ URL::asset('/favicon/favicon.ico')}}">
     <!-- Bootstrap Css -->
 <link href="{{ URL::asset('/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <!-- Icons Css -->

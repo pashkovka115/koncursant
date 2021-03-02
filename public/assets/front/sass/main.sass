@@ -1,0 +1,1867 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+@import "mixins"
+
+$red: #DB1E39
+$black: #232323
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	font-family: $default-font
+	overflow-x: hidden
+	color: $text
+	input, textarea
+		border: #666 1px solid
+		outline: none
+		&:focus:required:invalid
+			border-color: red
+		&:required:valid
+			border-color: green
+
+button
+	cursor: pointer
+	border: none
+	transition: all .3s
+	&:focus
+		outline: none !important
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+	&.img-width
+		width: 100%
+
+.text-center
+	text-align: center
+
+
+h1,h2,h3,h4, b, strong 
+	font-weight: normal
+	
+a
+	transition: all .3s
+	&:hover
+		text-decoration: none
+	&:focus
+		outline: none
+
+ul,li 
+	margin: 0
+	padding: 0
+	list-style-type: none
+
+.clearfix
+	&:after 
+    	display: block
+    	content: ""
+    	clear: both
+.done-w 
+	position: absolute
+	width: 100%
+	height: 100%
+	background-color: rgba(0, 0 ,0 , .5)
+	display: none
+	bottom: 0
+	right: 0
+	z-index: 10000
+
+.done-window 
+	position: fixed
+	display: block
+	left: 50%
+	top: 50%
+	-webkit-transform: translate(-50%, -50%)
+	-ms-transform: translate(-50%, -50%)
+	-o-transform: translate(-50%, -50%)
+	transform: translate(-50%, -50%)
+	background-color: rgba(255,255,255,1)
+	color: #010101
+	text-align: center
+	text-transform: uppercase
+	font-size: 20px
+	padding: 0 35px  15px
+	border: 3px solid #86bc42
+	padding-top: 13px
+
+.done-window h3 
+	margin: 0
+
+.done-window small 
+	font-size: 14px
+	text-transform: none
+	line-height: 18px
+
+.video-responsive 
+	position: relative 
+	overflow:hidden
+	height: 270px
+	margin: auto
+	margin-bottom: 25px
+
+.video-responsive iframe, 
+.video-responsive object, 
+.video-responsive embed 
+	position: absolute
+	top: 0 
+	left: 0
+	width: 100%
+	height: 100%
+
+.mfp-fade.mfp-bg 
+	opacity: 0;
+	-webkit-transition: all 0.15s ease-out
+	-moz-transition: all 0.15s ease-out
+	transition: all 0.15s ease-out
+
+.mfp-fade.mfp-bg.mfp-ready 
+	opacity: 0.8
+
+.mfp-fade.mfp-bg.mfp-removing 
+  opacity: 0
+
+.mfp-fade.mfp-wrap .mfp-content 
+	opacity: 0
+	-webkit-transition: all 0.15s ease-out
+	-moz-transition: all 0.15s ease-out
+	transition: all 0.15s ease-out
+
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content 
+	opacity: 1
+
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content 
+	opacity: 0
+
+.main_mnu_button  
+	background-color: transparent
+	border: none
+	color: #000000
+	font-size: 36px
+
+.popup-form 
+	background-color: #fff
+	border-radius: 3px
+	padding: 25px
+	position: relative
+	margin: 0 auto
+	max-width: 350px
+	text-align: center
+
+.popup-form input, 
+.popup-form textarea 
+	border: none
+	border-bottom: 1px solid #BCBCBC
+	text-indent: 15px
+	font-size: 14px
+	width: 100%
+	margin-bottom: 15px
+	padding: 10px 0
+
+.popup-form h3 
+	margin: 0
+	text-transform: uppercase
+	font-size: 24px
+	line-height: 1.2
+	margin-bottom: 15px
+
+.dib 
+	display: inline-block
+
+.text-right 
+	text-align: right
+
+.hidden 
+	display: none
+
+.radio 
+	position: absolute
+	z-index: -1
+	opacity: 0
+	margin: 10px 0 0 7px
+
+.radio + label 
+	position: relative
+	padding: 0 0 0 35px
+	cursor: pointer
+
+.radio + label:before 
+	content: ''
+	position: absolute
+	top: -3px
+	left: 0
+	width: 22px
+	height: 22px
+	border: 1px solid #CDD1DA
+	border-radius: 50%
+	background: #FFF
+
+.radio + label:after 
+	content: ''
+	position: absolute
+	top: 1px
+	left: 4px
+	width: 16px
+	height: 16px
+	border-radius: 50%
+	background: #9FD468
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.5)
+	opacity: 0
+	transition: .2s
+
+.radio:checked + label:after 
+	opacity: 1;
+
+.radio:focus + label:before 
+	box-shadow: 0 0 0 3px rgba(255,255,0,.7)
+
+
+
+.checkbox 
+	position: absolute
+	z-index: -1
+	opacity: 0
+
+.checkbox + label 
+	position: relative
+	padding: 0 0 0 30px
+	cursor: pointer
+
+.checkbox + label:before 
+	content: ''
+	position: absolute
+	top: 2px
+	left: 0
+	width: 20px
+	height: 20px
+	border-radius: 6px
+	border: 1px solid rgba(166, 181, 197, .5)
+	transition: .2s
+
+.checkbox + label:after 
+	content: ''
+	position: absolute
+	top: 2px
+	left: 0
+	width: 20px
+	height: 20px
+	border-radius: 6px
+	background: url(../img/icon/check.svg) no-repeat center center
+	transition: .2s
+	opacity: 0
+
+.checkbox:checked + label:after 
+ 	opacity: 1
+
+.main_mnu_button
+	width: 35px
+	height: 30px
+	border-top: 3px solid #000
+	border-bottom: 3px solid #000
+	position: relative
+	cursor: pointer
+	position: absolute
+	top: 7px
+	right: 15px
+	display: none
+	&:focus
+		outline: none !important
+	&:after
+		content: ''
+		display: inline-block
+		top: 50%
+		left: 0
+		right: 0
+		transform: translate(0, -50%) rotate(0)
+		height: 3px
+		width: 100%
+		position: absolute
+		background-color: #000
+		transition: all .3s
+	&:before
+		content: ''
+		display: inline-block
+		top: 50%
+		left: 0
+		right: 0
+		transform: translate(0, -50%) rotate(0)
+		height: 3px
+		width: 100%
+		position: absolute
+		background-color: #000
+		transition: all .3s
+.main_mnu_button.active
+	border-top: 3px solid transparent
+	border-bottom: 3px solid transparent
+	&:after
+		transform: translate(0, -50%) rotate(-45deg)
+	&:before
+		transform: translate(0, -50%) rotate(45deg)
+header
+	padding-top: 30px
+	margin-bottom: 60px
+	z-index: 3
+	.wrapper
+		display: flex
+		justify-content: space-between
+	nav
+		display: inline-block
+		margin-top: 5px
+		ul
+			display: flex
+			li
+				margin-left: 30px
+				position: relative
+				&:hover
+					ul
+						display: block
+				ul
+					position: absolute
+					top: 100%
+					left: 0
+					z-index: 15
+					width: 230px
+					padding: 15px 20px
+					padding-top: 30px
+					padding-bottom: 1px
+					background: url(../img/angle.svg) no-repeat left top
+					display: block
+					text-align: left
+					display: none
+					li
+						margin-left: 0
+						margin-bottom: 10px
+						line-height: 1.2
+						a
+							color: #000
+			a
+				color: #413F3F
+				&:hover
+					color: $red
+
+	.right-part
+		text-align: right
+	.top-pnl
+		display: flex
+		align-items: center
+		justify-content: flex-end
+		
+	.phone
+		color: #413F3F
+		font-size: 26px
+		font-family: "Montserrat-SemiBold"
+		display: inline-block
+		position: relative
+		margin-left: 10px
+		&:before
+			content: "\e814"
+			font-family: "icon"
+			color: $red
+			margin-right: 5px
+
+
+a.link
+	color: rgba(255,255,255,.7)
+	display: inline-block
+	margin-right: 15px
+	border-radius: 10px
+	padding: 3px 10px
+	background: rgba(31,39,58,.3)
+.btn-menu
+	width: 30px
+	height: 60px
+	display: none
+	background: url( ../img/icon/menu-black.svg) no-repeat center center
+.btn-menu.active
+	background: url( ../img/icon/close.svg) no-repeat center center
+
+.mobile-menu
+	background-color: #252A34	
+	z-index: 3
+	position: relative
+	padding: 20px 0
+	padding-bottom: 50px
+	text-align: center
+	margin-top: 0
+	display: none
+	a.phone
+		margin-left: 0
+	.menu
+		margin-top: 5px
+		margin: 30px 0
+		ul
+			li
+				position: relative
+				a
+					color: #fff
+					&:hover
+						color: $red
+	a.link
+		background: rgba(60,65,68, .3)
+		margin-bottom: 10px
+		width: 200px
+.mobile-menu.active
+	display: block
+.main-block
+	background: url(../img/main.png) no-repeat center top
+	background-size: cover
+	min-height: 100vh
+	color: #fff
+	position: relative
+	display: flex
+	align-items: center
+	padding-bottom: 50px
+	.btn-menu
+		background: url( ../img/icon/menu.svg) no-repeat center center
+	header
+		position: absolute
+		left: 0
+		top: 0
+		right: 0
+		margin-bottom: 0
+		nav
+			ul
+				a
+					color: #fff
+				li
+					ul
+						li
+							a
+								color: $black
+		.phone
+			color: #fff
+
+.main-content
+	flex-basis: 100%
+	margin-top: 125px
+	h1
+		font-size: 44px
+		font-family: "Montserrat-SemiBold"
+		line-height: 1.2
+		margin-bottom: 40px
+		+ p
+			font-size: 22px
+			line-height: 1.2
+			font-family: "Montserrat-Medium"
+			margin-bottom: 40px
+.advant-tabs
+	display: flex
+	flex-wrap: wrap
+	margin-bottom: 70px
+	.item
+		font-size: 18px
+		flex-basis: 50%
+		color: #fff
+		border-left: 7px solid $red
+		margin-bottom: 20px	
+		padding-left: 15px	
+		padding-right: 15px	
+.btn
+	border-radius: 36px
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	font-size: 20px
+	padding: 15px 55px
+	line-height: 1.2
+	text-align: center
+.btn-border-white
+	border: 1px solid #fff
+	color: #fff
+	&:hover
+		background-color: #fff 
+		color: $black
+.btn-all-contents
+	width: 320px
+h2.title
+	font-size: 40px
+	line-height: 1.2
+.info-block
+	padding: 100px 0
+	h2.title
+		margin-bottom: 70px
+		+ p
+			font-size: 30px
+			line-height: 1.2
+			border-left: 7px solid $red
+			padding-left: 20px
+	.wrapper
+		display: flex
+		flex-wrap: wrap
+	.item
+		flex-basis: 50%
+		margin-bottom: 40px
+		.icn
+			margin-bottom: 40px
+		h3
+			font-size: 24px
+			line-height: 1.4
+			margin-bottom: 15px
+		p
+			color: #828587
+			font-size: 18px
+			line-height: 1.4
+.our-clients
+	h2.title
+		margin-bottom: 70px
+	.clients-list
+		display: flex
+		.item	
+			min-height: 480px
+			flex-basis: calc(25% - 2px)
+			margin-left: 1px
+			margin-right: 1px
+			background-color: #F6F6F9
+			background-position: right bottom
+			background-repeat: no-repeat
+			background-size:cover
+			padding: 40px 0
+			position: relative
+			padding-bottom: 200px
+			&:after
+				content: ""
+				position: absolute
+				left: 50%
+				bottom: 80px
+				transform: translate(-50%, 0)
+				width: 70px
+				height: 70px
+				transition: all .3s
+				background: $red url(../img/plus.svg) no-repeat center center
+				border-radius: 50%
+			.title
+				padding: 0 40px
+				font-size: 24px
+				line-height: 1.2
+				margin-bottom: 10px
+			.intro
+				color: #828587
+				padding: 0 40px
+			.image
+				position: absolute
+				bottom: 0
+				left: 0
+				right: 0
+			.intro,  .image
+				visibility: hidden
+				opacity: 0
+				transition: all .3s
+			&:hover
+				background-image: none !important
+				.intro,  .image
+					visibility: visible
+					opacity: 1
+				&:after
+					visibility: hidden
+					opacity: 0
+
+.carausel-main
+	margin-top: -140px
+	background: $black
+	padding-top: 336px
+	padding-bottom: 240px
+	color: #fff
+	overflow: hidden
+	.btns-carousel
+		position: absolute
+		bottom: 0
+		left: 0
+	.carousel
+		width: calc(100% + 400px)
+		margin-bottom: 0
+	.wrap
+		padding-right: 85px
+		font-size: 18px
+		color: #ADB0B2
+		position: relative
+		padding-bottom: 80px
+		height: 100%
+	h2
+		color: #fff
+		margin-bottom: 40px
+	.btn-slider
+		width: 70px
+		height: 70px
+		color: #ADB0B2
+		border-radius: 50%
+		background-color: #3C4144
+		&:hover
+			background-color: #2A2D2F
+	.item
+		padding-right: 30px
+	.card
+		width: 400px
+		height: 550px
+		display: flex
+		align-content: flex-end
+		padding: 50px 40px
+		flex-wrap: wrap
+		h3
+			flex-basis: 100%
+			font-size: 24px
+		p
+			font-size: 18px
+			font-family: "Montserrat-Light"
+.contests-banners
+	position: relative
+	overflow: hidden
+	.wrapper
+		display: flex
+		.contests-link
+			flex-basis: 50%
+			height: 670px
+			font-size: 40px
+			color: #fff
+			display: flex
+			padding-bottom: 120px
+			align-items: flex-end
+			position: relative
+			z-index: 1
+		.contests-1
+			&:after
+				content: ""
+				position: absolute
+				top: 0
+				left: -400px
+				bottom: 0
+				right: 0
+				background: url(../img/bg.png) no-repeat right top
+				background-size: cover
+				z-index: -1
+		.contests-2
+			padding-left: 110px
+			&:after
+				content: ""
+				position: absolute
+				top: 0
+				left: 0
+				bottom: 0
+				right: -9999px
+				background-color: $red
+				z-index: -1
+.free-contests
+	padding-top: 100px
+	padding-bottom: 100px
+	.contensts-list
+		display: flex
+		margin-left: -10px
+		margin-right: -10px
+.title-block
+	display: flex
+	align-items: center
+	justify-content: space-between
+	margin-bottom: 45px
+	h2
+		font-size: 22px
+img
+	max-width: 100%
+.contest-card
+	flex-basis: calc(33.333% - 20px)
+	margin-left: 10px
+	margin-right: 10px
+	.image
+		position: relative
+		margin-bottom: 15px
+		img
+			width: 100%
+		.tags
+			display: flex
+			position: absolute
+			flex-wrap: wrap
+			bottom: 10px
+			left: 10px
+			color: #413F3F
+			font-size: 12px
+			text-transform: uppercase
+			li
+				border-radius: 10px
+				margin-right: 5px
+				background-color: #F6F6F9
+				padding: 3px 10px
+				margin-bottom: 5px
+	.date
+		font-size: 13px
+		color: #828587
+		margin-bottom: 25px
+		p
+			margin-bottom: 0
+	h3
+		font-size: 24px
+		text-transform: uppercase
+		line-height: 1.2
+		margin-bottom: 10px
+	.tags2
+		display: flex
+		flex-wrap: wrap
+		color: #828587
+		font-size: 13px
+		margin-bottom: 15px
+		li
+			border-radius: 10px
+			margin-right: 5px
+			background-color: #F6F6F9
+			padding: 3px 10px
+			margin-bottom: 5px
+
+.link-circle, .more
+	display: inline-flex
+	align-items: center
+	font-size: 18px
+	line-height: 1.4
+	color: $black
+	&:before
+		content: ""
+		width: 71px
+		height: 71px
+		border-radius: 50%
+		margin-right: 20px
+		transition: all .3s
+		background: #3C4144 url(../img/icon/arrow-diag.svg) no-repeat center center
+	&:hover
+		color: $red
+		&:before
+			background-color: $red
+.more.back	
+	font-size: 14px
+	&:before
+		width: 50px
+		height: 50px
+		background: #F8F8F8 url(../img/arrow-back.svg) no-repeat center center
+.jury
+	padding-bottom: 130px
+	position: relative
+	z-index: 1
+	h2.title
+		font-size: 40px
+
+.jury-member-carousel
+	margin-left: -10px
+	margin-right: -10px
+	.item
+		padding-left: 10px
+		padding-right: 10px
+.jury-member
+	.image
+		margin-bottom: 15px
+	h3
+		font-size: 24px
+		line-height: 1.2
+	p.subtitle
+		color: #828587
+		font-size: 13px
+.advantage
+	color: #fff
+	position: relative
+	background-repeat: no-repeat
+	background-position: center top
+	background-size: cover
+	padding-top: 110px
+	padding-bottom: 110px
+	h2.title
+		margin-bottom: 70px
+		+ p
+			font-size: 30px
+			line-height: 1.2
+			border-left: 7px solid $red
+			padding-left: 20px
+			margin-bottom: 100px
+	.advant-wrapper
+		display: flex
+		flex-wrap: wrap
+		padding-right: 220px
+		.item
+			flex-basis: 33.33%
+			margin-top: 50px
+			padding-right: 15px
+			&:nth-child(2)
+				flex-basis: 66.66%
+			h3
+				font-size: 24px
+			p
+				color: #ADB0B2
+				margin-bottom: 0
+	.red-link
+		position: absolute
+		top: 0px
+		bottom: 0px
+		right: -0
+		width: 213px
+		background-color: $red
+		text-align: left
+		span
+			font-size: 40px
+			color: #fff
+			position: absolute
+			transform: rotate(-90deg)
+			white-space: nowrap
+			bottom: 285px
+			left: -120px
+
+			line-height: 1.2
+		&:hover
+			background-color: $black
+
+.advantage.advantage-free-contest
+	color: #292929
+	.red-link
+		span
+			left: -170px
+.advantage.advant-not-visible
+	visibility: hidden
+	opacity: 0
+	transition: all .3s
+.advantage-block
+	position: relative
+	overflow: hidden
+.advantage-hidden
+	position: absolute
+	top: 0
+	right: -4000px
+	transition: all .8s
+.advantage-hidden.active
+	left: 0
+	right: 0
+
+.discount
+	padding: 110px 0
+	.wrapper
+		display: flex
+		align-items: flex-end
+		justify-content: space-between
+	.percent-box
+		display: flex
+		align-items: flex-end
+		color: $red
+		line-height: 1
+		font-size: 40px
+		font-family: "Montserrat-SemiBold"
+		.item
+			margin-bottom: -25px
+			&:last-child
+				padding-left: 30px
+				margin-bottom: 0
+			p
+				margin-bottom: 0
+			.percent
+				font-size: 167px
+			.txt
+				color: $black
+				font-family: "Montserrat-Regular"
+	.description
+		color: #828587
+		flex-basis: 450px
+.btn-border-red
+	color: $red
+	border: 1px solid $red
+	background-color: transparent
+	&:hover
+		background-color: $red 
+		color: #fff !important
+.btn-border-gray
+	color: #828587
+	border: 1px solid #828587
+	background-color: transparent
+	&:hover
+		background-color: $red 
+		color: #fff !important
+.btn-red
+	color: #fff
+	background-color: $red
+	&:hover
+		color: #fff
+		background-color: $black
+footer
+	background-color: $black
+	padding: 160px 0
+	color: #fff
+	font-size: 14px
+	.logo
+		margin-bottom: 30px
+	.copyright
+		color: #828587
+		width: 400px
+		strong
+			font-family: "Montserrat-SemiBold"	
+	h4
+		font-family: "Montserrat-SemiBold"	
+		color: #828587
+		font-size: 14px
+		font-weight: normal
+	.wrapper
+		display: flex
+		.f-item
+			flex-basis: 50%
+	.menu
+		font-family: "Montserrat-Medium"
+		li
+			margin-bottom: 7px
+			line-height: 1.4
+		a
+			color: #fff
+			&:hover
+				color: $red
+	.f-contacts
+		p
+			margin-bottom: 0
+			font-size: 20px
+			a
+				color: #fff
+				&:hover
+					color: $red
+	.social
+		margin-top: 40px
+		display: flex
+		a
+			display: inline-flex
+			align-items: center
+			justify-content: center
+			color: $black
+			width: 50px
+			height: 50px
+			border-radius: 580%
+			background-color: #3C4144
+			margin-right: 5px
+			font-size: 16px
+			&:hover
+				background-color: $red
+				color: #fff
+
+.inside-main-block
+	min-height: auto
+	padding: 315px 0 90px
+	.main-content
+		margin-top: 0
+.info-block-gray
+	background-color: #F6F6F9
+.jury-banner
+	background: #F6F6F9
+	padding-top: 145px
+	padding-bottom: 260px
+	position: relative
+	z-index: 1
+	margin-top: 180px
+	&:after
+		content: ""
+		position: absolute
+		left: 0
+		right: 0
+		height: 230px
+		top: 100%		
+		background-color: #F6F6F9
+		z-index: -1
+		display: block
+	.title-block
+		display: block
+	h2.title
+		font-size: 40px
+		margin-bottom: 65px
+	.image
+		position: absolute
+		right: 0
+		top: -100px
+.discount-form
+	display: flex
+	align-items: flex-end
+	margin-top: 65px
+	h3
+		font-size: 24px
+		margin-bottom: 0
+		line-height: 1.2
+	form
+		display: flex
+		.item
+			flex-basis: 33.33%
+			padding-left: 10px
+			padding-right: 10px
+			::placeholder
+				color: #413F3F
+			input
+				width: 100%
+				padding-bottom: 10px
+				border: none
+				border-bottom: 1px solid #413F3F
+				margin-bottom: 0
+				height: 58px
+		.btn
+			width: 100%
+.contest-full-title
+	.title-contest
+		display: flex
+		justify-content: space-between
+		h1.title
+			text-transform: uppercase
+			font-size: 40px
+			line-height: 1.2
+			font-family: "Montserrat-SemiBold"
+			+ p
+				font-size: 18px
+		.btn
+			width: 270px
+			height: 70px
+			font-size: 20px
+			padding-left: 15px
+			padding-right: 15px
+.age-groups
+	margin-bottom: 25px
+	font-family: "Montserrat-Medium"
+	h3
+		font-size: 13px
+		color: #ADB0B2
+	ul
+		display: inline-flex
+		flex-wrap: wrap
+		li
+			padding-left: 15px
+			border-left: 7px solid $red
+			flex-basis: calc(33.33% - 15px)
+			margin-bottom: 10px
+			line-height: 1.2
+			margin-right: 15px
+.contest-full-page
+	padding-top: 75px
+	padding-bottom: 100px
+	.left-part
+		position: sticky
+		top: 25px
+	.btn
+		width: 250px
+		height: 70px
+		padding-left: 15px
+		padding-right: 15px
+	.contest-page-menu
+		font-size: 14px
+		margin-bottom: 35px
+		li
+			margin-bottom: 5px
+		a
+			color: $black
+			&:hover
+				color: $red		
+	.contest-block
+		font-size: 18px
+		margin-bottom: 50px
+		a
+			color: $red
+		h2
+			font-size: 24px
+		h3
+			font-size: 16px
+			font-family: "Montserrat-SemiBold"	
+		strong
+			font-family: "Montserrat-SemiBold"	
+		ul
+			li
+				position: relative
+				padding-left: 15px
+				&:before
+					content: "•"
+					color: $red
+					position: absolute
+					left: 0
+					top: 0px
+	.contest-gray-block
+		padding: 30px 0
+		position: relative
+		z-index: 1
+		p.email
+			font-size: 30px
+		small
+			font-size: 14px
+			color: #828587
+			display: inline-block
+			line-height: 1.2
+		&:after
+			content: ""
+			position: absolute
+			display: inline-block
+			left: -40px
+			right: -40px
+			top: 0
+			bottom: 0
+			z-index: -1
+			background-color: #F6F6F9
+	.assessment-system
+		ul
+			font-size: 16px
+			li
+				padding-left: 0
+				&:before
+					display: none
+	.diplom
+		display: flex
+		.item
+			flex-basis: 33.33%
+			padding-left: 10px
+			padding-right: 10px
+.price-list
+	padding-top: 140px
+	font-size: 18px
+	.price-title
+		align-items: flex-end
+		display: flex
+		margin-bottom: 45px
+		p
+			margin-bottom: 0
+			flex-basis: calc(100% - 320px)
+		h2
+			flex-basis: 320px
+			line-height: 1.2
+	.price-item
+		display: flex
+		margin-bottom: 45px
+		p
+			margin-bottom: 0
+			strong
+				font-family: "Montserrat-SemiBold"
+		h3
+			font-size: 30px
+			line-height: 1.2
+			padding-left: 15px
+			border-left: 7px solid $red
+		.left
+			flex-basis: 320px
+			padding-right: 15px
+		.right
+			flex-basis: calc(100% - 320px)
+.contest-full-banner
+	.image-mobile
+		display: none
+	img
+		width: 100%
+.title-h1
+	font-size: 60px
+	line-height: 1.2
+	font-family: "Montserrat-SemiBold"
+	margin-bottom: 40px
+.result-page
+	padding-bottom: 100px
+	position: relative
+	overflow: hidden
+.contests-menu
+	font-size: 14px
+	border-bottom: 1px solid $black
+	ul
+		display: flex
+		li
+			a, span
+				display: flex
+				padding: 15px 
+				width: 260px
+				height: 85px
+				align-items: center
+				justify-content: center
+				line-height: 1.2
+			span
+				background-color: $black
+				color: #fff
+			a
+				color: $black
+				&:hover
+					color: $red
+.years-menu
+	margin: 70px 0
+	font-size: 40px
+	ul
+		display: flex
+		li
+			margin-right: 70px
+			position: relative
+			&:after
+				content: ""
+				position: absolute
+				top: 50%
+				left: 100%
+				transform: translate(0, -50%)
+				width: 70px
+				height: 1px
+				background-color: $red
+			&:last-child
+				&:after
+					display: none
+	a
+		color: #828587
+		&:hover
+			color: $red
+.quarter-menu
+	font-size: 18px
+	margin: 40px 0
+	a
+		color: #828587
+		&:hover
+			color: $red
+.aside
+	padding-right: 15px
+	strong
+		font-family: "Montserrat-SemiBold"
+	.latest-performances
+		padding-right: 15px
+		margin-bottom: 40px
+		margin-top: 40px
+		h3
+			font-size: 24px
+			line-height: 1.2
+			margin-bottom: 30px
+		.abc-sort
+			color: #828587
+			b
+				font-family: "Montserrat-SemiBold"
+			&:hover
+				color: $red
+	.all-participants
+		color: $red
+		font-family: "Montserrat-Medium"
+		display: block
+		margin-bottom: 40px
+	.rank-box
+		font-family: "Montserrat-Medium"
+		h4
+			font-size: 13px
+			color: #828587
+		ul
+			a
+				color: #413F3F
+				&:hover
+					color: $red
+.title-result
+	display: flex
+	justify-content: space-between
+	margin-bottom: 30px
+	.title
+		font-size: 40px
+		line-height: 1.2
+		text-transform: uppercase
+		font-family: "Montserrat-SemiBold"
+		margin-bottom: 15px
+		+ p
+			font-size: 18px
+	.age-groups
+		ul
+			flex-wrap: wrap
+		li
+			flex-basis: 100%
+.result-banner-main
+	margin-bottom: 100px
+	img
+		width: calc(100% + 320px)
+		max-width: none
+.list-of-participants
+	li
+		margin-bottom: 15px
+	a
+		color: $black
+		border-bottom: 1px solid $black
+		&:hover
+			color: $red
+			border-bottom: 1px solid $red
+.result-list-page
+	.wrapper
+		display: flex
+		margin-left: -10px
+		margin-right: -10px
+		flex-wrap: wrap
+	.result-box
+		margin-left: 10px
+		margin-right: 10px
+		flex-basis: calc(33.333% - 20px)
+		.image
+			margin-bottom: 20px
+			img
+				width: 100%
+		.title
+			font-size: 24px
+			text-transform: uppercase
+			margin-bottom: 5px
+			a
+				color: $black
+				&:hover
+					color: $red
+		.intro
+			margin-bottom: 20px
+		.quarter-menu
+			margin-top: 0
+			ul
+				display: flex
+				flex-wrap: wrap
+				li
+					flex-basis: 50%
+					margin-right: 0
+.contacts-page
+	font-size: 24px
+	padding-bottom: 50px
+	.contacts
+		display: flex
+		flex-wrap: wrap
+		li
+			flex-basis: 50%
+			font-size: 70px
+			line-height: 1.2
+			margin-bottom: 30px
+			small
+				font-size: 18px
+				display: block
+				color: #413F3F
+			a
+				color: #292929
+				&:hover
+					color: $red
+			&:last-child
+				a
+					color: $red
+					&:hover
+						color: $black
+.contacts-info
+	background-color: #F6F6F9
+	margin-bottom: 100px
+	.wrapper
+		display: flex
+		.left
+			flex-basis: 41.66%
+			z-index: 1
+			position: relative
+			color: #fff
+			font-size: 40px
+			line-height: 1.2
+			&:after
+				content: ""
+				position: absolute
+				top: 0
+				right: 0
+				bottom: 0
+				left: -9999px
+				z-index: -2
+				background-color: #fff
+			.info
+				padding: 90px 60px 90px 0
+				position: relative
+				&:after
+					content: ""
+					position: absolute
+					top: 0
+					right: 0
+					bottom: 0
+					left: -9999px
+					z-index: -1
+					background-color: $black
+		.right
+			flex-basis: 58.33%
+			padding-left: 110px
+			padding-top: 90px
+			padding-bottom: 90px
+			h3
+				font-size: 24px
+				line-height: 1.2
+				margin-bottom: 10px
+			.pos
+				color: #828587
+				font-size: 13px
+				margin-bottom: 30px
+			.info-dir
+				margin-bottom: 45px
+				p
+					margin-bottom: 0
+.license
+	font-size: 18px
+	padding-bottom: 100px
+	h2
+		font-size: 24px
+.faq-page
+	padding-bottom: 100px
+	.accordeon
+		dl
+			margin-bottom: 20px
+		dt
+			font-size: 24px
+			cursor: pointer
+			display: flex
+			align-items: center
+			line-height: 1.2
+			&:before
+				content: ""
+				width: 50px
+				height: 50px
+				margin-right: 15px
+				border-radius: 50%
+				flex-shrink: 0
+				background: #F8F8F8 url(../img/icon/arrow-down.svg) no-repeat center center
+			&:hover
+				color: $red
+		dt.active
+			&:before
+				background: $black url(../img/icon/arrow-top.svg) no-repeat center center		
+		dd
+			font-size: 18px
+			padding-top: 30px
+			strong
+				font-family: "Montserrat-SemiBold"	
+			a
+				color: $red
+.jury-list-page
+	padding-bottom: 80px
+	.wrapper
+		display: flex
+		flex-wrap: wrap
+		margin-left: -10px
+		margin-right: -10px
+		.jury-member
+			flex-basis: calc(25% - 20px)
+			margin-left: 10px
+			margin-right: 10px
+			margin-bottom: 40px
+.jury-page
+	padding-bottom: 60px
+	h1
+		margin-bottom: 0
+	.info-jury
+		margin-top: 50px
+		display: flex
+		margin-bottom: 64px
+		.image
+			flex-basis: 400px
+		.description
+			flex-basis: calc(100% - 400px)
+			padding-left: 30px
+			.name
+				font-size: 40px
+				line-height: 1.2
+				font-family: "Montserrat-SemiBold"
+			.pos
+				font-size: 14px
+				color: #828587
+				margin-bottom: 50px
+			.tags
+				display: inline-flex
+				flex-wrap: wrap
+				color: #828587
+				font-size: 13px
+				margin-bottom: 20px
+				li
+					border-radius: 10px
+					margin-right: 5px
+					background-color: #F6F6F9
+					padding: 3px 10px
+					margin-bottom: 5px
+					text-transform: uppercase
+	.information
+		font-size: 18px
+		line-height: 1.2
+		margin-bottom: 40px
+		h3
+			font-size: 24px
+			line-height: 1.2
+.page-404
+	text-align: center
+	.title
+		color: $red
+		font-size: 320px
+		line-height: 1
+		font-family: "Montserrat-Bold"
+	.subtitle
+		font-size: 48px
+		line-height: 1.2
+		font-family: "Montserrat-Bold"
+		margin-bottom: 50px
+		color: $red
+	p
+		color: #828587
+		margin-bottom: 50px
+	.btn
+		width: 320px
+		height: 70px
+		padding-left: 0
+		padding-right: 0
+.progress-bar
+	display: inline-flex
+	justify-content: center
+	align-items: center
+	margin-right: 50px
+
+
+.circle-big 
+	position: relative
+	width: 88px
+	height: 88px
+
+.circle-big svg 
+	width: 88px
+	height: 88px
+
+.circle-big .bg 
+	fill: none
+	stroke-width: 7px
+	stroke: #F6F6F9
+
+.circle-big .progress 
+	fill: none
+	stroke-width: 7px
+	stroke: $red
+	stroke-linecap: round
+	stroke-dasharray: 326.56
+	stroke-dashoffset: 284
+
+	transform: rotate(-90deg)
+	transform-origin: 50% 50%
+	transition: stroke-dashoffset .5s
+.circle-big .text 
+	position: absolute
+	width: 100%
+	top: 50%
+	left: 50%
+	transform: translate(-50%, -50%)
+	font-size: 36px
+	text-align: center
+
+.quiz
+	padding-bottom: 50px
+	.head-quiz
+		display: flex
+		align-items: center
+		margin-bottom: 50px
+		.title-head
+			display: flex
+			align-items: center
+			flex-shrink: 0
+			.type
+				font-size: 14px
+				color: #828587
+			.order-num
+				font-size: 20px
+				font-family: "Montserrat-Medium"
+			.price-item
+				padding: 5px 15px
+				background-color: #F6F6F9
+				margin-left: 30px
+				h4
+					font-size: 12px
+					color: #828587
+				.price
+					color: $red
+					font-family: "Montserrat-SemiBold"
+		.inform
+			margin-left: 150px
+			font-size: 20px
+			p.red
+				color: $red
+				margin-bottom: 0
+.quiz-step.active
+	display: block
+.quiz-step
+	display: none
+	.fields-align-center
+		align-items: center
+	.fields-align-end
+		align-items: flex-end
+		p
+			margin-bottom: 0
+	.fields
+		display: flex
+		margin-left: -7px
+		margin-right: -7px
+		margin-bottom: 30px
+		flex-wrap: wrap
+	.field
+		margin-left: 7px
+		margin-right: 7px
+	.field-25
+		flex-basis: calc(25% - 14px)	
+	.field-30
+		flex-basis: calc(30% - 14px)
+	.field-33
+		flex-basis: calc(33.333% - 14px)
+	.field-50
+		flex-basis: calc(50% - 14px)
+	.field-70
+		flex-basis: calc(70% - 14px)
+	.field-100
+		flex-basis: calc(100% - 14px)
+	input
+		width: 100%
+		border: 1px solid rgba(166, 181, 197,.5)
+		border-radius: 6px
+		height: 40px
+		text-indent: 15px
+		transition: all .3s
+		&:focus
+			border: 1px solid $black
+	.add-teacher-fields
+		display: none
+	input[type="checkbox"]
+		width: auto
+		display: none
+	span.red
+		color: $red
+	.checks
+		display: flex
+		.checkbox + label
+			margin-right: 15px
+	textarea
+		min-height: 120px
+		width: 100%
+		border: 1px solid rgba(166, 181, 197,.5)
+		border-radius: 6px
+		transition: all .3s
+		padding: 15px
+		&:focus
+			border: 1px solid $black
+
+	.nice-select
+		float: none
+		width: 100%
+		height: 40px
+		line-height: 38px
+		border-radius: 6px
+		border: 1px solid rgba(166, 181, 197,.5)
+	legend	
+		color: #828587
+		font-size: 16px
+		font-family: "Montserrat-Medium"
+	button.add
+		padding: 9px 24px
+		border-radius: 4px
+		background-color: #F6F6F9
+		font-size: 14px
+		color: #828587
+		font-family: "Montserrat-SemiBold"
+		i
+			color: $red
+			margin-right: 5px
+			transition: all .3s
+		&:hover
+			color: #fff
+			background-color: $red
+			i
+				color: #fff
+	.quiz-steps-btn
+		display: flex
+		align-items: center
+		justify-content: space-between
+		margin-top: 30px
+	.links-question
+		padding-top: 30px
+	.link-question
+		display: flex
+		color: $red
+		font-size: 14px
+		&:hover
+			color: $black
+		&:before
+			content: "\e805"
+			font-family: "icon"
+			margin-right: 5px
+	.attention
+		margin-top: 30px
+		font-family: "Montserrat-Medium"
+		strong
+			color: $red
+	.fields-edu-add
+		display: none
+	.tarifs
+		h3
+			font-size: 16px
+			font-family: "Montserrat-Medium"
+		.wrapper
+			display: flex
+			flex-wrap: wrap
+			margin-left: -7px
+			margin-right: -7px
+	.tarif
+		flex-basis: calc(25% - 14px)
+		margin-left: 7px
+		margin-right: 7px
+		text-align: center
+		padding: 15px
+		border: 1px solid #E0E0E0
+		margin-bottom: 30px
+		.title
+			font-size: 14px
+			font-family: "Montserrat-Medium"
+			margin-bottom: 10px
+		.term
+			color: #828587
+			font-size: 12px
+			span
+				display: block
+				font-size: 16px
+				color: $black
+		.info
+			font-size: 13px
+			color: #828587
+			margin-top: 10px
+		.price
+			font-size: 14px
+			color: $red
+	.detailed-cost
+		h3
+			font-size: 16px
+			font-family: "Montserrat-Medium"
+		table
+			width: 100%
+			font-size: 14px
+			text-align: center
+			td
+				padding: 15px
+				border: 1px solid rgba(166, 181, 197,.5)
+				&:first-child
+					text-align: left
+			thead
+				th
+					font-weight: normal
+					padding: 15px
+					border: 1px solid rgba(166, 181, 197,.5)
+					font-size: 16px
+					font-family: "Montserrat-Medium"
+					&:first-child
+						text-align: left
+			tfoot
+				background-color: #F5F5F9
+				td
+					font-size: 14px
+					font-family: "Montserrat-Medium"
+		p
+			color: #828587
+			margin-top: 30px
+			a
+				color: #828587
+				border-bottom: 1px solid #828587
+				&:hover
+					color: $red
+					border-bottom: 1px solid $red
+
+	.btn-buy
+		width: 330px
+		font-size: 20px
+		height: 54px
+		margin: 30px 0
+	p.big
+		font-size: 18px !important
+		a
+			color: $red !important
+			border-bottom: 1px solid red !important
+			&:hover
+				color: $black !important
+				border-bottom: 1px solid transparent !important
+#step-2
+	.type-order
+		display: flex
+		border-bottom: 1px solid rgba(166, 181, 197, .5)
+		margin-bottom: 30px
+		.btn-black
+			font-size: 18px
+			font-family: "Montserrat-Medium"
+			color: #828587
+			background-color: #F6F6F9
+			padding: 15px 28px
+			&:hover
+				color: $black
+		.btn-black.active
+			color: #fff
+			background-color: $black
+			&:hover
+				color: #fff
+	.checkbox
+		position: relative
+		margin-top: -6px
+
+
+#step-4
+	.item
+		margin-bottom: 15px
+	h3
+		font-size: 16px
+		font-family: "Montserrat-Medium"
+#step-5
+	.field
+		p
+			margin-top: 15px
+			font-size: 14px
+			color: #828587
+			b
+				color: $red
+			a
+				color: #828587
+				border-bottom: 1px solid #828587
+.quiz-modal
+	max-width: 1200px
+	margin: 0 auto
+	position: relative
+	background-color: #fff
+	padding: 25px
+.table
+	th
+		padding: 15px 10px
+		line-height: 1.2
+		color: #828587
+		font-family: "Montserrat-SemiBold"
+	thead
+		tr
+			th
+				border-bottom: 1px solid $black
+	tbody
+		tr
+			td
+				border-bottom: 1px solid #E0E0E0
+				padding: 15px 10px
+				line-height: 1.2
+			&:nth-child(2n+1)
+				background-color: #F8F8F8
+.dataTables_paginate
+	.pagination
+		li
+			display: inline-block
+			margin: 0 3px
+			a
+				display: inline-block
+				min-width: 40px
+				height: 36px
+				display: flex
+				align-items: center
+				justify-content: center
+				border-radius: 3px
+				color: $black
+				&:hover
+					color: $red
+		li.active
+			a
+				border: 1px solid #BDBDBD
+.dataTables_length
+	select
+		width: 74px
+		height: 37px
+		border: 1px solid #BDBDBD
+		border-radius: 3px
+.dataTables_filter
+	input[type="search"]
+		border: 1px solid #BDBDBD
+		border-radius: 3px
+		padding: 5px 0
+		text-indent: 15px
+
+.nativejs-select
+	width: auto
+	border: 1px solid rgba(166, 181, 197,.5)
+	.nativejs-select__placeholder
+		background-color: #fff
+		height: 40px
+		line-height: 38px
+		border-radius: 6px
+		color: #292929
+	.nativejs-select__dropdown
+		border: 1px solid rgba(166, 181, 197,.5)
+		.nativejs-select__option
+			color: $black
+			background-color: #fff
+			border-bottom: none
+			&:hover
+				border-bottom: none
+				color: $red
+		
+@import "media" // Always at the end

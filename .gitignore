@@ -5,6 +5,7 @@
 /vendor
 /.idea
 /ekoid-admin
+/resources/verstka
 .env
 .env.backup
 .phpunit.result.cache

@@ -24,14 +24,11 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        if(view()->exists($request->path())){
-            return view($request->path());
-        }
-        return view('pages-404');
+        return view('pages.home.index');
     }
 
-    public function root()
+    /*public function root()
     {
         return view('index');
-    }
+    }*/
 }

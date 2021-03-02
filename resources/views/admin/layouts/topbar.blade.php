@@ -17,7 +17,7 @@
                         <img src="{{ URL::asset('/assets/images/logo-sm-light.png')}}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset('/assets/images/logo-light12.png')}}" alt="" height="20">
+                        <img src="{{ URL::asset('/assets/front/img/logo.svg')}}" alt="" height="20">
                     </span>
                 </a>
             </div>
@@ -26,144 +26,10 @@
                 <i class="ri-menu-2-line align-middle"></i>
             </button>
 
-            <!-- App Search-->
-            <form class="app-search d-none d-lg-block">
-                <div class="position-relative">
-                    <input type="text" class="form-control" placeholder="Поиск...">
-                    <span class="ri-search-line"></span>
-                </div>
-            </form>
+            <a target="_blank" href="/" type="button" class="btn btn-sm px-3 mt-3 font-size-24 header-item waves-effect">
+                <i class="ri-eye-line"></i>
+            </a>
 
-            <div class="dropdown dropdown-mega d-none d-lg-block ml-2">
-                <button type="button" class="btn header-item waves-effect" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                    @lang('translation.Mega_Menu')
-                    <i class="mdi mdi-chevron-down"></i>
-                </button>
-                <div class="dropdown-menu dropdown-megamenu">
-                    <div class="row">
-                        <div class="col-sm-8">
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <h5 class="font-size-14 mt-0">@lang('translation.UI_Components')</h5>
-                                    <ul class="list-unstyled megamenu-list">
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Lightbox')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Range_Slider')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Sweet_Alert')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Rating')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Forms')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Tables')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Charts')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <h5 class="font-size-14 mt-0">@lang('translation.Applications')</h5>
-                                    <ul class="list-unstyled megamenu-list">
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Ecommerce')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Calendar')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Email')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Projects')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Tasks')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Contacts')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <h5 class="font-size-14 mt-0">@lang('translation.Extra_Pages')</h5>
-                                    <ul class="list-unstyled megamenu-list">
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Light_Sidebar')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Compact_Sidebar')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Horizontal_layout')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Maintenance')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Coming_Soon')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Timeline')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.FAQs')</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h5 class="font-size-14 mt-0">@lang('translation.UI_Components')</h5>
-                                    <ul class="list-unstyled megamenu-list">
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Lightbox')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Range_Slider')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Sweet_Alert')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Rating')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Forms')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Tables')</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">@lang('translation.Charts')</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="col-sm-5">
-                                    <div>
-                                        <img src="{{ URL::asset('/assets/images/megamenu-img.png')}}" alt="" class="img-fluid mx-auto d-block">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </div>
 
         <div class="d-flex">
@@ -189,60 +55,8 @@
                 </div>
             </div>
 
-            <div class="dropdown d-none d-sm-inline-block">
-                <button type="button" class="btn header-item waves-effect"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @php $locale = session()->get('locale'); @endphp
-                    @switch($locale)
-                        @case('rs')
-                        <img src="{{ URL::asset('/assets/images/flags/russia.jpg')}}" alt="Header Language" height="16">
-                        @break
-                        @case('it')
-                        <img src="{{ URL::asset('/assets/images/flags/italy.jpg')}}" alt="Header Language" height="16">
-                        @break
-                        @case('gr')
-                        <img src="{{ URL::asset('/assets/images/flags/germany.jpg')}}" alt="Header Language" height="16">
-                        @break
-                        @case('sp')
-                        <img src="{{ URL::asset('/assets/images/flags/spain.jpg')}}" alt="Header Language" height="16">
-                        @break
-                        @default
-                        <img src="{{ URL::asset('/assets/images/flags/us.jpg')}}" alt="Header Language" height="16">
-                    @endswitch
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <!-- item-->
-                    <a href="{{ url('index/en') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('/assets/images/flags/us.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="{{ url('index/sp') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('/assets/images/flags/spain.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Spanish</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="{{ url('index/gr') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('/assets/images/flags/germany.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="{{ url('index/it') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('/assets/images/flags/italy.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="{{ url('index/rs') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('/assets/images/flags/russia.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
-                    </a>
-                </div>
-            </div>
-
             <div class="dropdown d-none d-lg-inline-block ml-1">
-                <button type="button" class="btn header-item noti-icon waves-effect"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ri-apps-2-line"></i>
-                </button>
+
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <div class="px-lg-2">
                         <div class="row no-gutters">
@@ -297,11 +111,7 @@
             </div>
 
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="ri-notification-3-line"></i>
-                    <span class="noti-dot"></span>
-                </button>
+
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                     aria-labelledby="page-header-notifications-dropdown">
                     <div class="p-3">
@@ -388,7 +198,7 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="{{ URL::asset('/assets/images/users/avatar-2.jpg')}}"
                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ml-1">Kevin</span>
+                    <span class="d-none d-xl-inline-block ml-1">Admin</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -403,12 +213,6 @@
                         @csrf
                     </form>
                 </div>
-            </div>
-
-            <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                    <i class="ri-settings-2-line"></i>
-                </button>
             </div>
 
         </div>
