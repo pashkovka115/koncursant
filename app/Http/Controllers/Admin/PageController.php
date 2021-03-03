@@ -3,41 +3,36 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Question;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
-class QuestionController extends Controller
+
+class PageController extends Controller
 {
     public function index()
     {
-        $ques = Question::all();
+        $pages = Page::all();
 
-        return view('admin.questions.index', ['questions' => $ques]);
+        return view('admin.pages.index', ['pages' => $pages]);
     }
-
 
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'question' => 'required|string',
-            'answer' => 'required|string',
+            'name' => 'required|string',
+            'content' => 'nullable|string',
         ]);
 
-        if ($request->has('active')){
-            $data['active'] = '1';
-        }else{
-            $data['active'] = '0';
-        }
+        $page = new Page($data);
+        $page->save();
 
-        $ques = new Question($data);
-        $ques->save();
-
-        if ($ques->id){
+        if ($page->id){
             flash('Успешно.')->success();
         }else{
             flash('Ошибка.')->error();
         }
+
 
         return back();
     }
@@ -45,17 +40,17 @@ class QuestionController extends Controller
 
     public function edit($id)
     {
-        $question = Question::where('id', $id)->firstOrFail();
+        $page = Page::where('id', $id)->firstOrFail();
 
-        return view('admin.questions.edit', ['question' => $question]);
+        return view('admin.pages.edit', ['page' => $page]);
     }
 
 
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'question' => 'required|string',
-            'answer' => 'required|string',
+            'name' => 'required|string',
+            'content' => 'nullable|string'
         ]);
 
         if ($request->has('active')){
@@ -64,7 +59,7 @@ class QuestionController extends Controller
             $data['active'] = '0';
         }
 
-        $res = Question::where('id', $id)->update($data);
+        $res = Page::where('id', $id)->update($data);
 
         if ($res){
             flash('Успешно.')->success();
@@ -73,7 +68,7 @@ class QuestionController extends Controller
         }
 
         if ($request->has('btn_save_list')){
-            return redirect()->route('admin.questions.index');
+            return redirect()->route('admin.pages.info.index');
         }elseif ($request->has('btn_save_edit')){
             return back();
         }
@@ -82,7 +77,7 @@ class QuestionController extends Controller
 
     public function destroy($id)
     {
-        $res = Question::where('id', $id)->delete();
+        $res = Page::where('id', $id)->delete();
 
         if ($res == 1){
             flash('Успешно.')->success();

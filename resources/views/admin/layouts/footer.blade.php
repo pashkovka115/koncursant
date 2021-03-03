@@ -24,5 +24,10 @@
 <script src="{{ URL::asset('/assets/js/app.min.js')}}"></script>
 
 @yield('footer')
+
+<script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
+
 </body>
 </html>

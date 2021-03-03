@@ -27,24 +27,20 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($jury as $person)
+            @foreach()
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $person->name }}</td>
-                    <td>{{ mb_strimwidth(strip_tags($person->description), 0, 100, '...') }}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ mb_strimwidth(strip_tags($var->...), 0, 100, '...') }}</td>
                     <td>
-                        <a href="{{ route('front.jury.show', ['slug' => $person->slug]) }}" target="_blank" class="mr-3 text-primary">
-                            <i class="ri-eye-line font-size-18"></i>
-                        </a>
-                        <a href="{{ route('admin.jury.edit', ['id' => $person->id]) }}" class="mr-3 text-warning">
-                            <i class="ri-pencil-fill font-size-18"></i>
-                        </a>
+                        <a href="#" class="mr-3 text-primary"><i class="ri-eye-line font-size-18"></i></a>
+                        <a href="" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
 
-                        <a href="{{ route('admin.jury.destroy', ['id' => $person->id]) }}" class="text-danger"
-                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $person->id }}').submit(); return false;">
-                            <i class="ri-delete-bin-fill font-size-18"></i></a>
-                        <form id="form_{{ $person->id }}" action="{{ route('admin.jury.destroy', ['id' => $person->id]) }}" method="POST" style="display: none;">
+                        <a href="#" class="text-danger" onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $var->id }}').submit(); return false;">
+                            <i class="mdi mdi-trash-can font-size-18"></i></a>
+                        <form id="form_{{ $var->id }}" action="" method="POST" style="display: none;">
                             @csrf
+                            @method('DELETE')
                         </form>
                     </td>
                 </tr>
@@ -73,36 +69,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myModalLabel">Новый член жюри</h5>
+                    <h5 class="modal-title mt-0" id="myModalLabel">Modal Heading</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form enctype="multipart/form-data" id="save_form" action="{{ route('admin.jury.store') }}" method="post">
+                    <form enctype="multipart/form-data" id="save_form" action="" method="post">
                         @csrf
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" name="active" id="customCheck1" class="custom-control-input">
-                                    <label for="customCheck1" class="custom-control-label">Показывать на сайте</label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Имя</label>
-                                    <input type="text" name="name" value="" class="form-control" >
-                                </div>
-
-                                <div class="custom-file col-sm-12">
-                                    <input id="customFile" name="img" type="file" class="custom-file-input">
-                                    <label for="customFile" class="custom-file-label">Выбрать изображение</label>
-                                </div>
-                            </div>
-                        </div>
+                        //..
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Отмена</button>
                     <button id="btnSave" type="button" class="btn btn-primary waves-effect waves-light">Добавить</button>
                 </div>
             </div><!-- /.modal-content -->
@@ -114,5 +93,4 @@
             $('#save_form').submit();
         });
     </script>
-
 @endsection

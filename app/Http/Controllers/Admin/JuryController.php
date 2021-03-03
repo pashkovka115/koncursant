@@ -37,6 +37,13 @@ class JuryController extends Controller
         $jury = new Jury($data);
         $jury->save();
 
+        if ($jury->id){
+            flash('Успешно добавлено')->success();
+        }else{
+            flash('Ошибка. Не сохранилось.')->error();
+        }
+
+
         return back();
     }
 
@@ -87,7 +94,13 @@ class JuryController extends Controller
             $data['active'] = '0';
         }
 
-        $person->update($data);
+        $res = $person->update($data);
+
+        if ($res){
+            flash('Успешно.')->success();
+        }else{
+            flash('Ошибка.')->error();
+        }
 
         if ($request->has('btn_save_list')){
             return redirect()->route('admin.jury.index');
@@ -99,7 +112,13 @@ class JuryController extends Controller
 
     public function destroy($id)
     {
-        Jury::where('id', $id)->delete();
+        $res = Jury::where('id', $id)->delete();
+
+        if ($res == 1){
+            flash('Успешно.')->success();
+        }else{
+            flash('Ошибка.')->error();
+        }
 
         return back();
     }

@@ -29,7 +29,7 @@
             <tbody>
             @foreach()
                 <tr>
-                    <td></td>
+                    <td>{{ $loop->iteration }}</td>
                     <td></td>
                     <td>{{ mb_strimwidth(strip_tags($var->...), 0, 100, '...') }}</td>
                     <td>

@@ -10,21 +10,21 @@
                 <li class="menu-title">Меню</li>
 
                 <li>
-                    <a href="{{url('index')}}" class="waves-effect">
+                    <a href="{{route('front.home')}}" class="waves-effect">
                         <i class="ri-dashboard-line"></i>  {{--<span class="badge badge-pill badge-success float-right">3</span>--}}
                         <span>Главная</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="calendar" class=" waves-effect">
+                    <a href="#" class=" waves-effect">
                         <i class="ri-folders-line"></i>
                         <span>Заявки</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="apps-chat" class=" waves-effect">
+                    <a href="#" class=" waves-effect">
                         <i class="ri-chat-1-line"></i>
                         <span>Обратный звонок</span>
                     </a>
@@ -38,9 +38,9 @@
                         <span>Конкурсы</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="ecommerce-products">Бесплатные</a></li>
-                        <li><a href="ecommerce-product-detail">Любительские</a></li>
-                        <li><a href="ecommerce-product-detail">Профессиональные</a></li>
+                        <li><a href="#">Бесплатные</a></li>
+                        <li><a href="#">Профессиональные</a></li>
+                        <li><a href="#">Создать новый</a></li>
                     </ul>
                 </li>
 
@@ -50,7 +50,7 @@
                         <span>Настройки</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox">Возрастная категория</a></li>
+                        <li><a href="#">Возрастная категория</a></li>
                     </ul>
                 </li>
 
@@ -77,9 +77,9 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="#">Добавить страницу</a></li>
-                        <li><a href="layouts-light-sidebar">Все</a></li>
-                        <li><a href="layouts-compact-sidebar">Главная</a></li>
-                        <li><a href="layouts-icon-sidebar">Контакты</a></li>
+                        <li><a href="{{ route('admin.pages.info.index') }}">Все</a></li>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">Контакты</a></li>
                     </ul>
                 </li>
 
@@ -91,7 +91,7 @@
                         <span>Пользователи</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="auth-login">======</a></li>
+                        <li><a href="#">======</a></li>
 
                     </ul>
                 </li>
@@ -102,8 +102,8 @@
                         <span>Настройки</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="pages-starter">Значения</a></li>
-                        <li><a href="pages-maintenance">Меню</a></li>
+                        <li><a href="#">Значения</a></li>
+                        <li><a href="#">Меню</a></li>
                     </ul>
                 </li>
 

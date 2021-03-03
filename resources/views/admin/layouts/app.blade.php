@@ -1,4 +1,5 @@
 @include('admin.layouts.header')
+@include('flash::message')
 @include('admin.layouts.message_errors')
 @yield('content')
 @include('admin.layouts.footer')

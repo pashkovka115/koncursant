@@ -37,11 +37,11 @@
                             <input type="text" name="name" value="{{ $person->name }}" class="form-control" >
                         </div>
                         <div class="form-group">
-                            <label>direction</label>
+                            <label>Специальность в жюри</label>
                             <input type="text" name="direction" value="{{ $person->direction }}" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>profession</label>
+                            <label>Специальности (укажите через запятую)</label>
                             <input type="text" name="profession" value="{{ $person->profession }}" class="form-control">
                         </div>
                     </div>

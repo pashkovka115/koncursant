@@ -1,4 +1,4 @@
-<div id="my_errors" class="block-error">
+<div class="block-error">
     <div class="row-error">
         @if($errors->any())
             <ul id="errors">
@@ -9,11 +9,10 @@
                 @endforeach
             </ul>
         @endif
-        @if (session()->has('message'))
+        {{--@if (session()->has('message'))
             <div class="alert alert-info" role="alert">
                 {!! session()->get('message') !!}
             </div>
-        @endif
+        @endif--}}
     </div>
 </div>
-
