@@ -10,7 +10,7 @@
                 <li class="menu-title">Меню</li>
 
                 <li>
-                    <a href="{{route('front.home')}}" class="waves-effect">
+                    <a href="{{route('admin.home')}}" class="waves-effect">
                         <i class="ri-dashboard-line"></i>  {{--<span class="badge badge-pill badge-success float-right">3</span>--}}
                         <span>Главная</span>
                     </a>

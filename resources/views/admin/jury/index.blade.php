@@ -2,7 +2,12 @@
 @section('title') Жюри @endsection
 @section('header')
     <!-- DataTables -->
-    <link href="{{ URL::asset('/assets/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('assets/datatables/datatables.bootstrap4/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
+    <style>
+        table.dataTable.nowrap th, table.dataTable.nowrap td{
+            white-space: normal;
+        }
+    </style>
 @endsection
 @section('content')
 @component('admin.layouts.components.breadcrumb')
@@ -66,8 +71,39 @@
 @endsection
 @section('footer')
     <!-- Datatable init js -->
-    <script src="{{ URL::asset('/assets/libs/datatables/datatables.min.js')}}"></script>
-    <script src="{{ URL::asset('/assets/js/pages/datatables.init.js')}}"></script>
+    <script src="{{ asset('assets/datatables/datatables.bootstrap4/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/datatables.bootstrap4/dataTables.bootstrap4.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#datatable').DataTable({
+                "pagingType": "full_numbers",
+
+                language: {
+                    "processing": "Подождите...",
+                    "search": "Поиск:",
+                    "lengthMenu": "Показать _MENU_ записей",
+                    "info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                    "infoEmpty": "Записи с 0 до 0 из 0 записей",
+                    "infoFiltered": "(отфильтровано из _MAX_ записей)",
+                    "infoPostFix": "",
+                    "loadingRecords": "Загрузка записей...",
+                    "zeroRecords": "Записи отсутствуют.",
+                    "emptyTable": "В таблице отсутствуют данные",
+                    "paginate": {
+                        "first": "Первая",
+                        "previous": "Предыдущая",
+                        "next": "Следующая",
+                        "last": "Последняя"
+                    },
+                    "aria": {
+                        "sortAscending": ": активировать для сортировки столбца по возрастанию",
+                        "sortDescending": ": активировать для сортировки столбца по убыванию"
+                    }
+                }
+            });
+        });
+    </script>
 
     <div id="myModal" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
