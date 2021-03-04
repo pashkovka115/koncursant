@@ -25,6 +25,9 @@ Route::prefix('faq')->group(function (){
     Route::get('', [\App\Http\Controllers\FaqController::class, 'index'])->name('front.faq.index');
 });
 
+// Контакты
+Route::get('contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('front.contacts.index');
+
 
 
 
@@ -74,6 +77,13 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
             Route::post('update/{id}', [\App\Http\Controllers\Admin\PageController::class, 'update'])->name('admin.pages.info.update');
             Route::post('destroy/{id}', [\App\Http\Controllers\Admin\PageController::class, 'destroy'])->name('admin.pages.info.destroy');
             Route::post('store', [\App\Http\Controllers\Admin\PageController::class, 'store'])->name('admin.pages.info.store');
+        });
+
+        // Контакты
+        Route::prefix('contacts')->group(function () {
+            Route::get('', [\App\Http\Controllers\Admin\ContactController::class, 'index'])->name('admin.pages.contacts.index');
+            Route::get('edit/{id}', [\App\Http\Controllers\Admin\ContactController::class, 'edit'])->name('admin.pages.contacts.edit');
+            Route::post('update/{id}', [\App\Http\Controllers\Admin\ContactController::class, 'update'])->name('admin.pages.contacts.update');
         });
     });
 });

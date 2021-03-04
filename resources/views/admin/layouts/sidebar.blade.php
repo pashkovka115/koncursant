@@ -79,7 +79,7 @@
                         <li><a href="#">Добавить страницу</a></li>
                         <li><a href="{{ route('admin.pages.info.index') }}">Все</a></li>
                         <li><a href="#">Главная</a></li>
-                        <li><a href="#">Контакты</a></li>
+                        <li><a href="{{ route('admin.pages.contacts.index') }}">Контакты</a></li>
                     </ul>
                 </li>
 
