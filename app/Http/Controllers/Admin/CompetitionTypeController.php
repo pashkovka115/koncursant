@@ -11,36 +11,68 @@ class CompetitionTypeController extends Controller
 {
     public function index()
     {
-        return view('admin.competition_types.index');
-    }
+        $competitions = CompetitionType::all();
 
-
-    public function create()
-    {
-        //
+        return view('admin.competition_types.index', ['competitions' => $competitions]);
     }
 
 
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $com = new CompetitionType($data);
+        $com->save();
+
+        flash('Успешно.')->success();
+
+        return back();
     }
 
 
-    public function edit(CompetitionType $competitionType)
+    public function edit($id)
     {
-        //
+        $competition = CompetitionType::where('id', $id)->firstOrFail();
+
+        return view('admin.competition_types.edit', ['competition' => $competition]);
     }
 
 
-    public function update(Request $request, CompetitionType $competitionType)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        CompetitionType::where('id', $id)->update($data);
+
+        flash('Успешно.')->success();
+        if ($request->has('btn_save_list')){
+            return redirect()->route('admin.competitions.types.index');
+        }elseif ($request->has('btn_save_edit')){
+            return back();
+        }
     }
 
 
-    public function destroy(CompetitionType $competitionType)
+    public function destroy($id)
     {
-        //
+        $type = CompetitionType::with('competitions')->where('id', $id)->firstOrFail();
+        if ($type->competitions->count() > 0){
+            $arr = [];
+            foreach ($type->competitions as $competition){
+                $arr[] = $competition->name;
+            }
+            $str = 'Этот тип не пустой. В нём находятся: ' . implode(', ', $arr);
+            flash($str)->error();
+
+            return back();
+        }
+        $type->delete();
+
+        flash('Успешно.')->success();
+        return back();
     }
 }

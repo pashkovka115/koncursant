@@ -58,14 +58,36 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
     // Конкурсы
     Route::prefix('competitions')->group(function (){
-        // Тип конкурса todo: временно отключил (ещё не доделал)
-        /*Route::prefix('types')->group(function (){
+        // Тип конкурса
+        Route::prefix('types')->group(function (){
             Route::get('', [\App\Http\Controllers\Admin\CompetitionTypeController::class, 'index'])->name('admin.competitions.types.index');
             Route::get('edit/{id}', [\App\Http\Controllers\Admin\CompetitionTypeController::class, 'edit'])->name('admin.competitions.types.edit');
             Route::post('update/{id}', [\App\Http\Controllers\Admin\CompetitionTypeController::class, 'update'])->name('admin.competitions.types.update');
             Route::post('destroy/{id}', [\App\Http\Controllers\Admin\CompetitionTypeController::class, 'destroy'])->name('admin.competitions.types.destroy');
             Route::post('store', [\App\Http\Controllers\Admin\CompetitionTypeController::class, 'store'])->name('admin.competitions.types.store');
-        });*/
+        });
+        // Возрастная группа
+        Route::prefix('age-group')->group(function (){
+            Route::get('', [\App\Http\Controllers\Admin\AgeGroupController::class, 'index'])->name('admin.competitions.age_group.index');
+            Route::get('edit/{id}', [\App\Http\Controllers\Admin\AgeGroupController::class, 'edit'])->name('admin.competitions.age_group.edit');
+            Route::post('update/{id}', [\App\Http\Controllers\Admin\AgeGroupController::class, 'update'])->name('admin.competitions.age_group.update');
+            Route::post('destroy/{id}', [\App\Http\Controllers\Admin\AgeGroupController::class, 'destroy'])->name('admin.competitions.age_group.destroy');
+            Route::post('store', [\App\Http\Controllers\Admin\AgeGroupController::class, 'store'])->name('admin.competitions.age_group.store');
+        });
+        // Все конкурсы
+        Route::prefix('all')->group(function (){
+            Route::get('type/{id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'indexCompetitionType'])->name('admin.competitions.all.index_competition_type');
+
+            Route::get('', [\App\Http\Controllers\Admin\CompetitionController::class, 'index'])->name('admin.competitions.all.index');
+            Route::get('create', [\App\Http\Controllers\Admin\CompetitionController::class, 'create'])->name('admin.competitions.all.create');
+            Route::get('edit/{id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'edit'])->name('admin.competitions.all.edit');
+            Route::post('update/{id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'update'])->name('admin.competitions.all.update');
+            Route::post('destroy/{id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'destroy'])->name('admin.competitions.all.destroy');
+            Route::post('store', [\App\Http\Controllers\Admin\CompetitionController::class, 'store'])->name('admin.competitions.all.store');
+
+            Route::post('attach-age-group/{competition_id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'attachAgeGroup'])->name('admin.competitions.all.attach_age_group');
+            Route::post('detach-age-group/{competition_id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'detachAgeGroup'])->name('admin.competitions.all.detach_age_group');
+        });
     });
 
     // Страницы

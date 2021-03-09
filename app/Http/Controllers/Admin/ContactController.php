@@ -33,14 +33,9 @@ class ContactController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $res = Contact::where('id', $id)->update($data);
+        Contact::where('id', $id)->update($data);
 
-        if ($res){
-            flash('Успешно.')->success();
-        }else{
-            flash('Ошибка.')->error();
-        }
-
+        flash('Успешно.')->success();
         if ($request->has('btn_save_list')){
             return redirect()->route('admin.pages.contacts.index');
         }elseif ($request->has('btn_save_edit')){

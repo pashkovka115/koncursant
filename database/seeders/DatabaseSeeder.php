@@ -16,5 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call(CompetitionTypeSeeder::class);
         $this->call(PageSeeder::class);
         $this->call(ContactSeeder::class);
+        $this->call(CompetitionSeeder::class);
+        $this->call(CompetitionTypeCompetitionSeeder::class);
+        $this->call(AgeGroupSeeder::class);
+        $this->call(AgeGroupCompetitionSeeder::class);
     }
 }

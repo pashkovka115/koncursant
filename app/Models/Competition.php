@@ -7,19 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class CompetitionType extends Model
+class Competition extends Model
 {
     use HasFactory;
     use HasSlug;
 
 
-    protected $table = 'competition_types';
-    public $timestamps = false;
+    protected $table = 'competitions';
     protected $fillable = [
         'name',
-        'slug'
+        'img',
+        'slug',
+        'active',
+        'description',
     ];
-
 
 
     /**
@@ -43,14 +44,15 @@ class CompetitionType extends Model
         return 'slug';
     }
 
-    /*public function ageGroups()
+    // Типы конкурсов
+    public function types()
     {
-        return $this->belongsToMany(AgeGroup::class)->with('competitions');
-    }*/
+        return $this->belongsToMany(CompetitionType::class);
+    }
 
-    // Конкурсы
-    public function competitions()
+    // Возрастные категории
+    public function ageGroups()
     {
-        return $this->belongsToMany(Competition::class);
+        return $this->belongsToMany(AgeGroup::class);
     }
 }

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title') Типы конкурсов @endsection
+@section('title') Список возрастных групп @endsection
 @section('header')
     <!-- DataTables -->
     <link href="{{ URL::asset('assets/datatables/datatables.bootstrap4/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
@@ -8,11 +8,19 @@
             white-space: normal;
         }
     </style>
+    {{-- Select2 --}}
+    <link href="{{ URL::asset('/assets/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+    <style>
+        {{-- Select2 --}}
+        span.select2-selection.select2-selection--multiple{
+            min-width: 150px;
+        }
+    </style>
 @endsection
 @section('content')
 @component('admin.layouts.components.breadcrumb')
-    @slot('title') Список типов конкурсов @endslot
-    @slot('active') Список типов конкурсов @endslot
+    @slot('title') Список возрастных групп @endslot
+    @slot('active') Список возрастных групп @endslot
 @endcomponent
 
 <div class="card">
@@ -26,23 +34,25 @@
             <tr>
                 <th>№</th>
                 <th>Имя</th>
+                <th>Возраст</th>
                 <th>Действия</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($competitions as $competition)
+            @foreach($groups as $group)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $competition->name }}</td>
+                    <td>{{ $group->name }}</td>
+                    <td>{{ $group->age }}</td>
                     <td>
-                        <a href="{{ route('admin.competitions.types.edit', ['id' => $competition->id]) }}" class="mr-3 text-warning">
+                        <a href="{{ route('admin.competitions.age_group.edit', ['id' => $group->id]) }}" class="mr-3 text-warning">
                             <i class="ri-pencil-fill font-size-18"></i>
                         </a>
 
-                        <a href="{{ route('admin.competitions.types.destroy', ['id' => $competition->id]) }}" class="text-danger"
-                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $competition->id }}').submit(); return false;">
+                        <a href="{{ route('admin.competitions.age_group.destroy', ['id' => $group->id]) }}" class="text-danger"
+                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $group->id }}').submit(); return false;">
                             <i class="mdi mdi-trash-can font-size-18"></i></a>
-                        <form id="form_{{ $competition->id }}" action="{{ route('admin.competitions.types.destroy', ['id' => $competition->id]) }}" method="POST" style="display: none;">
+                        <form id="form_{{ $group->id }}" action="{{ route('admin.competitions.age_group.destroy', ['id' => $group->id]) }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </td>
@@ -53,6 +63,7 @@
             <tr>
                 <th>№</th>
                 <th>Имя</th>
+                <th>Возраст</th>
                 <th>Действия</th>
             </tr>
             </tfoot>
@@ -102,17 +113,22 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myModalLabel">Новый тип</h5>
+                    <h5 class="modal-title mt-0" id="myModalLabel">Добавить новую возрастную группу</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="save_form" action="{{ route('admin.competitions.types.store') }}" method="post">
+                    <form id="save_form" action="{{ route('admin.competitions.age_group.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label>Имя</label>
+                            <label>Наименование</label>
                             <input type="text" name="name" value="" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Возраст</label>
+                            <input type="text" name="age" value="" class="form-control">
                         </div>
                     </form>
                 </div>
@@ -128,5 +144,12 @@
         $('#btnSave').click(function (){
             $('#save_form').submit();
         });
+    </script>
+
+    {{-- Select2 --}}
+    <script src="{{ URL::asset('/assets/libs/select2/select2.min.js')}}"></script>
+    <script>
+        // Select2
+        $(".select2").select2();
     </script>
 @endsection

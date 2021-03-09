@@ -38,9 +38,14 @@
                         <span>Конкурсы</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Бесплатные</a></li>
-                        <li><a href="#">Профессиональные</a></li>
-                        <li><a href="#">Создать новый</a></li>
+{{--    todo: доделать ссылку                    --}}
+                        @foreach($competition_types as $competition_type)
+                            <li><a href="{{ route('admin.competitions.all.index_competition_type', ['id' => $competition_type->id]) }}">{{ $competition_type->name }}</a></li>
+                        @endforeach
+                        <li><a href="{{ route('admin.competitions.all.index') }}">Все</a></li>
+                        <li><a href="{{ route('admin.competitions.types.index') }}">Типы</a></li>
+                        <li><a href="{{ route('admin.competitions.age_group.index') }}">Возрастные группы</a></li>
+                        <li><a href="{{ route('admin.competitions.all.create') }}">Создать новый</a></li>
                     </ul>
                 </li>
 
