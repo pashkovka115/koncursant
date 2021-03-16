@@ -28,7 +28,13 @@ Route::prefix('faq')->group(function (){
 // Контакты
 Route::get('contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('front.contacts.index');
 
-
+// Заявка на участие в конкурсе
+Route::prefix('application')->group(function (){
+    // Форма
+    Route::prefix('form')->group(function (){
+        Route::get('', [\App\Http\Controllers\ApplicationForm::class, 'index'])->name('front.application.form.index');
+    });
+});
 
 
 

@@ -39,7 +39,7 @@ $(function() {
 			  }
 			}
     } );
-		
+
 	$(".accordeon dd").hide().prev().click(function() {
 		$(this).parents(".accordeon").find("dd").not(this).slideUp().prev().removeClass("active");
 		$(this).next().not(":visible").slideDown().prev().addClass("active");
@@ -183,7 +183,7 @@ $(function() {
 
 
 
-	
+
 	$('.popup-gallery').magnificPopup({
 		delegate: 'a',
 		type: 'image',
@@ -274,10 +274,10 @@ $(function() {
 	});
 
 
-	$(".add-teacher").click(function() {
+	/*$(".add-teacher").click(function() {
 		$(this).hide();
 		$(".add-teacher-fields").show();
-	});
+	});*/
 
 	$("#open-hidden-advant-block").click(function() {
 		$(this).parents(".advantage").addClass("advant-not-visible");
@@ -326,7 +326,7 @@ $(function() {
 			duration: 300 // don't foget to change the duration also in CSS
 		}
 	});
-	
+
 	//Кнопка "Наверх"
 	//Документация:
 	//http://api.jquery.com/scrolltop/
@@ -373,7 +373,7 @@ $(function() {
 	$("img, a").on("dragstart", function(event) { event.preventDefault(); });
 
 
-	
-	
+
+
 });
 

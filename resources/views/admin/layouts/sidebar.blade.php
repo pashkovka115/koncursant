@@ -38,7 +38,6 @@
                         <span>Конкурсы</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-{{--    todo: доделать ссылку                    --}}
                         @foreach($competition_types as $competition_type)
                             <li><a href="{{ route('admin.competitions.all.index_competition_type', ['id' => $competition_type->id]) }}">{{ $competition_type->name }}</a></li>
                         @endforeach

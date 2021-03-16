@@ -12,6 +12,7 @@
                     </div>
                     <nav>
                         <ul>
+                            <li><a href="{{ route('front.application.form.index') }}">Форма заявки</a></li> {{-- todo: Только для разработки --}}
                             <li><a href="">Главная</a></li>
                             <li><a href="">Конкурсы</a>
                                 <ul>
