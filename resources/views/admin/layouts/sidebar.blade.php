@@ -107,7 +107,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="#">Значения</a></li>
-                        <li><a href="#">Меню</a></li>
+                        <li><a href="{{ route('admin.settings.menu.index') }}">Меню</a></li>
                     </ul>
                 </li>
 

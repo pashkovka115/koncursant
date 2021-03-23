@@ -7,6 +7,7 @@ _*
 /.idea
 /ekoid-admin
 /resources/verstka
+/app_html
 .env
 .env.backup
 .phpunit.result.cache

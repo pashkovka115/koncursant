@@ -209,7 +209,7 @@ $(function() {
 	});
 
 
-	$(".next-step-2").click(function() {
+	/*$(".next-step-2").click(function() {
 		$(this).parents(".quiz").find(".quiz-step").removeClass("active");
 		$("#step-2").addClass("active");
 		$(".circle-big .progress").css('stroke-dashoffset', '238');
@@ -265,7 +265,7 @@ $(function() {
 		$("#step-4").addClass("active");
 		$(".circle-big .progress").css('stroke-dashoffset', '146');
 		$(".circle-big .text ").html("4");
-	});
+	});*/
 
 
 	$(".add-data-edu").click(function() {

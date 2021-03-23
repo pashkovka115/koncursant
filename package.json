@@ -12,6 +12,17 @@
     "devDependencies": {
         "axios": "^0.21",
         "bootstrap": "^4.0.0",
+        "browser-sync": "^2.26.14",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-clean-css": "^3.10.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-notify": "^3.2.0",
+        "gulp-rename": "^1.4.0",
+        "gulp-rsync": "^0.0.9",
+        "gulp-sass": "^4.1.0",
+        "gulp-uglify": "^3.0.2",
+        "gulp-util": "^3.0.8",
         "jquery": "^3.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
@@ -20,5 +31,8 @@
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0"
+    },
+    "dependencies": {
+        "natives": "^1.1.6"
     }
 }

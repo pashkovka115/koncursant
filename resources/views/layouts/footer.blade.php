@@ -7,13 +7,15 @@
                     <div class="f-item">
                         <h4>Об организации</h4>
                         <ul class="menu">
-                            <li><a href="">Главная</a></li>
-                            <li><a href="">Бесплатные конкурсы</a></li>
+                            @foreach($buttom_menu as $item)
+                            <li><a href="{{ $item['link'] }}">{{ $item['label'] }}</a></li>
+                            @endforeach
+                            {{--<li><a href="">Бесплатные конкурсы</a></li>
                             <li><a href="">Конкурсы с участием профессионального жюри</a></li>
                             <li><a href="">Результаты</a></li>
                             <li><a href="">Жюри</a></li>
                             <li><a href="">Частые вопросы</a></li>
-                            <li><a href="">Контакты</a></li>
+                            <li><a href="">Контакты</a></li>--}}
                         </ul>
                     </div>
                     <div class="f-item f-contacts">

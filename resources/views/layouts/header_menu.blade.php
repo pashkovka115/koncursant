@@ -13,17 +13,17 @@
                     <nav>
                         <ul>
                             <li><a href="{{ route('front.application.form.index') }}">Форма заявки</a></li> {{-- todo: Только для разработки --}}
-                            <li><a href="">Главная</a></li>
-                            <li><a href="">Конкурсы</a>
-                                <ul>
-                                    <li><a href="">Бесплатные конкурсы</a></li>
-                                    <li><a href="">Конкурсы с участием профессионального жюри</a></li>
-                                </ul>
+                            @foreach($top_menu as $item)
+                            <li><a href="{{ $item['link'] }}">{{ $item['label'] }}</a>
+                                @if(count($item['child']) > 0)
+                                    <ul>
+                                        @foreach($item['child'] as $child)
+                                            <li><a href="{{ $child['link'] }}">{{ $child['label'] }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             </li>
-                            <li><a href="">Результаты</a></li>
-                            <li><a href="">Жюри</a></li>
-                            <li><a href="">Частые вопросы</a></li>
-                            <li><a href="">Контакты</a></li>
+                            @endforeach
                         </ul>
                     </nav>
                 </div>
