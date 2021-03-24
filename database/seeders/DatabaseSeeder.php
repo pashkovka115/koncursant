@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AgeGroupSeeder::class);
         $this->call(AgeGroupCompetitionSeeder::class);
         $this->call(BidSeeder::class);
+        $this->call(MenuSeeder::class);
     }
 }

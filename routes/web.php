@@ -120,10 +120,6 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         // Меню
         Route::prefix('menu')->group(function () {
             Route::get('', [\App\Http\Controllers\Admin\MenuController::class, 'index'])->name('admin.settings.menu.index');
-//            Route::get('edit/{id}', [\App\Http\Controllers\Admin\MenuController::class, 'edit'])->name('admin.settings.menu.edit');
-//            Route::post('update/{id}', [\App\Http\Controllers\Admin\MenuController::class, 'update'])->name('admin.settings.menu.update');
-//            Route::post('destroy/{id}', [\App\Http\Controllers\Admin\MenuController::class, 'destroy'])->name('admin.settings.menu.destroy');
-//            Route::post('store', [\App\Http\Controllers\Admin\MenuController::class, 'store'])->name('admin.settings.menu.store');
         });
     });
 });
