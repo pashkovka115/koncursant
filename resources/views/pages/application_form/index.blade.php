@@ -137,7 +137,7 @@
                                 <legend>Номинация</legend>
                                 <select @change="instrument" name="nomination" id="nomination" required ref="nomination">
                                     <option value="0">-----</option>
-                                    <option value="Instrumental">Инструментальный</option>
+                                    <option value="Instrumental">Инструментальный</option> <!-- {type:Instrumental, name:'Инструментальный', id:23} -->
                                     <option value="">Сольное исполнение</option>
                                     <option value="">Голос России 3</option>
                                 </select>

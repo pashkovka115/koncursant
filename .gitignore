@@ -5,6 +5,7 @@ _*
 /storage/*.key
 /vendor
 /.idea
+/.vscode
 /ekoid-admin
 /resources/verstka
 /app_html
