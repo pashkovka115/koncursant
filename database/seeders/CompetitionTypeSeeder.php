@@ -12,10 +12,12 @@ class CompetitionTypeSeeder extends Seeder
             [
                 'name' => 'Бесплатные',
                 'slug' => \Str::slug('Бесплатные'),
+                'type' => 'amateur'
             ],
             [
                 'name' => 'Профессиональные',
                 'slug' => \Str::slug('Профессиональные'),
+                'type' => 'professional'
             ],
         ];
 

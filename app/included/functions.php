@@ -13,3 +13,16 @@ if (!function_exists('options')) {
         return \App\Models\Contact::whereIn('key', $keys)->get();
     }
 }
+
+if (!function_exists('array_cut')) {
+    function array_cut(&$array, $key)
+    {
+        if (!isset($array[$key])){
+            return null;
+        }
+        $el = $array[$key];
+        unset($array[$key]);
+
+        return $el;
+    }
+}

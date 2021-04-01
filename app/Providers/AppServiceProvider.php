@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Bid;
 use App\Models\CompetitionType;
 use Illuminate\Support\ServiceProvider;
 
@@ -39,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
         // Меню в подвале
         \View::composer('layouts.footer', function($view) {
             $view->with(['buttom_menu' => \Menu::getByName('Меню в подвале')]);
+        });
+
+        // Количество новых заявок
+        \View::composer('admin.layouts.sidebar', function($view) {
+            $view->with(['quantity_new_bids' => Bid::where('new_state', '1')->count()]);
         });
     }
 }

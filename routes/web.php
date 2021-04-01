@@ -29,10 +29,11 @@ Route::prefix('faq')->group(function (){
 Route::get('contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('front.contacts.index');
 
 // Заявка на участие в конкурсе
-Route::prefix('application')->group(function (){
+Route::prefix('bid')->group(function (){
     // Форма
     Route::prefix('form')->group(function (){
-        Route::get('', [\App\Http\Controllers\ApplicationForm::class, 'index'])->name('front.application.form.index');
+        Route::get('', [\App\Http\Controllers\BidController::class, 'create'])->name('front.bid.form.create');
+        Route::post('store', [\App\Http\Controllers\BidController::class, 'store'])->name('front.bid.form.store');
     });
 });
 
@@ -43,6 +44,20 @@ Route::prefix('application')->group(function (){
 // Админ панель
 Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Admin'], 'prefix'=>'admin'],function (){
     Route::get('', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.home');
+
+    // Заявки
+    Route::prefix('bids')->group(function (){
+        Route::get('new', [\App\Http\Controllers\Admin\BidController::class, 'new_bids'])->name('admin.bids.new_bids');
+
+        Route::get('', [\App\Http\Controllers\Admin\BidController::class, 'index'])->name('admin.bids.index');
+        Route::get('competitions/{type}', [\App\Http\Controllers\Admin\BidController::class, 'index_type'])->name('admin.bids.index_type');
+        Route::get('competitions/concrete/{competition_id}', [\App\Http\Controllers\Admin\BidController::class, 'competition'])->name('admin.bids.concrete.competition');
+
+//        Route::get('edit/{id}', [\App\Http\Controllers\Admin\BidController::class, 'edit'])->name('admin.bids.edit');
+//        Route::post('update/{id}', [\App\Http\Controllers\Admin\BidController::class, 'update'])->name('admin.bids.update');
+//        Route::post('destroy/{id}', [\App\Http\Controllers\Admin\BidController::class, 'destroy'])->name('admin.bids.destroy');
+//        Route::post('store', [\App\Http\Controllers\Admin\BidController::class, 'store'])->name('admin.bids.store');
+    });
 
     // Жюри
     Route::prefix('jury')->group(function (){

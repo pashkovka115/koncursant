@@ -12,7 +12,7 @@
                     </div>
                     <nav>
                         <ul>
-                            <li><a href="{{ route('front.application.form.index') }}">Форма заявки</a></li> {{-- todo: Только для разработки --}}
+                            <li><a href="{{ route('front.bid.form.create') }}">Форма заявки</a></li> {{-- todo: Только для разработки --}}
                             @foreach($top_menu as $item)
                             <li><a href="{{ $item['link'] }}">{{ $item['label'] }}</a>
                                 @if(count($item['child']) > 0)

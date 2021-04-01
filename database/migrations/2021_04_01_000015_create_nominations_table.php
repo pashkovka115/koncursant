@@ -4,21 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompetitionTypesTable extends Migration
+class CreateNominationsTable extends Migration
 {
     public function up()
     {
-        Schema::create('competition_types', function (Blueprint $table) {
+        Schema::create('nominations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->enum('type', ['amateur', 'professional']);
+            $table->timestamps();
         });
     }
 
 
     public function down()
     {
-        Schema::dropIfExists('competition_types');
+        Schema::dropIfExists('nominations');
     }
 }

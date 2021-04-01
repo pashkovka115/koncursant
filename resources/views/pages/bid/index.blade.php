@@ -77,7 +77,8 @@
                             <p class="red">Это займет всего несколько минут!</p>
                         </div>
                     </div>
-                    <form id="application_form">
+                    <form id="application_form" action="{{ route('front.bid.form.store') }}" method="post">
+                        @csrf
                     <!--Шаг 1-->
                     <div class="quiz-step" :class="{active: active_step_1}" id="step-1">
                         <div class="fields">
@@ -102,7 +103,7 @@
                             <div class="field field-33">
                                 <legend>Название конкурса<span class="required">*</span></legend>
                                     @verbatim
-                                <select name="competition_name" id="competition_name" required>
+                                <select name="competition_id" id="competition_name" required>
                                     <option value=''>-------</option>
                                     <option :value='item.id' v-for="item in competitions" :key="item">{{ item.name }}</option>
                                 </select>
@@ -111,7 +112,7 @@
                             <div class="field field-33">
                                 <legend>Номинация<span class="required">*</span></legend>
                                 @verbatim
-                                <select @change="instrument_show();" name="nomination" id="nomination" v-model="nomination_id">
+                                <select @change="instrument_show();" name="nomination_id" id="nomination" v-model="nomination_id">
                                     <option value="">-----</option>
                                     <option :value="nomination.id" v-for="nomination in nominations">{{ nomination.name }}</option>
                                 </select>
@@ -128,13 +129,13 @@
                         <div class="fields">
                             <div class="field field-100" v-show="show_instrumental">
                                 <legend>Название музыкального инструмента</legend>
-                                <input type="text" placeholder="Введите название музыкального инструмента">
+                                <input type="text" name="musical_instrument" placeholder="Введите название музыкального инструмента">
                             </div>
                         </div>
                         <div class="fields">
                             <div class="field field-100">
                                 <legend>Название номера </legend>
-                                <input type="text" placeholder="Например, Руслан и Людмила" style="margin-top: 23px">
+                                <input type="text" name="musical_number" placeholder="Например, Руслан и Людмила" style="margin-top: 23px">
                             </div>
                         </div>
                         <div class="fields">
@@ -142,7 +143,7 @@
                                 <legend>Возрастная категория (сделать обязательным)<span class="required">*</span></legend>
                                 @verbatim
                                 <select
-                                    name="age_group"
+                                    name="age_group_id"
                                     id="age_group"
                                     required
                                     v-model.number="age_group_id"
@@ -178,11 +179,11 @@
                             </div>
                             <div class="field field-50">
                                 <legend>Город<span class="required">*</span></legend>
-                                <input type="text" placeholder="Например, Москва">
+                                <input type="text" name="city" placeholder="Например, Москва">
                             </div>
                             <div class="field field-100" style="margin-top: 20px">
                                 <legend>Учебное заведение</legend>
-                                <input type="text" placeholder="Например, ДШИ имени С.В. Рахманинова">
+                                <input type="text" name="educational_institution" placeholder="Например, ДШИ имени С.В. Рахманинова">
                             </div>
                         </div>
 
@@ -241,7 +242,7 @@
                             <div class="field field-100" v-if="print_checkbox_print_diploma">
                                 <div class="checks" style="margin-top: 20px; display: flex; align-items: center;">
                                     <label class="number" for="general_diploma_print_cnt">Количество общих печатных дипломов</label>
-                                    <input @change="change_price()" name="cnt_diploma" type="number" min="0" class="number" id="general_diploma_print_cnt" v-model.number="price.general_diplom_print_quantity">
+                                    <input @change="change_price()" name="cnt_kollective_diploma" type="number" min="0" class="number" id="general_diploma_print_cnt" v-model.number="price.general_diplom_print_quantity">
                                 </div>
                             </div>
 
@@ -265,16 +266,16 @@
                         <div class="fields">
                             <div class="field field-33">
                                 <legend>Ресурс</legend>
-                                <select name="" id="resource" required>
-                                    <option value="">Youtube</option>
-                                    <option value="">Вконтакте</option>
-                                    <option value="">Однокласники</option>
-                                    <option value="">Файлообменник</option>
+                                <select name="resource" id="resource" required>
+                                    <option value="youtube">Youtube</option>
+                                    <option value="vk">Вконтакте</option>
+                                    <option value="ok">Однокласники</option>
+                                    <option value="file_sharing">Файлообменник</option>
                                 </select>
                             </div>
                             <div class="field field-33">
                                 <legend>Добавьте ссылку на видео</legend>
-                                <input type="text" placeholder="Место для вашей ссылки">
+                                <input type="text" name="link_to_resource" placeholder="Место для вашей ссылки">
                             </div>
                             <div class="field field-33">
                                 <div class="links-question">
@@ -292,7 +293,7 @@
                         <div class="fields">
                             <div class="field field-100">
                                 <legend>Комментарий</legend>
-                                <textarea name="" placeholder="Введите дополнительную информацию по заявке..."></textarea>
+                                <textarea name="comment" placeholder="Введите дополнительную информацию по заявке..."></textarea>
                             </div>
 
                         </div>
@@ -317,9 +318,8 @@
                                                 @verbatim
                                                 <label v-for="(tariff, index) in tariffs_filter()">
                                                 <div class="tarif">
-                                                    <!--<input @change="change_tariff($event.target); change_price();" type="radio" name="tariff_radio" :value="tariff.price" v-model="price.tariff_price">-->
-                                                    <!--<input @change="change_price();" type="radio" name="tariff_radio" :value="tariff.price" v-model="price.tariff_price"> todo: price change -->
-                                                    <input @change="change_price();" type="radio" name="tariff_radio" :value="tariff" v-model="price.current_tariff">
+                                                    <input @change="change_price(); setTariffId();" type="radio" name="tariff_radio" :value="tariff" v-model="price.current_tariff">
+                                                    <input type="hidden" name="tariff_id" :value="tariff.id" v-if="price.tariff_id === tariff.id">
                                                     <div class="title">{{ tariff.name }}</div>
                                                     <div class="term">срок <span>до {{ tariff.duration }} дней</span></div>
                                                     <div class="info">Результат будет известен до <span class="date">{{ tariff.date }}</span> </div>
@@ -337,7 +337,7 @@
                             <div class="field field-50">
 
                                 <div class="item">
-                                    <input type="checkbox" class="checkbox" id="checkbox2" />
+                                    <input type="checkbox" name="confirm_data" class="checkbox" id="checkbox2" />
                                     <label for="checkbox2">Подтверждаю правильность указанных данных<span class="required">*</span></label>
                                 </div>
                             </div>
@@ -352,12 +352,12 @@
                         <div class="fields">
                             <div class="field field-50">
                                 <legend>E-mail<span class="required">*</span></legend>
-                                <input type="text" placeholder="Введите адрес электронной почты">
+                                <input type="text" name="email" placeholder="Введите адрес электронной почты">
                                 <p>На указанную электронную почту будет отправлена ссылка для загрузки видео и после прохождения конкурса отправлен диплом. <b>Обязательно проверьте на правильность!</b></p>
                             </div>
                             <div class="field field-50">
                                 <legend>Номер телефона<span class="required">*</span></legend>
-                                <input type="text" placeholder="Введите номер телефона">
+                                <input type="text" name="phone" placeholder="Введите номер телефона">
                                 <p>Желательно с WhatsApp для комфортного международного общения.</p>
                             </div>
                         </div>
@@ -383,7 +383,7 @@
                         <div class="fields" v-show="active_professional">
                             <div class="field field-70">
                                 <legend>Район, область</legend>
-                                <input type="text">
+                                <input type="text" name="state">
                                 <!--<select name="" id="state">
                                     <option value="">Введите название области/края/района</option>
                                     <option value="">Россия</option>
@@ -391,33 +391,33 @@
                                 </select>-->
                             </div>
                         </div>
-                        <div class="fields" v-show="active_professional">
+                        <!--<div class="fields" v-show="active_professional">
                             <div class="field field-70">
                                 <legend>Населенный пункт</legend>
                                 <input type="text">
-                            <!--<select name="" id="city">
+                            <select name="" id="city">
                                     <option value="">Введите населенный пункт участника</option>
                                     <option value="">Россия</option>
                                     <option value="">Россия</option>
-                                </select>-->
+                                </select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="fields" v-show="active_professional">
                             <div class="field field-25">
                                 <legend>Улица</legend>
-                                <input type="text" placeholder="Введите название улицы">
+                                <input type="text" name="street" placeholder="Введите название улицы">
                             </div>
                             <div class="field field-25">
                                 <legend>Дом</legend>
-                                <input type="text" placeholder="Введите номер">
+                                <input type="text" name="house" placeholder="Введите номер">
                             </div>
                             <div class="field field-25">
                                 <legend>Квартира</legend>
-                                <input type="text" placeholder="Введите номер">
+                                <input type="text" name="apartment" placeholder="Введите номер">
                             </div>
                             <div class="field field-25">
                                 <legend>Индекс</legend>
-                                <input type="text" placeholder="Введите индекс">
+                                <input type="text" name="postcode" placeholder="Введите индекс">
                             </div>
                         </div>
                         <div class="fields" v-show="active_professional">
@@ -456,59 +456,8 @@
                         </div>
                     @endverbatim
 
-                        <!--<div class="detailed-cost">
-                            <h3>Подробная стоимость</h3>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>Наименование</th>
-                                    <th>Количество</th>
-                                    <th>Стоимость, ₽</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Основной взнос</td>
-                                    <td>1</td>
-                                    <td>246</td>
-                                </tr>
-                                <tr>
-                                    <td>Количество участников</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Количество педагогов</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Диплом в электронном виде для участника</td>
-                                    <td>0</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Благодарственное письмо для педагогаТариф</td>
-                                    <td>70</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Тариф</td>
-                                    <td>Оптимальный</td>
-                                    <td>400</td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <td colspan="2">Итого:</td>
-                                    <td>716</td>
-                                </tr>
-                                </tfoot>
-                            </table>
-                            <p>Нажимая кнопку «Оплатить», вы соглашаетесь с <a href="">условиями положения конкурса</a> и<br /> даете свое <a href="">согласие на обработку персональных данных.</a></p>
-                        </div>-->
                         <div class="text-center">
-                            <button class="btn btn-red btn-buy">Оплатить онлайн</button>
+                            <button @click="send" type="submit" class="btn btn-red btn-buy">Оплатить онлайн</button>
                         </div>
                         <div class="fields">
                             <div class="field field-50">
@@ -545,7 +494,6 @@ const App = {
             // Строковое представление типа конкурса
             competition_type: 'Бесплатные конкурсы',
             // используется для уникализации id элементов
-            // в участниках уже есть 1, поэтому с 1
             counter: 1,
             active_step_1: true,
             active_step_2: false,
@@ -584,6 +532,7 @@ const App = {
                 // цена на текущий тарифф
                 // tariff_price: 0,
                 current_tariff: {name:'', quantity: 0, price: 0},
+                tariff_id: false,
 
                 // цена на текущую возрастную группу
                 age_group_price: 0,
@@ -925,23 +874,17 @@ const App = {
                     quantity: 1,
                     price: this.price.country_postal_delivery,
                 });
-
-
-                // console.clear()
-                // console.log('A:', A)
-                // console.log('this.price.number_participants:', this.price.number_participants)
             }
 
             for (let i = 0; i < this.price.order.length; i++){
                 this.price.full_price += this.price.order[i].price
             }
-
-            // console.clear()
-            // console.log('A:', A)
-            // console.log('Active_professional', this.active_professional)
-            // console.log('Solo:', this.solo)
-            // console.log('Age_group_price:', this.price.age_group_price)
-            // console.log('Participants:', this.participants.length)
+        },
+        setTariffId(){
+            this.price.tariff_id = this.price.current_tariff.id;
+        },
+        send(){
+            application_form.submit()
         },
         del_teacher(target){
             target.parentElement.parentElement.remove();
@@ -1176,11 +1119,11 @@ appl.component('participant', {
         </div>
         <div class="field field-33">
             <legend>Имя участника</legend>
-            <input type="text" name="participant_first_name[]" required>
+            <input type="text" name="participant_first_name[]">
         </div>
         <div class="field field-33">
             <legend>Фамилия участника</legend>
-            <input type="text" name="participant_last_name[]" required>
+            <input type="text" name="participant_last_name[]">
         </div>
         <div class="field field-33" v-show="!solo">
             <button @click.prevent="deleteParticipant($event.target)" class="btn btn-border-red" style="margin-top: 20px">Удалить участника</button>
@@ -1190,17 +1133,17 @@ appl.component('participant', {
         <legend style="margin-top: 30px" v-if="!active_professional && !solo">Персональный диплом</legend>
         <legend style="margin-top: 30px" v-else-if="active_professional">Закажите диплом с ориг печатью и оставьте на память</legend>
         <div class="checks">
-            <input name="participant_diploma" type="checkbox" class="checkbox" :id="'checkbox_person_diplom_electro-' + counter" v-model="participant_electro_diploma" v-if="!active_professional && !solo">
+            <input name="participant_diploma_electro" type="checkbox" class="checkbox" :id="'checkbox_person_diplom_electro-' + counter" v-model="participant_electro_diploma" v-if="!active_professional && !solo">
             <label :for="'checkbox_person_diplom_electro-' + counter" v-if="!active_professional && !solo">Электронный</label>
 
-            <input type="checkbox" class="checkbox" :id="'checkbox_person_diplom_printed-' + counter" v-if="active_professional" v-model="case_print">
+            <input name="participant_diploma_print" type="checkbox" class="checkbox" :id="'checkbox_person_diplom_printed-' + counter" v-if="active_professional" v-model="case_print">
             <label :for="'checkbox_person_diplom_printed-' + counter" v-if="active_professional">Печатный</label>
         </div>
     </div>
     <div class="field field-100" v-if="active_professional && case_print">
         <div class="checks" style="margin-top: 20px; display: flex; align-items: center;">
             <label class="number" :for="'checkbox_person_cnt_diplom_print-' + counter">Количество персональных печатных дипломов этому участнику</label>
-            <input name="cnt_diploma" type="number" min="0" class="number" :id="'checkbox_person_cnt_diplom_print-' + counter" v-model.number="person_cnt_diplom_print">
+            <input name="cnt_person_diploma[]" type="number" min="0" class="number" :id="'checkbox_person_cnt_diplom_print-' + counter" v-model.number="person_cnt_diplom_print">
         </div>
     </div>
                         @endverbatim
@@ -1235,21 +1178,21 @@ appl.component('teacher', {
         <div class="fields field-100">
             <div class="field field-33">
                 <legend>Имя педагога</legend>
-                <input type="text">
+                <input type="text" name="teacher_first_name[]">
             </div>
             <div class="field field-33">
                 <legend>Фамилия педагога</legend>
-                <input type="text">
+                <input type="text" name="teacher_second_name[]">
             </div>
             <div class="field field-33">
                 <legend>Отчество педагога</legend>
-                <input type="text">
+                <input type="text" name="teacher_last_name[]">
             </div>
         </div>
         <div class="fields field-100 fields-align-center">
             <div class="field field-100">
                 <legend>Должность педагога</legend>
-                <input type="text">
+                <input type="text" name="teacher_job[]">
             </div>
         </div>
         <div class="field field-100" style="text-align: right;">
@@ -1258,9 +1201,9 @@ appl.component('teacher', {
 @verbatim
     <div class="field field-100">
         <div class="checks" style="margin-top: 30px">
-            <input name="teacher_diploma" type="checkbox" class="checkbox" :id="'checkbox_teacher_person_diplom_electro-' + counter" v-model="teacher_letter">
+            <input name="teacher_letter_electro[]" type="checkbox" class="checkbox" :id="'checkbox_teacher_person_diplom_electro-' + counter" v-model="teacher_letter">
             <label :for="'checkbox_teacher_person_diplom_electro-' + counter">Благодарственное письмо для педагога в электронном виде</label>
-            <input type="checkbox" class="checkbox" :id="'checkbox_teacher_person_diplom_printed-' + counter" v-show="active_professional">
+            <input name="teacher_letter_print[]" type="checkbox" class="checkbox" :id="'checkbox_teacher_person_diplom_printed-' + counter" v-show="active_professional">
             <label :for="'checkbox_teacher_person_diplom_printed-' + counter" v-show="active_professional">Печатный</label>
         </div>
     </div>

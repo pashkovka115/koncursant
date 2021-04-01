@@ -17,10 +17,28 @@
                 </li>
 
                 <li>
-                    <a href="#" class=" waves-effect">
+                    <a href="{{ route('admin.bids.new_bids') }}" class=" waves-effect">
                         <i class="ri-folders-line"></i>
-                        <span>Заявки</span>
+                        <span>Новые заявки</span>
+                        @if($quantity_new_bids > 0)
+                            <span class="badge badge-pill badge-danger float-right">{{ $quantity_new_bids }}</span>
+                        @endif
                     </a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-customer-service-2-fill"></i>
+                        <span>Все заявки</span>
+                    </a>
+
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.bids.index') }}">Все</a></li>
+                        <li><a href="{{ route('admin.bids.index_type', ['type' => 'amateur']) }}">Любительские</a></li>
+                        <li><a href="{{ route('admin.bids.index_type', ['type' => 'professional']) }}">Профессиональные</a></li>
+                    </ul>
+
+
                 </li>
 
                 <li>
