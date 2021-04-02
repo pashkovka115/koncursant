@@ -51,6 +51,6 @@ class CompetitionType extends Model
     // Конкурсы
     public function competitions()
     {
-        return $this->belongsToMany(Competition::class);
+        return $this->hasOne(Competition::class);
     }
 }

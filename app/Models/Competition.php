@@ -45,9 +45,9 @@ class Competition extends Model
     }
 
     // Типы конкурсов
-    public function types()
+    public function type()
     {
-        return $this->belongsToMany(CompetitionType::class);
+        return $this->belongsTo(CompetitionType::class, 'competition_type_id');
     }
 
     // Возрастные категории

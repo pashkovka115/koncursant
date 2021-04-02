@@ -12,6 +12,8 @@ class CreateAgeGroupsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->integer('price')->default(0);
+            $table->string('type')->nullable();
             $table->string('age')->nullable();
             $table->timestamps();
         });

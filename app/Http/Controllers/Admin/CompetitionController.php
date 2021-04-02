@@ -74,9 +74,11 @@ class CompetitionController extends Controller
 
     public function edit($id)
     {
-        $competition = Competition::with(['types', 'ageGroups'])->where('id', $id)->firstOrFail();
+        $competition = Competition::with(['type', 'ageGroups'])->where('id', $id)->firstOrFail();
         $types_all = CompetitionType::all(['id', 'name']);
         $age_groups = AgeGroup::all(['id', 'name']);
+
+//        dd($competition);
 
         return view('admin.competitions.edit', [
             'competition' => $competition,
@@ -92,8 +94,8 @@ class CompetitionController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'types' => 'array',
-            'types.*' => 'nullable|numeric',
+//            'types' => 'array',
+            'type' => 'nullable|numeric',
         ]);
 
         if ($request->has('active')){

@@ -483,6 +483,10 @@
 
 @section('footer_scripts')
 
+    @php
+   // dd($competitions)
+    @endphp
+
 <script src="{{ asset('assets/front/js/vue.3.0.7.js') }}"></script>
 <script>
 
@@ -574,160 +578,25 @@ const App = {
             },
 
             // конкурсы
-            competitions: [
-                {
-                    id: 1,
-                    name: 'Голос России 1',
-                },
-                {
-                    id: 2,
-                    name: 'Голос России 2',
-                },
-                {
-                    id: 3,
-                    name: 'Голос России 3',
-                },
-            ],
+            competitions: {!! json_encode($competitions, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ) !!},
+
             // текущая возрастная группа
             age_group_id: 0,
             // возрастные группы
-            age_groups: [
-                {
-                    id: 1,
-                    name: 'Дошкольники - 750',
-                    price: 750,
-                    type: null
-                },
-                {
-                    id: 2,
-                    name: 'Младшие классы - 950',
-                    price: 950,
-                    type: null
-                },
-                {
-                    id: 3,
-                    name: 'Старшие классы - 1150',
-                    price: 1150,
-                    type: null
-                },
-                {
-                    id: 4,
-                    name: 'Смешанная - 1350',
-                    price: 1350,
-                    type: 'mixed_category'
-                },
-            ],
+            age_groups: {!! json_encode($age_groups, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ) !!},
+
             // текущая номинация
             nomination_id: '',
             // номинации
-            nominations: [
-                {
-                    id: 1,
-                    name: 'Спой-ка!',
-                    type: ''
-                },
-                {
-                    id: 2,
-                    name: 'Сыграй-ка! (Инструментальная)',
-                    type: 'instrumental'
-                },
-                {
-                    id: 3,
-                    name: 'Потанцуй-ка!',
-                    type: null
-                },
-                {
-                    id: 4,
-                    name: 'Нарисуй-ка!',
-                    type: ''
-                },
-            ],
+            nominations: {!! json_encode($nominations, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ) !!},
+
             // тарифы
-            tariffs: [
-                {
-                    id: 1,
-                    price: 90,
-                    name: 'Выгодный',
-                    duration: 30, // результат через дней
-                    selected: 1,
-                    type: 'solist'
-                },
-                {
-                    id: 2,
-                    price: 400,
-                    name: 'Оптимальный',
-                    duration: 15, // результат через дней
-                    selected: 0,
-                    type: 'solist'
-                },
-                {
-                    id: 3,
-                    price: 600,
-                    name: 'Срочный',
-                    duration: 3, // результат через дней
-                    selected: 0,
-                    type: 'solist'
-                },
-                {
-                    id: 4,
-                    price: 1000,
-                    name: 'Супер-срочный',
-                    duration: 1, // результат через дней
-                    selected: 0,
-                    type: 'solist'
-                },
-                {
-                    id: 5,
-                    price: 190,
-                    name: 'Выгодный2',
-                    duration: 30, // результат через дней
-                    selected: 1,
-                    type: 'kollective'
-                },
-                {
-                    id: 6,
-                    price: 1400,
-                    name: 'Оптимальный2',
-                    duration: 15, // результат через дней
-                    selected: 0,
-                    type: 'kollective'
-                },
-                {
-                    id: 7,
-                    price: 1600,
-                    name: 'Срочный2',
-                    duration: 3, // результат через дней
-                    selected: 0,
-                    type: 'kollective'
-                },
-                {
-                    id: 8,
-                    price: 11000,
-                    name: 'Супер-срочный2',
-                    duration: 1, // результат через дней
-                    selected: 0,
-                    type: 'kollective'
-                },
-            ],
+            tariffs: {!! json_encode($tariffs, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ) !!},
+
             // текущая страна
             current_country_id: '',
-            countries: [
-                {
-                    id: 1,
-                    name: 'Россия - 0',
-                    postage_price: 0
-                },
-                {
-                    id: 2,
-                    name: 'Казахстан - 300',
-                    postage_price: 300
-                },
-                {
-                    id: 3,
-                    name: 'Зарумбия - 500',
-                    postage_price: 500
-                },
-            ],
+            countries: {!! json_encode($countries, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ) !!},
+
             //
             participants: [],
             teachers: [],

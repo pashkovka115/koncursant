@@ -45,11 +45,11 @@ class BidSeeder extends Seeder
                 'age_group_id' => 1,
                 'tariff_id' => ($i <= 5) ? rand(1, 4) : rand(5, 8),
 
-                'cnt_people' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'musical_instrument' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'musical_number' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'koll_name' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'educational_institution' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+//                'cnt_people' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                'musical_instrument' => 'Скрипка',
+                'musical_number' => 'Руслан и людмила',
+                'koll_name' => 'Солнечные васельки',
+                'educational_institution' => 'ДШИ имени С.В. Рахманинова',
 
                 'cnt_kollective_diploma' => 10,
 //                'cnt_person_diploma' => 'juiuikhvdsaiucd uyiuy uyuiyvv',

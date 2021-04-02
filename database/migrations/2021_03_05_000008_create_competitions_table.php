@@ -15,6 +15,7 @@ class CreateCompetitionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->unsignedBigInteger('competition_type_id');
             $table->string('img')->nullable();
             $table->enum('active', ['1', '0']);
             $table->longText('description')->nullable();

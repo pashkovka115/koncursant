@@ -17,12 +17,13 @@ class DatabaseSeeder extends Seeder
         $this->call(PageSeeder::class);
         $this->call(ContactSeeder::class);
         $this->call(CompetitionSeeder::class);
-        $this->call(CompetitionTypeCompetitionSeeder::class);
+//        $this->call(CompetitionTypeCompetitionSeeder::class);
         $this->call(AgeGroupSeeder::class);
         $this->call(AgeGroupCompetitionSeeder::class);
         $this->call(BidSeeder::class);
         $this->call(MenuSeeder::class);
         $this->call(NominationSeeder::class);
         $this->call(TariffSeeder::class);
+        $this->call(CountrySeeder::class);
     }
 }

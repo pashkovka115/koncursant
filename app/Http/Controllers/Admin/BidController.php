@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Bid;
 use App\Models\Competition;
 use Illuminate\Http\Request;
+use function React\Promise\all;
 
 
 class BidController extends Controller
@@ -101,10 +102,7 @@ class BidController extends Controller
             $str_type = '';
         }
 
-
-//        dd($competition_id, $bid);
-
-        return view('admin.bids.competition', compact('bids', 'str_type'));
+        return view('admin.bids.competition', compact('bids', 'str_type', 'competition'));
     }
 
 
@@ -126,15 +124,24 @@ class BidController extends Controller
     }
 
 
-    public function edit(Bid $bid)
+    public function edit($id)
     {
-        //
+        $bid = Bid::with(['ageGroup', 'participants', 'teachers', 'competition'])->where('id', $id)->firstOrFail();
+        if (is_null($bid->participants)){
+            $bid->participants = [];
+        }
+        if (is_null($bid->teachers)){
+            $bid->teachers = [];
+        }
+//        dd($bid);
+
+        return view('admin.bids.edit', compact('bid'));
     }
 
 
-    public function update(Request $request, Bid $bid)
+    public function update(Request $request, $id)
     {
-        //
+        dd($request->all());
     }
 
 

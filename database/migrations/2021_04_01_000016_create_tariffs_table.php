@@ -14,6 +14,7 @@ class CreateTariffsTable extends Migration
             $table->enum('type', ['solist', 'kollective']);
             $table->integer('duration')->comment('срок проверки в течении');
             $table->string('price');
+            $table->enum('selected', ['0', '1']);
             $table->timestamps();
         });
     }

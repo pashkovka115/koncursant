@@ -18,7 +18,7 @@
 @endsection
 @section('content')
 @component('admin.layouts.components.breadcrumb')
-    @slot('title') Список конкурсов: {{ $type->name }} @endslot
+    @slot('title') Список конкурсов: {{--{{ $type->name }}--}} @endslot
     @slot('active') Список конкурсов @endslot
 @endcomponent
 
@@ -38,27 +38,30 @@
             </tr>
             </thead>
             <tbody>
+            @php
+            //dd($type)
+            @endphp
             @php($j = 0)
-            @foreach($type->competitions as $competition)
+{{--            @foreach($type->competitions as $competition)--}}
                 <tr>
                     <td>{{ ++$j }}</td>
-                    <td>{{ $competition->name }}</td>
-                    <td>{{ mb_strimwidth(strip_tags($competition->description), 0, 100, '...') }}</td>
+                    <td>{{ $type->competitions->name }}</td>
+                    <td>{{ mb_strimwidth(strip_tags($type->competitions->description), 0, 100, '...') }}</td>
                     <td>
                         <a href="#" class="mr-3 text-primary"><i class="ri-eye-line font-size-18"></i></a>
-                        <a href="{{ route('admin.competitions.all.edit', ['id' => $competition->id]) }}" class="mr-3 text-warning">
+                        <a href="{{ route('admin.competitions.all.edit', ['id' => $type->competitions->id]) }}" class="mr-3 text-warning">
                             <i class="ri-pencil-fill font-size-18"></i>
                         </a>
 
-                        <a href="{{ route('admin.competitions.all.destroy', ['id' => $competition->id]) }}" class="text-danger"
-                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $competition->id }}').submit(); return false;">
+                        <a href="{{ route('admin.competitions.all.destroy', ['id' => $type->competitions->id]) }}" class="text-danger"
+                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $type->competitions->id }}').submit(); return false;">
                             <i class="mdi mdi-trash-can font-size-18"></i></a>
-                        <form id="form_{{ $competition->id }}" action="{{ route('admin.competitions.all.destroy', ['id' => $competition->id]) }}" method="POST" style="display: none;">
+                        <form id="form_{{ $type->competitions->id }}" action="{{ route('admin.competitions.all.destroy', ['id' => $type->competitions->id]) }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </td>
                 </tr>
-            @endforeach
+{{--            @endforeach--}}
             </tbody>
             <tfoot>
             <tr>

@@ -54,14 +54,11 @@
 
                         <div class="form-group">
                             <label class="control-label">Тип</label>
-                            <select name="types[]" class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Выбрать ...">
-                                @php
-                                    $ids = array_keys($competition->types->keyBy('id')->toArray());
-                                @endphp
+                            <select name="type" class="form-control" data-placeholder="Выбрать ...">
                                 @foreach($types_all as $type)
                                     @php
                                         $selected = '';
-                                        if (in_array($type->id, $ids)){
+                                        if ($competition->competition_type_id == $type->id){
                                             $selected = ' selected';
                                         }
                                     @endphp

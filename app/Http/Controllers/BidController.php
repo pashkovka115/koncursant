@@ -3,14 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BidStore;
+use App\Models\AgeGroup;
 use App\Models\Bid;
+use App\Models\Competition;
+use App\Models\Country;
+use App\Models\Nomination;
+use App\Models\Tariff;
 use Illuminate\Http\Request;
 
 class BidController extends Controller
 {
     public function create()
     {
-        return view('pages.bid.index');
+        $competitions = Competition::all(['id', 'name'])->toArray();
+        $age_groups = AgeGroup::all(['id', 'name', 'price', 'type'])->toArray();
+        $nominations = Nomination::all(['id', 'name', 'type'])->toArray();
+        $tariffs = Tariff::all(['id', 'price', 'name', 'duration', 'selected', 'type'])->toArray();
+        $countries = Country::all(['id', 'name', 'postage_price'])->toArray();
+
+        return view('pages.bid.index', compact(
+            'competitions',
+            'age_groups',
+            'nominations',
+            'tariffs',
+            'countries'
+        ));
     }
 
 

@@ -86,4 +86,14 @@ class Bid extends Model
     {
         return $this->belongsTo(Tariff::class);
     }
+
+    public function participants()
+    {
+        return $this->belongsTo(СompetitionUser::class);
+    }
+
+    public function teachers()
+    {
+        return $this->belongsTo(СompetitionTeacher::class);
+    }
 }

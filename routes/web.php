@@ -53,8 +53,8 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
         Route::get('competitions/{type}', [\App\Http\Controllers\Admin\BidController::class, 'index_type'])->name('admin.bids.index_type');
         Route::get('competitions/concrete/{competition_id}', [\App\Http\Controllers\Admin\BidController::class, 'competition'])->name('admin.bids.concrete.competition');
 
-//        Route::get('edit/{id}', [\App\Http\Controllers\Admin\BidController::class, 'edit'])->name('admin.bids.edit');
-//        Route::post('update/{id}', [\App\Http\Controllers\Admin\BidController::class, 'update'])->name('admin.bids.update');
+        Route::get('edit/{id}', [\App\Http\Controllers\Admin\BidController::class, 'edit'])->name('admin.bids.edit');
+        Route::post('update/{id}', [\App\Http\Controllers\Admin\BidController::class, 'update'])->name('admin.bids.update');
 //        Route::post('destroy/{id}', [\App\Http\Controllers\Admin\BidController::class, 'destroy'])->name('admin.bids.destroy');
 //        Route::post('store', [\App\Http\Controllers\Admin\BidController::class, 'store'])->name('admin.bids.store');
     });

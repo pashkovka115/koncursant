@@ -18,6 +18,7 @@ class CreateBidsTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['amateur', 'professional'])->comment('профессиональный - любительский');
+            $table->enum('cnt_people', ['solist', 'kollective'])->comment('солист - коллектив');
 
             $table->unsignedBigInteger('competition_id')->nullable()->comment('конкурс');
             $table->unsignedBigInteger('nomination_id')->nullable()->comment('номинация');
@@ -26,7 +27,6 @@ class CreateBidsTable extends Migration
 //            $table->unsignedBigInteger('direction_id')->nullable()->comment('напраление');
 //            $table->enum('type', ['festival', 'genre'])->nullable()->comment('фестивальный или жанровый');
 
-            $table->string('cnt_people')->nullable()->comment('солист - коллектив');
             $table->string('musical_instrument')->nullable()->comment('музыкальный инструмент');
             $table->string('musical_number')->nullable()->comment('название номера');
             $table->string('koll_name')->nullable()->comment('Название коллектива');
@@ -52,6 +52,8 @@ class CreateBidsTable extends Migration
 
             $table->string('resource')->nullable();
             $table->string('link_to_resource')->nullable();
+
+            $table->string('appraisal')->nullable()->comment('оценка');
 
             $table->longText('comment')->nullable();
 

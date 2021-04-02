@@ -4,14 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNominationsTable extends Migration
+class CreateCountriesTable extends Migration
 {
     public function up()
     {
-        Schema::create('nominations', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type')->nullable();
+            $table->string('postage_price')->default('0')->comment('стоимость доставки в эту страну');
             $table->timestamps();
         });
     }
@@ -19,6 +19,6 @@ class CreateNominationsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('nominations');
+        Schema::dropIfExists('countries');
     }
 }
