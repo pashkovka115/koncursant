@@ -162,6 +162,9 @@ return [
     */
 
     'attributes' => [
+        'competition_id'        => 'Конкурс',
+        'nomination_id'         => 'Номинация',
+        'age_group_id'          => 'Возрастная категория',
         'name'                  => 'Имя',
         'username'              => 'Никнейм',
         'email'                 => 'E-Mail адрес',

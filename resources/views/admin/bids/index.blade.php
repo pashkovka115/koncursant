@@ -54,11 +54,11 @@
             <tbody>
             @foreach($bids_amateur as $amateur)
                 <tr>
-                    <td>---</td>
-                    <td>{{ $amateur->competition->name }}</td>
-                    <td>{{ $amateur->nomination->name }}</td>
-                    <td>{{ $amateur->ageGroup->name }}</td>
-                    <td>{{ $amateur->tariff->name }}</td>
+                    <td>{{ $amateur->id }}</td>
+                    <td>{{ $amateur->competition->name ?? '' }}</td>
+                    <td>{{ $amateur->nomination->name ?? '' }}</td>
+                    <td>{{ $amateur->ageGroup->name ?? '' }}</td>
+                    <td>{{ $amateur->tariff->name ?? '' }}</td>
                     <td>---</td>
                     <td>
                         @if($amateur->link_to_resource)
@@ -75,16 +75,19 @@
                     </td>
                     <td>
                         <?php
-                        $date->add(new DateInterval('P'.$amateur->tariff->duration.'D'));
-                        echo $date->format('d.m.Y');
+                        if ($amateur->tariff){
+                            $date->add(new DateInterval('P'.$amateur->tariff->duration.'D'));
+                            echo $date->format('d.m.Y');
+                        }
                         ?>
                     </td>
                     <td>
-                        <a href="" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
+                        <a href="{{ route('admin.bids.edit', ['id' => $amateur->id]) }}" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
 
-                        <a href="#" class="text-danger" onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $amateur->id }}').submit(); return false;">
+                        <a href="{{ route('admin.bids.destroy', ['id' => $amateur->id]) }}"
+                           class="text-danger" onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $amateur->id }}').submit(); return false;">
                             <i class="mdi mdi-trash-can font-size-18"></i></a>
-                        <form id="form_{{ $amateur->id }}" action="" method="POST" style="display: none;">
+                        <form id="form_{{ $amateur->id }}" action="{{ route('admin.bids.destroy', ['id' => $amateur->id]) }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </td>
@@ -128,11 +131,11 @@
                     <tbody>
                     @foreach($bids_professional as $professional)
                         <tr>
-                            <td>---</td>
-                            <td>{{ $professional->competition->name }}</td>
-                            <td>{{ $professional->nomination->name }}</td>
-                            <td>{{ $professional->ageGroup->name }}</td>
-                            <td>{{ $professional->tariff->name }}</td>
+                            <td>{{ $professional->id }}</td>
+                            <td>{{ $professional->competition->name ?? '' }}</td>
+                            <td>{{ $professional->nomination->name ?? '' }}</td>
+                            <td>{{ $professional->ageGroup->name ?? '' }}</td>
+                            <td>{{ $professional->tariff->name ?? '' }}</td>
                             <td>---</td>
                             <td>
                                 @if($professional->link_to_resource)
@@ -149,16 +152,19 @@
                             </td>
                             <td>
                                 <?php
-                                $date->add(new DateInterval('P'.$professional->tariff->duration.'D'));
-                                echo $date->format('d.m.Y');
+                                if ($professional->tariff){
+                                    $date->add(new DateInterval('P'.$professional->tariff->duration.'D'));
+                                    echo $date->format('d.m.Y');
+                                }
                                 ?>
                             </td>
                             <td>
-                                <a href="" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
+                                <a href="{{ route('admin.bids.edit', ['id' => $professional->id]) }}" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
 
-                                <a href="#" class="text-danger" onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $professional->id }}').submit(); return false;">
+                                <a href="{{ route('admin.bids.destroy', ['id' => $professional->id]) }}"
+                                   class="text-danger" onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $professional->id }}').submit(); return false;">
                                     <i class="mdi mdi-trash-can font-size-18"></i></a>
-                                <form id="form_{{ $professional->id }}" action="" method="POST" style="display: none;">
+                                <form id="form_{{ $professional->id }}" action="{{ route('admin.bids.destroy', ['id' => $professional->id]) }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </td>

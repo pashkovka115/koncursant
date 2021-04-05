@@ -5,6 +5,7 @@
 <section class="main-block">
 @endif
     @include('layouts.header_menu')
+    @include('layouts.message_errors')
 {{--todo: секция на не домошней не должна отображаться --}}
     @if(Route::current()->uri() == '/')
     <div class="main-content">

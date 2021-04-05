@@ -14,6 +14,9 @@ class CreateсompetitionTeachersTable extends Migration
             $table->string('first_name')->nullable()->comment('имя');
             $table->string('last_name')->nullable()->comment('фамилия');
             $table->string('third_name')->nullable()->comment('отчество');
+            $table->string('job')->nullable()->comment('должность');
+            $table->enum('letter_print', ['0', '1'])->comment('печатное письмо препаду');
+            $table->enum('letter_electro', ['0', '1'])->comment('электронное письмо препаду');
             $table->timestamps();
         });
     }

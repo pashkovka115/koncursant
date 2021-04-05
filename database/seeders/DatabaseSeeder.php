@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CompetitionTeacher;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,5 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NominationSeeder::class);
         $this->call(TariffSeeder::class);
         $this->call(CountrySeeder::class);
+        $this->call(CompetitionTeacherSeeder::class);
+        $this->call(CompetitionUserSeeder::class);
     }
 }

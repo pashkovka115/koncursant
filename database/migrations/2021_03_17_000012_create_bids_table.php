@@ -32,7 +32,7 @@ class CreateBidsTable extends Migration
             $table->string('koll_name')->nullable()->comment('Название коллектива');
             $table->string('educational_institution')->nullable()->comment('Название учебного заведения');
 
-            $table->tinyInteger('cnt_kollective_diploma')->nullable()->comment('количество печатных коллективных дипломов');
+            $table->tinyInteger('quantity_kollective_diploma')->nullable()->comment('количество печатных коллективных дипломов');
 
             $table->string('payment_state')->nullable()->comment('статус оплаты');
             $table->enum('new_state', ['1', '0'])->comment('новая заявка');
@@ -40,7 +40,7 @@ class CreateBidsTable extends Migration
 
 //            $table->tinyInteger('cnt_person_diploma')->nullable()->comment('количество коллективных дипломов'); todo: в таблицу пользователя
 
-            $table->string('country')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->string('state')->nullable()->comment('область - край');
             $table->string('city')->nullable();
             $table->string('street')->nullable();

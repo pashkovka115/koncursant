@@ -51,7 +51,7 @@ class BidSeeder extends Seeder
                 'koll_name' => 'Солнечные васельки',
                 'educational_institution' => 'ДШИ имени С.В. Рахманинова',
 
-                'cnt_kollective_diploma' => 10,
+                'quantity_kollective_diploma' => 10,
 //                'cnt_person_diploma' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
 
                 // user
@@ -65,7 +65,7 @@ class BidSeeder extends Seeder
 //                'teacher_job' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
 
                 // address
-                'country' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                'country_id' => 1,
                 'state' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
                 'city' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
                 'street' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
@@ -75,8 +75,8 @@ class BidSeeder extends Seeder
                 'email' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
                 'phone' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
 
-                'resource' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'link_to_resource' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                'resource' => ($i % 2 == 0) ? 'ok' : 'youtube',
+                'link_to_resource' => ($i % 2 == 0) ? 'https://ok.ru/video/2034366024199' : 'https://youtu.be/qnZYCGmUKss',
                 'comment' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
 
                 'created_at' => now(),

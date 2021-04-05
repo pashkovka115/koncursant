@@ -28,7 +28,7 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-customer-service-2-fill"></i>
+                        <i class="ri-chat-1-line"></i>
                         <span>Все заявки</span>
                     </a>
 
@@ -43,7 +43,14 @@
 
                 <li>
                     <a href="#" class=" waves-effect">
-                        <i class="ri-chat-1-line"></i>
+                        <i class="fas fa-star"></i>
+                        <span>Оценить</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class=" waves-effect">
+                        <i class="ri-customer-service-2-fill"></i>
                         <span>Обратный звонок</span>
                     </a>
                 </li>

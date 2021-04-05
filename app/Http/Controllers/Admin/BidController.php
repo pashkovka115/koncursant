@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BidUpdate;
+use App\Models\AgeGroup;
 use App\Models\Bid;
 use App\Models\Competition;
+use App\Models\Country;
+use App\Models\Nomination;
+use App\Models\Tariff;
 use Illuminate\Http\Request;
 use function React\Promise\all;
 
@@ -20,7 +25,9 @@ class BidController extends Controller
 
         // Сортировка по дате завершения проверки заявки (Оценить до)
         $bids_amateur = $bids_amateur->sortBy(function ($item, $key){
-            return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
+            if ($item->tariff){
+                return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
+            }
         });
 
 
@@ -31,7 +38,9 @@ class BidController extends Controller
 
         // Сортировка по дате завершения проверки заявки (Оценить до)
         $bids_professional = $bids_professional->sortBy(function ($item, $key){
-            return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
+            if ($item->tariff){
+                return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
+            }
         });
 
 
@@ -47,7 +56,9 @@ class BidController extends Controller
 
         // Сортировка по дате завершения проверки заявки (Оценить до)
         $bids_amateur = $bids_amateur->sortBy(function ($item, $key){
-            return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
+            if ($item->tariff){
+                return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
+            }
         });
 
 
@@ -57,7 +68,9 @@ class BidController extends Controller
 
         // Сортировка по дате завершения проверки заявки (Оценить до)
         $bids_professional = $bids_professional->sortBy(function ($item, $key){
-            return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
+            if ($item->tariff){
+                return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
+            }
         });
 
 
@@ -70,7 +83,10 @@ class BidController extends Controller
     public function index_type($type)
     {
         $bids = Bid::with(['competition'])->where('type', $type)->get()->groupBy(function ($item, $key){
-            return $item->competition->name;
+            if ($item->competition){
+                return $item->competition->name;
+            }
+            return [];
         });
 
         if ($type == 'amateur'){
@@ -126,27 +142,92 @@ class BidController extends Controller
 
     public function edit($id)
     {
-        $bid = Bid::with(['ageGroup', 'participants', 'teachers', 'competition'])->where('id', $id)->firstOrFail();
+        $bid = Bid::with(['ageGroup', 'participants', 'teachers', 'competition', 'nomination'])->where('id', $id)->firstOrFail();
         if (is_null($bid->participants)){
             $bid->participants = [];
         }
         if (is_null($bid->teachers)){
             $bid->teachers = [];
         }
-//        dd($bid);
 
-        return view('admin.bids.edit', compact('bid'));
+//        dd($bid);
+        $competitions = Competition::all(['id', 'name']);
+        $nominations = Nomination::all(['id', 'name']);
+        $age_groups = AgeGroup::all(['id', 'name']);
+        $tariffs = Tariff::all(['id', 'name']);
+        $countries = Country::all(['id', 'name']);
+
+        return view('admin.bids.edit', compact(
+            'bid',
+            'competitions',
+            'nominations',
+            'age_groups',
+            'tariffs',
+            'countries'
+        ));
     }
 
 
+//    public function update(BidUpdate $request, $id)
     public function update(Request $request, $id)
     {
-        dd($request->all());
+//        dd($request->all());
+
+        $data = $request->all();
+//        $data = $request->validated();
+
+        $bid = Bid::with(['teachers', 'participants'])->where('id', $id)->firstOrFail();
+        $bid->update($data);
+
+//        $bid = Bid::with(['teachers', 'participants'])->where('id', $bid->id)->firstOrFail();
+
+        // todo: переделать. сейчас добавляет. надо что бы обновляло
+        if ($request->has('teacher_first_name')){
+            $teachers = [];
+            foreach ($data['teacher_first_name'] as $key => $first_name){
+                $teachers[] = [
+                    'bid_id' => $bid->id,
+                    'first_name' => $data['teacher_first_name'][$key],
+                    'last_name' => $data['teacher_last_name'][$key],
+                    'third_name' => $data['teacher_third_name'][$key],
+                    'job' => $data['teacher_job'][$key],
+                ];
+            }
+            $bid->teachers()->insert($teachers);
+        }
+        /*if ($request->has('teacher_letter_print')){
+
+        }*/
+
+        if ($request->has('participant_first_name')){
+            $participants = [];
+            foreach ($data['participant_first_name'] as $key => $first_name){
+                $participants[] = [
+                    'bid_id' => $bid->id,
+                    'first_name' => $data['participant_first_name'][$key],
+                    'last_name' => $data['participant_last_name'][$key],
+                ];
+            }
+            $bid->participants()->insert($participants);
+        }
+
+
+        return back();
     }
 
 
-    public function destroy(Bid $bid)
+    public function destroy($id)
     {
-        //
+        $bid = Bid::with(['participants', 'teachers'])->where('id', $id)->firstOrFail();
+        foreach ($bid->participants as $participant){
+            $participant->delete();
+        }
+        foreach ($bid->teachers as $teacher){
+            $teacher->delete();
+        }
+
+        $bid->delete();
+
+        return back();
     }
 }

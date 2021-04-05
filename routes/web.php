@@ -55,7 +55,7 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
         Route::get('edit/{id}', [\App\Http\Controllers\Admin\BidController::class, 'edit'])->name('admin.bids.edit');
         Route::post('update/{id}', [\App\Http\Controllers\Admin\BidController::class, 'update'])->name('admin.bids.update');
-//        Route::post('destroy/{id}', [\App\Http\Controllers\Admin\BidController::class, 'destroy'])->name('admin.bids.destroy');
+        Route::post('destroy/{id}', [\App\Http\Controllers\Admin\BidController::class, 'destroy'])->name('admin.bids.destroy');
 //        Route::post('store', [\App\Http\Controllers\Admin\BidController::class, 'store'])->name('admin.bids.store');
     });
 

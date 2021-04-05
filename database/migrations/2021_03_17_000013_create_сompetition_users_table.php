@@ -13,6 +13,7 @@ class CreateсompetitionUsersTable extends Migration
             $table->unsignedBigInteger('bid_id');
             $table->string('first_name')->nullable()->comment('имя');
             $table->string('last_name')->nullable()->comment('фамилия');
+            $table->integer('quantity_person_diploma')->nullable()->comment('количество персональных дипломов');
             $table->timestamps();
         });
     }

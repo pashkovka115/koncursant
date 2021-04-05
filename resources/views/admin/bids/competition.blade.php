@@ -30,9 +30,9 @@
                 @foreach($bids as $bid)
                     <tr>
                         <td>{{ $bid->id }}</td>
-                        <td>{{ $bid->nomination->name }}</td>
-                        <td>{{ $bid->ageGroup->name }}</td>
-                        <td>{{ $bid->tariff->name }}</td>
+                        <td>{{ $bid->nomination->name ?? '' }}</td>
+                        <td>{{ $bid->ageGroup->name ?? '' }}</td>
+                        <td>{{ $bid->tariff->name ?? '' }}</td>
                         <td>---</td>
                         <td>
                             @if($bid->link_to_resource)
@@ -49,16 +49,19 @@
                         </td>
                         <td>
                             <?php
-                            $date->add(new DateInterval('P'.$bid->tariff->duration.'D'));
-                            echo $date->format('d.m.Y');
+                            if ($bid->tariff){
+                                $date->add(new DateInterval('P'.$bid->tariff->duration.'D'));
+                                echo $date->format('d.m.Y');
+                            }
                             ?>
                         </td>
                         <td>
                             <a href="{{ route('admin.bids.edit', ['id' => $bid->id]) }}" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
 
-                            <a href="#" class="text-danger" onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $bid->id }}').submit(); return false;">
+                            <a href="{{ route('admin.bids.destroy', ['id' => $bid->id]) }}" class="text-danger"
+                               onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $bid->id }}').submit(); return false;">
                                 <i class="mdi mdi-trash-can font-size-18"></i></a>
-                            <form id="form_{{ $bid->id }}" action="" method="POST" style="display: none;">
+                            <form id="form_{{ $bid->id }}" action="{{ route('admin.bids.destroy', ['id' => $bid->id]) }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </td>

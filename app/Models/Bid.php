@@ -17,6 +17,7 @@ class Bid extends Model
     protected $table = 'bids';
     protected $fillable = [
         'type',
+        'appraisal',
 
         'competition_id',
         'nomination_id',
@@ -89,11 +90,13 @@ class Bid extends Model
 
     public function participants()
     {
-        return $this->belongsTo(СompetitionUser::class);
+        return $this->hasMany(CompetitionUser::class);
+//        return $this->belongsTo(CompetitionUser::class);
     }
 
     public function teachers()
     {
-        return $this->belongsTo(СompetitionTeacher::class);
+        return $this->hasMany(CompetitionTeacher::class);
+//        return $this->belongsTo(CompetitionTeacher::class);
     }
 }

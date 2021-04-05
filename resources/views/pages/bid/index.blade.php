@@ -77,6 +77,7 @@
                             <p class="red">Это займет всего несколько минут!</p>
                         </div>
                     </div>
+                    <!--@submit.prevent="submitHandler($event.target)"-->
                     <form id="application_form" action="{{ route('front.bid.form.store') }}" method="post">
                         @csrf
                     <!--Шаг 1-->
@@ -103,7 +104,7 @@
                             <div class="field field-33">
                                 <legend>Название конкурса<span class="required">*</span></legend>
                                     @verbatim
-                                <select name="competition_id" id="competition_name" required>
+                                <select name="competition_id" id="competition_name">
                                     <option value=''>-------</option>
                                     <option :value='item.id' v-for="item in competitions" :key="item">{{ item.name }}</option>
                                 </select>
@@ -129,13 +130,13 @@
                         <div class="fields">
                             <div class="field field-100" v-show="show_instrumental">
                                 <legend>Название музыкального инструмента</legend>
-                                <input type="text" name="musical_instrument" placeholder="Введите название музыкального инструмента">
+                                <input type="text" name="musical_instrument" value="{{ old('musical_instrument') }}" placeholder="Введите название музыкального инструмента">
                             </div>
                         </div>
                         <div class="fields">
                             <div class="field field-100">
                                 <legend>Название номера </legend>
-                                <input type="text" name="musical_number" placeholder="Например, Руслан и Людмила" style="margin-top: 23px">
+                                <input type="text" name="musical_number" value="{{ old('musical_number') }}" placeholder="Например, Руслан и Людмила" style="margin-top: 23px">
                             </div>
                         </div>
                         <div class="fields">
@@ -145,7 +146,6 @@
                                 <select
                                     name="age_group_id"
                                     id="age_group"
-                                    required
                                     v-model.number="age_group_id"
                                 >
                                     <option value="0">-----</option>
@@ -164,14 +164,14 @@
                         <div class="fields fields-align-end">
                             <div id="kollective_name" class="field field-100">
                                 <legend>Название коллектива</legend>
-                                <input type="text" name="koll_name" placeholder='Например, музыкальный ансамбль "Мелодия"' required>
+                                <input type="text" name="koll_name" value="{{ old('koll_name') }}" placeholder='Например, музыкальный ансамбль "Мелодия"'>
                             </div>
                         </div>
                         <div class="fields field-100">
                             <div class="field field-50">
                                 <legend>Страна участника<span class="required">*</span></legend>
                                 @verbatim
-                                <select name="country" id="country_first" v-model="current_country_id">
+                                <select name="country_id" id="country_first" v-model="current_country_id">
                                     <option value="">-----</option>
                                     <option v-for="country in countries" :value="country.id" :key="country.id">{{ country.name }}</option>
                                 </select>
@@ -179,11 +179,11 @@
                             </div>
                             <div class="field field-50">
                                 <legend>Город<span class="required">*</span></legend>
-                                <input type="text" name="city" placeholder="Например, Москва">
+                                <input type="text" name="city" value="{{ old('city') }}" placeholder="Например, Москва">
                             </div>
                             <div class="field field-100" style="margin-top: 20px">
                                 <legend>Учебное заведение</legend>
-                                <input type="text" name="educational_institution" placeholder="Например, ДШИ имени С.В. Рахманинова">
+                                <input type="text" name="educational_institution" value="{{ old('educational_institution') }}" placeholder="Например, ДШИ имени С.В. Рахманинова">
                             </div>
                         </div>
 
@@ -242,7 +242,7 @@
                             <div class="field field-100" v-if="print_checkbox_print_diploma">
                                 <div class="checks" style="margin-top: 20px; display: flex; align-items: center;">
                                     <label class="number" for="general_diploma_print_cnt">Количество общих печатных дипломов</label>
-                                    <input @change="change_price()" name="cnt_kollective_diploma" type="number" min="0" class="number" id="general_diploma_print_cnt" v-model.number="price.general_diplom_print_quantity">
+                                    <input @change="change_price()" name="quantity_kollective_diploma" type="number" min="0" class="number" id="general_diploma_print_cnt" v-model.number="price.general_diplom_print_quantity">
                                 </div>
                             </div>
 
@@ -266,7 +266,7 @@
                         <div class="fields">
                             <div class="field field-33">
                                 <legend>Ресурс</legend>
-                                <select name="resource" id="resource" required>
+                                <select name="resource" id="resource">
                                     <option value="youtube">Youtube</option>
                                     <option value="vk">Вконтакте</option>
                                     <option value="ok">Однокласники</option>
@@ -275,7 +275,7 @@
                             </div>
                             <div class="field field-33">
                                 <legend>Добавьте ссылку на видео</legend>
-                                <input type="text" name="link_to_resource" placeholder="Место для вашей ссылки">
+                                <input type="text" name="link_to_resource" value="{{ old('link_to_resource') }}" placeholder="Место для вашей ссылки">
                             </div>
                             <div class="field field-33">
                                 <div class="links-question">
@@ -293,7 +293,7 @@
                         <div class="fields">
                             <div class="field field-100">
                                 <legend>Комментарий</legend>
-                                <textarea name="comment" placeholder="Введите дополнительную информацию по заявке..."></textarea>
+                                <textarea name="comment" placeholder="Введите дополнительную информацию по заявке...">{{ old('comment') }}</textarea>
                             </div>
 
                         </div>
@@ -352,12 +352,12 @@
                         <div class="fields">
                             <div class="field field-50">
                                 <legend>E-mail<span class="required">*</span></legend>
-                                <input type="text" name="email" placeholder="Введите адрес электронной почты">
+                                <input type="text" name="email" value="{{ old('email') }}" placeholder="Введите адрес электронной почты">
                                 <p>На указанную электронную почту будет отправлена ссылка для загрузки видео и после прохождения конкурса отправлен диплом. <b>Обязательно проверьте на правильность!</b></p>
                             </div>
                             <div class="field field-50">
                                 <legend>Номер телефона<span class="required">*</span></legend>
-                                <input type="text" name="phone" placeholder="Введите номер телефона">
+                                <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Введите номер телефона">
                                 <p>Желательно с WhatsApp для комфортного международного общения.</p>
                             </div>
                         </div>
@@ -383,7 +383,7 @@
                         <div class="fields" v-show="active_professional">
                             <div class="field field-70">
                                 <legend>Район, область</legend>
-                                <input type="text" name="state">
+                                <input type="text" name="state" value="{{ old('state') }}">
                                 <!--<select name="" id="state">
                                     <option value="">Введите название области/края/района</option>
                                     <option value="">Россия</option>
@@ -405,19 +405,19 @@
                         <div class="fields" v-show="active_professional">
                             <div class="field field-25">
                                 <legend>Улица</legend>
-                                <input type="text" name="street" placeholder="Введите название улицы">
+                                <input type="text" name="street" value="{{ old('street') }}" placeholder="Введите название улицы">
                             </div>
                             <div class="field field-25">
                                 <legend>Дом</legend>
-                                <input type="text" name="house" placeholder="Введите номер">
+                                <input type="text" name="house" value="{{ old('house') }}" placeholder="Введите номер">
                             </div>
                             <div class="field field-25">
                                 <legend>Квартира</legend>
-                                <input type="text" name="apartment" placeholder="Введите номер">
+                                <input type="text" name="apartment" value="{{ old('apartment') }}" placeholder="Введите номер">
                             </div>
                             <div class="field field-25">
                                 <legend>Индекс</legend>
-                                <input type="text" name="postcode" placeholder="Введите индекс">
+                                <input type="text" name="postcode" value="{{ old('postcode') }}" placeholder="Введите индекс">
                             </div>
                         </div>
                         <div class="fields" v-show="active_professional">
@@ -457,7 +457,8 @@
                     @endverbatim
 
                         <div class="text-center">
-                            <button @click="send" type="submit" class="btn btn-red btn-buy">Оплатить онлайн</button>
+                            <button class="btn btn-red btn-buy">Оплатить онлайн</button>
+                        <!--<input type="submit" class="btn btn-red btn-buy" value="Оплатить онлайн">-->
                         </div>
                         <div class="fields">
                             <div class="field field-50">
@@ -465,7 +466,7 @@
                                 <p>На указанную эл.почту будет отправлена квитанция на оплату и ссылка для возможности оплаты онлайн. Подробнее <a href="">здесь</a>. <b>Без оплаты заявка не рассматривается.</b></p>
                             </div>
                             <div class="field field-50 text-right">
-                                <button class="btn btn-border-red">Получить квитанцию</button>
+                                <button @click.prevent="" class="btn btn-border-red">Получить квитанцию</button>
                             </div>
                         </div>
                         <div class="quiz-steps-btn">
@@ -752,8 +753,14 @@ const App = {
         setTariffId(){
             this.price.tariff_id = this.price.current_tariff.id;
         },
-        send(){
-            application_form.submit()
+        /*send(){
+            // this.$root.submit()
+            // application_form.submit()
+            this.$refs.application_form.submit();
+        },*/
+        submitHandler(target) {
+            console.log(target)
+            // target.submit();
         },
         del_teacher(target){
             target.parentElement.parentElement.remove();
@@ -1012,7 +1019,7 @@ appl.component('participant', {
     <div class="field field-100" v-if="active_professional && case_print">
         <div class="checks" style="margin-top: 20px; display: flex; align-items: center;">
             <label class="number" :for="'checkbox_person_cnt_diplom_print-' + counter">Количество персональных печатных дипломов этому участнику</label>
-            <input name="cnt_person_diploma[]" type="number" min="0" class="number" :id="'checkbox_person_cnt_diplom_print-' + counter" v-model.number="person_cnt_diplom_print">
+            <input name="quantity_person_diploma[]" type="number" min="0" class="number" :id="'checkbox_person_cnt_diplom_print-' + counter" v-model.number="person_cnt_diplom_print">
         </div>
     </div>
                         @endverbatim
@@ -1051,11 +1058,11 @@ appl.component('teacher', {
             </div>
             <div class="field field-33">
                 <legend>Фамилия педагога</legend>
-                <input type="text" name="teacher_second_name[]">
+                <input type="text" name="teacher_last_name[]">
             </div>
             <div class="field field-33">
                 <legend>Отчество педагога</legend>
-                <input type="text" name="teacher_last_name[]">
+                <input type="text" name="teacher_third_name[]">
             </div>
         </div>
         <div class="fields field-100 fields-align-center">

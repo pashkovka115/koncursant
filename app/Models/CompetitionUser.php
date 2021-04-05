@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class СompetitionUser extends Model
+class CompetitionUser extends Model
 {
     use HasFactory;
 
@@ -15,5 +15,6 @@ class СompetitionUser extends Model
         'bid_id',
         'first_name',
         'last_name',
+        'quantity_person_diploma'
     ];
 }
