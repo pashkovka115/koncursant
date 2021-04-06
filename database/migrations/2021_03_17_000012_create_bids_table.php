@@ -11,8 +11,16 @@ class CreateBidsTable extends Migration
 {
     public $tableName = 'bids';
 
-// cnt_person_diploma
-// cnt_kollective_diploma
+//Статусы
+//
+//- новая заявка
+//5 не обработана
+//4 ошибка данных
+//3 нет видео
+//2 в работе
+//1 допущена к оценке
+//0 завершена
+
     public function up()
     {
         Schema::create($this->tableName, function (Blueprint $table) {
@@ -34,9 +42,9 @@ class CreateBidsTable extends Migration
 
             $table->tinyInteger('quantity_kollective_diploma')->nullable()->comment('количество печатных коллективных дипломов');
 
-            $table->string('payment_state')->nullable()->comment('статус оплаты');
+            $table->enum('payment_state', ['0', '1'])->comment('статус оплаты');
             $table->enum('new_state', ['1', '0'])->comment('новая заявка');
-            $table->enum('processed', ['0', '1'])->comment('Обработана');
+            $table->enum('processe_state', ['5', '4', '3', '2', '1', '0'])->comment('Текущий статус');
 
 //            $table->tinyInteger('cnt_person_diploma')->nullable()->comment('количество коллективных дипломов'); todo: в таблицу пользователя
 

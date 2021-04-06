@@ -37,11 +37,11 @@ class BidController extends Controller
             ->get();
 
         // Сортировка по дате завершения проверки заявки (Оценить до)
-        $bids_professional = $bids_professional->sortBy(function ($item, $key){
+        /*$bids_professional = $bids_professional->sortBy(function ($item, $key){
             if ($item->tariff){
                 return idate('s', $item->tariff->created_at) + ($item->tariff->duration * 86400);
             }
-        });
+        });*/
 
 
         return view('admin.bids.new_bids', compact('bids_amateur', 'bids_professional'));
@@ -149,6 +149,8 @@ class BidController extends Controller
         if (is_null($bid->teachers)){
             $bid->teachers = [];
         }
+        $bid->new_state = '0';
+        $bid->update();
 
 //        dd($bid);
         $competitions = Competition::all(['id', 'name']);

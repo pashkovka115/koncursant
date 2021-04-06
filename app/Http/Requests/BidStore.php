@@ -27,6 +27,7 @@ class BidStore extends FormRequest
 
             'confirm_data' => 'sometimes|nullable|string',
             'appraisal' => 'sometimes|nullable|string',
+            'processe_state' => 'sometimes|nullable|numeric',
 
             'cnt_people' => 'sometimes|nullable|string',
             'musical_instrument' => 'sometimes|nullable|string',

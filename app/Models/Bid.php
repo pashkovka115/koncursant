@@ -24,6 +24,8 @@ class Bid extends Model
         'age_group_id',
         'tariff_id',
 
+        'processe_state',
+
         'cnt_people',
         'musical_instrument',
         'musical_number',
@@ -86,6 +88,11 @@ class Bid extends Model
     public function tariff()
     {
         return $this->belongsTo(Tariff::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 
     public function participants()

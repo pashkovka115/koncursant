@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title') Типы конкурсов @endsection
+@section('title') Тарифы @endsection
 @section('header')
     <!-- DataTables -->
     <link href="{{ URL::asset('assets/datatables/datatables.bootstrap4/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
@@ -11,40 +11,40 @@
 @endsection
 @section('content')
 @component('admin.layouts.components.breadcrumb')
-    @slot('title') Список типов конкурсов @endslot
-    @slot('active') Список типов конкурсов @endslot
+    @slot('title') Список тарифов @endslot
+    @slot('active') Список тарифов @endslot
 @endcomponent
 
 <div class="card">
-    @if($competitions->count() < 2)
     <div class="card-header">
         <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#myModal">
             <i class="ri-add-fill"></i> Добавить</button>
     </div>
-    @endif
     <div class="card-body">
         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
             <tr>
-                <th>№</th>
                 <th>Имя</th>
+                <th>Тип</th>
+                <th>Продолжительность</th>
+                <th>Цена</th>
                 <th>Действия</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($competitions as $competition)
+            @foreach($tariffs as $tariff)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $competition->name }}</td>
+                    <td>{{ $tariff->name }}</td>
+                    <td>@lang('system.' . $tariff->type)</td>
+                    <td>{{ $tariff->duration }}</td>
+                    <td>{{ $tariff->price }}</td>
                     <td>
-                        <a href="{{ route('admin.competitions.types.edit', ['id' => $competition->id]) }}" class="mr-3 text-warning">
-                            <i class="ri-pencil-fill font-size-18"></i>
-                        </a>
+                        <a href="{{ route('admin.competitions.tariffs.edit', ['id' => $tariff->id]) }}" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
 
-                        <a href="{{ route('admin.competitions.types.destroy', ['id' => $competition->id]) }}" class="text-danger"
-                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $competition->id }}').submit(); return false;">
+                        <a href="{{ route('admin.competitions.tariffs.destroy', ['id' => $tariff->id]) }}" class="text-danger"
+                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $tariff->id }}').submit(); return false;">
                             <i class="mdi mdi-trash-can font-size-18"></i></a>
-                        <form id="form_{{ $competition->id }}" action="{{ route('admin.competitions.types.destroy', ['id' => $competition->id]) }}" method="POST" style="display: none;">
+                        <form id="form_{{ $tariff->id }}" action="{{ route('admin.competitions.tariffs.destroy', ['id' => $tariff->id]) }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </td>
@@ -53,8 +53,10 @@
             </tbody>
             <tfoot>
             <tr>
-                <th>№</th>
                 <th>Имя</th>
+                <th>Тип</th>
+                <th>Продолжительность</th>
+                <th>Цена</th>
                 <th>Действия</th>
             </tr>
             </tfoot>
@@ -104,17 +106,32 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myModalLabel">Новый тип</h5>
+                    <h5 class="modal-title mt-0" id="myModalLabel">Новый тариф</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="save_form" action="{{ route('admin.competitions.types.store') }}" method="post">
+                    <form id="save_form" action="{{ route('admin.competitions.tariffs.store') }}" method="post">
                         @csrf
-                        <div class="form-group">
-                            <label>Имя</label>
-                            <input type="text" name="name" value="" class="form-control" required>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Наименование</label>
+                            <input type="text" name="name" class="form-control" id="exampleFormControlInput1">
+                        </div>
+                        <div>
+                            <label class="form-label">Тип</label>
+                            <select name="type" class="form-control">
+                                <option value="solist">Солист</option>
+                                <option value="kollective">Коллектив</option>
+                            </select>
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Продолжительность (дней)</label>
+                            <input id="number" name="duration" type="number" min="0" class="form-control">
+                        </div>
+                        <div class="mt-3">
+                            <label class="form-label">Цена</label>
+                            <input id="number" name="price" type="number" min="0" step="10" class="form-control">
                         </div>
                     </form>
                 </div>

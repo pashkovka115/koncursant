@@ -13,25 +13,25 @@ class TariffSeeder extends Seeder
                 'name' => 'Выгодный',
                 'type' => 'solist',
                 'duration' => 30,
-                'price' => '+ 90 ₽',
+                'price' => 90,
             ],
             [
                 'name' => 'Оптимальный',
                 'type' => 'solist',
                 'duration' => 15,
-                'price' => '+ 400 ₽',
+                'price' => 400,
             ],
             [
                 'name' => 'Срочный',
                 'type' => 'solist',
                 'duration' => 3,
-                'price' => '+ 600 ₽',
+                'price' => 600,
             ],
             [
                 'name' => 'Супер-срочный',
                 'type' => 'solist',
                 'duration' => 1,
-                'price' => '+ 1000 ₽',
+                'price' => 1000,
             ],
         ];
 
@@ -40,25 +40,25 @@ class TariffSeeder extends Seeder
                 'name' => 'Выгодный 2',
                 'type' => 'kollective',
                 'duration' => 30,
-                'price' => '+ 190 ₽',
+                'price' => 190,
             ],
             [
                 'name' => 'Оптимальный 2',
                 'type' => 'kollective',
                 'duration' => 15,
-                'price' => '+ 4100 ₽',
+                'price' => 4100,
             ],
             [
                 'name' => 'Срочный 2',
                 'type' => 'kollective',
                 'duration' => 3,
-                'price' => '+ 6100 ₽',
+                'price' => 6100,
             ],
             [
                 'name' => 'Супер-срочный 2',
                 'type' => 'kollective',
                 'duration' => 1,
-                'price' => '+ 10100 ₽',
+                'price' => 10100,
             ],
         ];
 

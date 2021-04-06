@@ -42,7 +42,7 @@
                 </li>
 
                 <li>
-                    <a href="#" class=" waves-effect">
+                    <a href="{{ route('admin.estimate.index') }}" class=" waves-effect">
                         <i class="fas fa-star"></i>
                         <span>Оценить</span>
                     </a>
@@ -70,6 +70,7 @@
                         <li><a href="{{ route('admin.competitions.types.index') }}">Типы</a></li>
                         <li><a href="{{ route('admin.competitions.age_group.index') }}">Возрастные группы</a></li>
                         <li><a href="{{ route('admin.competitions.all.create') }}">Создать новый</a></li>
+                        <li><a href="{{ route('admin.competitions.tariffs.index') }}">Тарифы</a></li>
                     </ul>
                 </li>
 
@@ -79,7 +80,7 @@
                         <span>Настройки</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">Возрастная категория</a></li>
+                        <li><a href="#">======</a></li>
                     </ul>
                 </li>
 

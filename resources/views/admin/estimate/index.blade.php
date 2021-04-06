@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title') Новые заявки @endsection
+@section('title') Оценить заявки @endsection
 @section('header')
     <!-- DataTables -->
     <link href="{{ URL::asset('assets/datatables/datatables.bootstrap4/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
@@ -11,8 +11,8 @@
 @endsection
 @section('content')
 @component('admin.layouts.components.breadcrumb')
-    @slot('title') Новые заявки @endslot
-    @slot('active') Новые заявки @endslot
+    @slot('title') Оценить заявки @endslot
+    @slot('active') Оценить заявки @endslot
 @endcomponent
 
 <div class="card">
@@ -85,14 +85,7 @@
                         ?>
                     </td>
                     <td>
-                        <a href="{{ route('admin.bids.edit', ['id' => $amateur->id]) }}" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
-
-                        <a href="{{ route('admin.bids.destroy', ['id' => $amateur->id]) }}" class="text-danger"
-                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $amateur->id }}').submit(); return false;">
-                            <i class="mdi mdi-trash-can font-size-18"></i></a>
-                        <form id="form_{{ $amateur->id }}" action="{{ route('admin.bids.destroy', ['id' => $amateur->id]) }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                        <a href="{{ route('admin.estimate.edit', ['id' => $amateur->id]) }}" class="mr-3 text-warning" title="Оценить"><i class="fas fa-star"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -163,13 +156,7 @@
                                 ?>
                             </td>
                             <td>
-                                <a href="{{ route('admin.bids.edit', ['id' => $professional->id]) }}" class="mr-3 text-warning"><i class="ri-pencil-fill font-size-18"></i></a>
-
-                                <a href="{{ route('admin.bids.destroy', ['id' => $professional->id]) }}" class="text-danger" onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $professional->id }}').submit(); return false;">
-                                    <i class="mdi mdi-trash-can font-size-18"></i></a>
-                                <form id="form_{{ $professional->id }}" action="{{ route('admin.bids.destroy', ['id' => $professional->id]) }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                                <a href="{{ route('admin.estimate.edit', ['id' => $professional->id]) }}" class="mr-3 text-warning" title="Оценить"><i class="fas fa-star"></i></a>
                             </td>
                         </tr>
                     @endforeach

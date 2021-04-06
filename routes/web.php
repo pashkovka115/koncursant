@@ -59,6 +59,16 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 //        Route::post('store', [\App\Http\Controllers\Admin\BidController::class, 'store'])->name('admin.bids.store');
     });
 
+    // Оценка заявок
+    Route::prefix('estimate')->group(function (){
+        Route::get('', [\App\Http\Controllers\Admin\EstimateController::class, 'index'])->name('admin.estimate.index');
+        Route::get('edit/{id}', [\App\Http\Controllers\Admin\EstimateController::class, 'edit'])->name('admin.estimate.edit');
+        Route::get('next', [\App\Http\Controllers\Admin\EstimateController::class, 'next_random'])->name('admin.estimate.next');
+        Route::post('update/{id}', [\App\Http\Controllers\Admin\EstimateController::class, 'update'])->name('admin.estimate.update');
+//        Route::post('destroy/{id}', [\App\Http\Controllers\Admin\EstimateController::class, 'destroy'])->name('admin.estimate.destroy');
+//        Route::post('store', [\App\Http\Controllers\Admin\EstimateController::class, 'store'])->name('admin.estimate.store');
+    });
+
     // Жюри
     Route::prefix('jury')->group(function (){
         Route::get('', [\App\Http\Controllers\Admin\JuryController::class, 'index'])->name('admin.jury.index');
@@ -108,6 +118,14 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
             Route::post('attach-age-group/{competition_id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'attachAgeGroup'])->name('admin.competitions.all.attach_age_group');
             Route::post('detach-age-group/{competition_id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'detachAgeGroup'])->name('admin.competitions.all.detach_age_group');
+        });
+        // Тарифы
+        Route::prefix('tariffs')->group(function (){
+            Route::get('', [\App\Http\Controllers\Admin\TariffController::class, 'index'])->name('admin.competitions.tariffs.index');
+            Route::get('edit/{id}', [\App\Http\Controllers\Admin\TariffController::class, 'edit'])->name('admin.competitions.tariffs.edit');
+            Route::post('update/{id}', [\App\Http\Controllers\Admin\TariffController::class, 'update'])->name('admin.competitions.tariffs.update');
+            Route::post('destroy/{id}', [\App\Http\Controllers\Admin\TariffController::class, 'destroy'])->name('admin.competitions.tariffs.destroy');
+            Route::post('store', [\App\Http\Controllers\Admin\TariffController::class, 'store'])->name('admin.competitions.tariffs.store');
         });
     });
 
