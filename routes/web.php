@@ -69,6 +69,12 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 //        Route::post('store', [\App\Http\Controllers\Admin\EstimateController::class, 'store'])->name('admin.estimate.store');
     });
 
+    // Цены
+    Route::prefix('price')->group(function (){
+        Route::get('edit', [\App\Http\Controllers\Admin\PriceController::class, 'edit'])->name('admin.price.edit');
+        Route::post('update/{id}', [\App\Http\Controllers\Admin\PriceController::class, 'update'])->name('admin.price.update');
+    });
+
     // Жюри
     Route::prefix('jury')->group(function (){
         Route::get('', [\App\Http\Controllers\Admin\JuryController::class, 'index'])->name('admin.jury.index');

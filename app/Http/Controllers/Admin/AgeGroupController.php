@@ -25,11 +25,13 @@ class AgeGroupController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'age' => 'nullable|string',
+            'price' => 'nullable|string',
         ]);
 
         $group = new AgeGroup([
             'name' => $data['name'],
             'age' => $data['age'],
+            'price' => $data['price'],
         ]);
         $group->save();
 
@@ -53,12 +55,14 @@ class AgeGroupController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'age' => 'nullable|string',
+            'price' => 'nullable|string',
         ]);
 
         $group = AgeGroup::where('id', $id)->firstOrFail();
         $group->update([
             'name' => $data['name'],
             'age' => $data['age'],
+            'price' => $data['price'],
         ]);
 
         flash('Успешно.')->success();

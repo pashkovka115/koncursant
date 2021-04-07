@@ -34,6 +34,7 @@
             <tr>
                 <th>№</th>
                 <th>Имя</th>
+                <th>Цена</th>
                 <th>Возраст</th>
                 <th>Действия</th>
             </tr>
@@ -43,6 +44,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $group->name }}</td>
+                    <td>{{ $group->price }}</td>
                     <td>{{ $group->age }}</td>
                     <td>
                         <a href="{{ route('admin.competitions.age_group.edit', ['id' => $group->id]) }}" class="mr-3 text-warning">
@@ -63,6 +65,7 @@
             <tr>
                 <th>№</th>
                 <th>Имя</th>
+                <th>Цена</th>
                 <th>Возраст</th>
                 <th>Действия</th>
             </tr>

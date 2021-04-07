@@ -18,6 +18,7 @@ class AgeGroup extends Model
         'name',
         'slug',
         'age',
+        'price',
         'created_at',
         'updated_at',
     ];

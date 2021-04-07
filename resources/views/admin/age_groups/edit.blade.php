@@ -27,6 +27,11 @@
                     <input type="text" name="age" value="{{ $group->age }}" class="form-control">
                 </div>
 
+                <div class="form-group">
+                    <label>Цена</label>
+                    <input type="number" name="price" value="{{ $group->price }}" min="0" class="form-control">
+                </div>
+
                 <div class="form-group mt-5">
                     <div>
                         <button type="submit" name="btn_save_list" class="btn btn-success">Сохранить и перейти в список</button>

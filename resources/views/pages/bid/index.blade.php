@@ -41,6 +41,25 @@
     #country_first + div.nativejs-select{
         margin-top: 0;
     }
+    .custom-select-my .nativejs-select{
+        display: none;
+    }
+    .custom-select-my select{
+        display: block !important;
+        border: 1px solid rgba(166,181,197,.5);
+        width: 100%;
+        height: 40px;
+        border-radius: 3px;
+        color: #292929;
+        background-color: #FFFFFF;
+        margin-top: 30px;
+        padding-left: 1rem;
+    }
+    .custom-select-my select option{
+        padding: 10px 0;
+    }
+    .custom-select-my{
+    }
 </style>
 @endsection
 
@@ -101,15 +120,29 @@
                             </div>
                         </div>
                         <div class="fields">
-                            <div class="field field-33">
+
+                            <div class="field field-33 custom-select-my" v-if="active_professional">
                                 <legend>Название конкурса<span class="required">*</span></legend>
                                     @verbatim
-                                <select name="competition_id" id="competition_name">
+                                <select name="competition_id">
                                     <option value=''>-------</option>
-                                    <option :value='item.id' v-for="item in competitions" :key="item">{{ item.name }}</option>
+                                    <option :value='item.id' v-for="item in competitions_filter()" :key="item.id">{{ item.name }}</option>
                                 </select>
                                     @endverbatim
                             </div>
+
+                            <div class="field field-33 custom-select-my" v-if="!active_professional">
+                                <legend>Название конкурса<span class="required">*</span></legend>
+                                    @verbatim
+                                <select name="competition_id">
+                                    <option value=''>-------</option>
+                                    <option :value='item.id' v-for="item in competitions_filter()" :key="item.id">{{ item.name }}</option>
+                                </select>
+                                    @endverbatim
+                            </div>
+
+
+
                             <div class="field field-33">
                                 <legend>Номинация<span class="required">*</span></legend>
                                 @verbatim
@@ -161,7 +194,7 @@
 
                     <!--Шаг 2-->
                     <div class="quiz-step" id="step-2" :class="{active: active_step_2}">
-                        <div class="fields fields-align-end">
+                        <div class="fields fields-align-end" v-if="!solo">
                             <div id="kollective_name" class="field field-100">
                                 <legend>Название коллектива</legend>
                                 <input type="text" name="koll_name" value="{{ old('koll_name') }}" placeholder='Например, музыкальный ансамбль "Мелодия"'>
@@ -229,10 +262,20 @@
                             </div>
 
                             <div class="field field-100">
-                                <legend style="margin-top: 30px" v-if="!solo">Так же нужен общий диплом</legend>
+                                <legend style="margin-top: 30px" v-if="!solo && price.diploma_electro_model > 0">Так же нужен общий диплом</legend>
                                 <div class="checks">
-                                    <input @change="on_diploma_electro" name="diploma_electro_model" type="checkbox" class="checkbox" id="diploma_electro_model" v-if="!solo" v-model="price.diploma_electro_model">
-                                    <label for="diploma_electro_model" v-if="!solo">Электронный</label>
+                                    <input
+                                        @change="on_diploma_electro"
+                                        name="diploma_electro_model"
+                                        type="checkbox" class="checkbox"
+                                        id="diploma_electro_model"
+                                        v-if="!solo && price.diploma_electro_model > 0"
+                                        v-model.number="price.diploma_electro_model"
+                                    >
+                                    <label
+                                        for="diploma_electro_model"
+                                        v-if="!solo && price.diploma_electro_model > 0"
+                                    >Электронный</label>
 
                                     <input name="general_diploma_print" type="checkbox" class="checkbox" id="general_diploma_print" v-model="print_checkbox_print_diploma"  v-if="active_professional && !solo">
                                     <label for="general_diploma_print"  v-if="active_professional && !solo">Печатный</label>
@@ -523,14 +566,14 @@ const App = {
 
             price: {
                 // Благодарность педагогу
-                thanks_teacher: 90,
+                thanks_teacher: {{ $price->thanks_teacher }},
                 thanks_teacher_quantity: 0,
 
                 // стоимость индивидуального диплома для участника в любительском (электронный)
-                diploma: 70,
+                diploma: {{ $price->diploma }},
                 diploma_quantity: 0,
                 // коллективный диплом в любительском конкурсе
-                diploma_kollective_electro: 200,
+                diploma_kollective_electro: {{ $price->diploma_kollective_electro }},
                 diploma_electro_model: false,
                 diploma_kollective_electro_for_order: 0,
 
@@ -544,16 +587,16 @@ const App = {
 
                 // стоимость печати сольного/индивидуального/индивидуальный в СОЛИСТЕ
                 // диплома за штуку в профессиональном конкурсе (на бумаге)
-                diploma_print_solist: 200,
+                diploma_print_solist: {{ $price->diploma_print_solist }},
                 diploma_print_solist_quantity: 0, // минимум
 
                 // стоимость печати сольного/индивидуального/индивидуальный в КОЛЛЕКТИВЕ
                 // диплома за штуку в профессиональном конкурсе (на бумаге)
-                diploma_print_kollective: 200,
+                diploma_print_kollective: {{ $price->diploma_print_kollective }},
                 diploma_print_kollective_quantity: 0,
 
                 // Цена общего диплома в профессиональном коллективе
-                general_diplom_print: 200,
+                general_diplom_print: {{ $price->general_diplom_print }},
                 // количество общих дипломов
                 general_diplom_print_quantity: 0,
 
@@ -561,11 +604,11 @@ const App = {
                 country_postal_delivery: 0,
 
                 // скидка на каждого последующего участника
-                discount: 400,
+                discount: {{ $price->discount }},
                 // скидка начиная с этого участника
-                cnt_person: 2,
+                cnt_person: {{ $price->cnt_person }},
                 // свыше этого количества участников бесплатно
-                max_quantity_participants_price: 5,
+                max_quantity_participants_price: {{ $price->max_quantity_participants_price }},
                 // количество участников. указанных пользователем
                 //
                 // number_participants: 0,
@@ -579,6 +622,8 @@ const App = {
             },
 
             // конкурсы
+            // select_competition: '',
+            // competitions_filtered: '',
             competitions: {!! json_encode($competitions, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES ) !!},
 
             // текущая возрастная группа
@@ -610,9 +655,9 @@ const App = {
 
             // солист в любительском конкурсе
             if (this.solo && !this.active_professional){
-                console.log('солист в любительском конкурсе')
+                // console.log('солист в любительском конкурсе')
                 // this.current_price = this.price.tariff_price + (this.price.thanks_teacher * this.price.thanks_teacher_quantity);
-                this.current_price = this.price.current_tariff.price + (this.price.thanks_teacher * this.price.thanks_teacher_quantity);
+                this.current_price = parseInt(this.price.current_tariff.price) + (this.price.thanks_teacher * this.price.thanks_teacher_quantity);
 
                 this.price.order.push({
                     name: this.price.current_tariff.name,
@@ -631,7 +676,7 @@ const App = {
                 console.log('солист в профессиональном конкурсе')
                 this.current_price = this.price.age_group_price
                     + (this.price.diploma_print_solist * this.price.diploma_print_solist_quantity)
-                    + this.price.country_postal_delivery;
+                    + parseInt(this.price.country_postal_delivery);
 
                 this.price.order.push({
                     name: 'Возрастная группа',
@@ -652,7 +697,7 @@ const App = {
             // коллектив в любительском конкурсе
             else if (!this.solo && !this.active_professional){
                 console.log('коллектив в любительском конкурсе')
-                this.current_price = this.price.current_tariff.price
+                this.current_price = parseInt(this.price.current_tariff.price)
                     + (this.price.thanks_teacher * this.price.thanks_teacher_quantity)
                     + (this.price.diploma * this.price.diploma_quantity)
                     + this.price.diploma_kollective_electro_for_order;
@@ -689,12 +734,12 @@ const App = {
                     people_cnt = this.price.max_quantity_participants_price;
                 }
 
-                console.log('people_cnt', people_cnt)
+                // console.log('people_cnt', people_cnt)
 
                 // максимальное число платных участников
-                if (this.price.number_participants > this.price.max_quantity_participants_price){
+                /*if (this.price.number_participants > this.price.max_quantity_participants_price){
                     this.price.number_participants = this.price.max_quantity_participants_price;
-                }
+                }*/
 
                 let A = 0;
                 // A = this.price.age_group_price * this.price.number_participants;
@@ -721,7 +766,7 @@ const App = {
 
                 this.current_price = A // Возрастная группа со скидкой
                     + (this.price.diploma_print_kollective * this.price.diploma_print_kollective_quantity) // индивидуальный в коллективе диплом
-                    + this.price.country_postal_delivery // доставка в страну
+                    + parseInt(this.price.country_postal_delivery) // доставка в страну
                     + (this.price.general_diplom_print * this.price.general_diplom_print_quantity); // колективный диплом
 
                 this.price.order.push({
@@ -854,6 +899,13 @@ const App = {
             ++this.counter
             this.teachers.push({counter: this.counter})
         },
+        competitions_filter(){
+            if (this.active_professional) {
+                return this.competitions.filter(item => item.type.type === 'professional');
+            }else if (!this.active_professional){
+                return this.competitions.filter(item => item.type.type === 'amateur');
+            }
+        },
 
         // Навигация по форме
         btn_next_step_2(){
@@ -916,6 +968,7 @@ const App = {
             date.setMonth(date.getMonth() + 1)
             item.date = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear()
         });
+        // this.competitions_filtered = this.competitions_filter();
     },
     watch: {
         active_professional(){
@@ -933,9 +986,12 @@ const App = {
             }else {
                 this.competition_type = 'Бесплатные конкурсы';
             }
+            // this.$forceUpdate();
+            // this.competitions_filtered = this.competitions_filter();
         },
         age_group_id(val){
             let group = this.age_groups.filter(item => item.id === val);
+            console.log(group)
             if (group.length > 0){
                 this.price.age_group_price = group[0].price;
             }else {
@@ -948,7 +1004,7 @@ const App = {
             let country = this.countries.filter(item => item.id === id);
             // console.log(country)
             if (country.length > 0){
-                this.price.country_postal_delivery = country[0].postage_price;
+                this.price.country_postal_delivery = parseInt(country[0].postage_price);
                 this.change_price();
             }
         }
@@ -1076,9 +1132,10 @@ appl.component('teacher', {
         </div>
 @verbatim
     <div class="field field-100">
+        <legend style="margin-top: 30px">Благодарственное письмо для педагога</legend>
         <div class="checks" style="margin-top: 30px">
             <input name="teacher_letter_electro[]" type="checkbox" class="checkbox" :id="'checkbox_teacher_person_diplom_electro-' + counter" v-model="teacher_letter">
-            <label :for="'checkbox_teacher_person_diplom_electro-' + counter">Благодарственное письмо для педагога в электронном виде</label>
+            <label :for="'checkbox_teacher_person_diplom_electro-' + counter">В электронном виде</label>
             <input name="teacher_letter_print[]" type="checkbox" class="checkbox" :id="'checkbox_teacher_person_diplom_printed-' + counter" v-show="active_professional">
             <label :for="'checkbox_teacher_person_diplom_printed-' + counter" v-show="active_professional">Печатный</label>
         </div>
