@@ -6,9 +6,11 @@
                 <button class="btn-menu"></button>
                 <div class="right-part">
                     <div class="top-pnl">
-                        <a href="" class="link"><i class="demo-icon icon-info"></i> Принять участие</a>
-                        <a href="" class="link"><i class="demo-icon icon-ask"></i> Как подать заявку</a>
-                        <a href="tel:+79189809074" class="phone">8 918 980 90 74</a>
+                        @foreach($info_pages as $info_page)
+                        <a href="{{ route('front.page.show', ['slug' => $info_page->slug]) }}" class="link"><i class="demo-icon icon-info"></i> {{ $info_page->name }}</a>
+                        @endforeach
+{{--                        <a href="" class="link"><i class="demo-icon icon-ask"></i></a>--}}
+                        <a href="tel:{{ preg_replace('/[^\d]/', '', option('phone1')->value2) }}" class="phone">{{ option('phone1')->value2 }}</a>
                     </div>
                     <nav>
                         <ul>
@@ -36,18 +38,23 @@
                 <div class="col-lg-12">
                     <div class="phone-box">
                         <ul>
-                            <li><a href="" class="phone">8 938 476 19 18</a></li>
-                            <li><a href="" class="phone">8 918 980 90 74</a></li>
+                            <li><a href="tel:{{ preg_replace('/[^\d]/', '', option('phone1')->value2) }}" class="phone">{{ option('phone1')->value2 }}</a></li>
+                            <li><a href="tel:{{ preg_replace('/[^\d]/', '', option('phone2')->value2) }}" class="phone">{{ option('phone2')->value2 }}</a></li>
                         </ul>
                     </div>
                     <div class="menu">
                         <ul>
-                            <li><a href="">Главная</a></li>
-                            <li><a href="">Конкурсы</a></li>
-                            <li><a href="">Результаты</a></li>
-                            <li><a href="">Жюри</a></li>
-                            <li><a href="">Частые вопросы</a></li>
-                            <li><a href="">Контакты</a></li>
+                            @foreach($top_menu as $item)
+                                <li><a href="{{ $item['link'] }}">{{ $item['label'] }}</a>
+                                    @if(count($item['child']) > 0)
+                                        <ul>
+                                            @foreach($item['child'] as $child)
+                                                <li><a href="{{ $child['link'] }}">{{ $child['label'] }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div><a href="" class="link"><i class="demo-icon icon-info"></i> Принять участие</a></div>

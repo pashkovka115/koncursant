@@ -20,9 +20,9 @@
                     </div>
                     <div class="f-item f-contacts">
                         <h4>Связаться с нами</h4>
-                        <p><a href="">8 938 476 19 18</a></p>
-                        <p><a href="">8 918 980 90 74</a></p>
-                        <p><a href="">info@concursant.ru</a></p>
+                        <p><a href="tel:{{ preg_replace('/[^\d]/', '', option('phone1')->value2) }}" class="phone">{{ option('phone1')->value2 }}</a></p>
+                        <p><a href="tel:{{ preg_replace('/[^\d]/', '', option('phone2')->value2) }}" class="phone">{{ option('phone2')->value2 }}</a></p>
+                        <p><a href="mailto:{{ option('email')->value }}" class="phone">{{ option('email')->value }}</a></p>
                         <div class="social">
                             <a href=""><i class="demo-icon icon-vk"></i></a>
                             <a href=""><i class="demo-icon icon-insta"></i></a>
@@ -35,8 +35,8 @@
             <div class="col-lg-7 order-lg-1">
                 <div class="logo"><a href=""><img src="{{ asset('assets/front/img/logo.svg') }}" alt=""></a></div>
                 <div class="copyright">
-                    <p><strong>©2021 КОНКУРСАНТ</strong><br /> Российское агентство творческих технологий</p>
-                    <p>Свидетельство 23 №008461094 от 22.02.2012 Всероссийские и международные дистанционные творческие конкурсы по видеозаписям для детей и  зрослых, для любителей и профессионалов</p>
+                    <p><strong>©<?= date('Y') ?> КОНКУРСАНТ</strong><br /> Российское агентство творческих технологий</p>
+                    <p>Свидетельство 23 №008461094 от 22.02.2012 Всероссийские и международные дистанционные творческие конкурсы по видеозаписям для детей и взрослых, для любителей и профессионалов</p>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
         <button class="btn btn-feed">Отправить</button>
     </form>
 
-    <div class="quiz-modal" id="quiz-1">
+    {{--<div class="quiz-modal" id="quiz-1">
         <div class="quiz">
             <div class="head-quiz">
                 <div class="progress-bar">
@@ -438,7 +438,7 @@
         </div>
 
 
-    </div>
+    </div>--}}
 
 
 

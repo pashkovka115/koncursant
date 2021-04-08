@@ -16,24 +16,7 @@ class BidController extends Controller
 {
     public function create()
     {
-        $competitions = Competition::with(['type'])->get()->toArray();
-        $age_groups = AgeGroup::all(['id', 'name', 'price', 'type'])->toArray();
-        $nominations = Nomination::all(['id', 'name', 'type'])->toArray();
-        $tariffs = Tariff::all(['id', 'price', 'name', 'duration', 'selected', 'type'])->toArray();
-        $countries = Country::all(['id', 'name', 'postage_price'])->toArray();
-        $price = Price::first();
-        if (!$price){
-            $price = $this->mock_obj();
-        }
-
-        return view('pages.bid.index', compact(
-            'competitions',
-            'age_groups',
-            'nominations',
-            'tariffs',
-            'countries',
-            'price'
-        ));
+        return view('pages.bid.index');
     }
 
 
@@ -41,7 +24,6 @@ class BidController extends Controller
     {
         $data = $request->validated();
 
-//        dd($data);
         if ($data['cnt_people'] == 'false'){
             $data['cnt_people'] = 'kollective';
         }elseif ($data['cnt_people'] == 'true'){
@@ -81,29 +63,5 @@ class BidController extends Controller
 
 
         return back();
-    }
-
-
-    private function mock_obj()
-    {
-        $class = new \stdClass();
-        $price = [
-            'id' => 1,
-            'thanks_teacher' => 0,
-            'diploma' => 0,
-            'diploma_kollective_electro' => 0,
-            'diploma_print_solist' => 0,
-            'diploma_print_kollective' => 0,
-            'general_diplom_print' => 0,
-            'discount' => 0,
-            'cnt_person' => 0,
-            'max_quantity_participants_price' => 0,
-        ];
-
-        foreach ($price as $var => $value){
-            $class->$var = $value;
-        }
-
-        return $class;
     }
 }

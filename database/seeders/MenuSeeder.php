@@ -57,7 +57,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Жюри",
-                "link" => "#",
+                "link" => "/jury",
                 "parent" => 0,
                 "sort" => 5,
                 "class" => null,
@@ -68,7 +68,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Частые вопросы",
-                "link" => "#",
+                "link" => "/faq",
                 "parent" => 0,
                 "sort" => 6,
                 "class" => null,
@@ -79,7 +79,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Контакты",
-                "link" => "#",
+                "link" => "/contacts",
                 "parent" => 0,
                 "sort" => 7,
                 "class" => null,
@@ -134,7 +134,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Жюри",
-                "link" => "#",
+                "link" => "/jury",
                 "parent" => 0,
                 "sort" => 4,
                 "class" => null,
@@ -145,7 +145,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Частые вопросы",
-                "link" => "#",
+                "link" => "/faq",
                 "parent" => 0,
                 "sort" => 5,
                 "class" => null,
@@ -156,7 +156,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Контакты",
-                "link" => "#",
+                "link" => "/contacts",
                 "parent" => 0,
                 "sort" => 6,
                 "class" => null,

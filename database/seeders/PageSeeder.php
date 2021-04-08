@@ -10,17 +10,23 @@ class PageSeeder extends Seeder
 {
     public function run(Faker $faker)
     {
-        $pages = [];
-        for ($i = 0; $i < 3; $i++) {
-            $name = $faker->words(5, true);
-            $pages[] = [
-                'name' => $name,
-                'slug' => \Str::slug($name),
-                'content' => $faker->realText(),
+        $pages = [
+            [
+                'name' => 'Принять участие',
+                'slug' => \Str::slug('Принять участие'),
+                'content' => $faker->realText(2000),
                 'created_at' => now(),
                 'updated_at' => now(),
-            ];
-        }
+            ],
+            [
+                'name' => 'Как подать заявку',
+                'slug' => \Str::slug('Как подать заявку'),
+                'content' => $faker->realText(2000),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ];
+
 
         \DB::table('pages')->insert($pages);
     }

@@ -108,7 +108,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="#">====Добавить страницу</a></li>
-                        <li><a href="{{ route('admin.pages.info.index') }}">Все</a></li>
+                        <li><a href="{{ route('admin.pages.info.index') }}">Информационные</a></li>
                         <li><a href="#">===Главная</a></li>
                         <li><a href="{{ route('admin.pages.contacts.index') }}">Контакты</a></li>
                     </ul>

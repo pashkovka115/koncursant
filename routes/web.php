@@ -28,6 +28,9 @@ Route::prefix('faq')->group(function (){
 // Контакты
 Route::get('contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('front.contacts.index');
 
+// Информационные страницы
+Route::get('page/{slug}', [\App\Http\Controllers\PageController::class, 'show'])->name('front.page.show');
+
 // Заявка на участие в конкурсе
 Route::prefix('bid')->group(function (){
     // Форма
