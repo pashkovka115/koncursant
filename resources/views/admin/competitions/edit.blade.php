@@ -32,6 +32,12 @@
                         <span class="d-none d-sm-block">Возрастные группы</span>
                     </a>
                 </li>
+                <li class="nav-item waves-effect waves-light">
+                    <a class="nav-link" data-toggle="tab" href="#nominations" role="tab">
+                        <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                        <span class="d-none d-sm-block">Номинации</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="tab-content p-3 text-muted">
@@ -54,7 +60,7 @@
 
                         <div class="form-group">
                             <label class="control-label">Тип</label>
-                            <select name="type" class="form-control" data-placeholder="Выбрать ...">
+                            <select name="competition_type_id" class="form-control" data-placeholder="Выбрать ...">
                                 @foreach($types_all as $type)
                                     @php
                                         $selected = '';
@@ -166,6 +172,58 @@
                         </table>
                     </div>
 
+                </div>
+
+                <div class="tab-pane" id="nominations" role="tabpanel">
+                    <form action="{{ route('admin.competitions.all.attach_nomination', ['competition_id' => $competition->id]) }}" method="post" class="row mb-3 d-flex align-items-center">
+                        @csrf
+                        <div class="form-group col-sm-4">
+                            @php
+                                $ids = array_keys($competition->nominations->keyBy('id')->toArray());
+                            @endphp
+                            <label>Номинации</label>
+                            <select name="nomination_id" class="form-control" required>
+                                @forelse($nominations as $nomination)
+                                    @if(!in_array($nomination->id, $ids))
+                                        <option value="{{ $nomination->id }}">{{ $nomination->name }}</option>
+                                    @endif
+                                @empty
+                                    <option value="">Нечего добавить</option>
+                                @endforelse
+                            </select>
+                        </div>
+                        <button class="btn btn-primary h-50" style="margin-top: 0.75rem!important;" type="submit">Добавить</button>
+                    </form>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+
+                            <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Наименование</th>
+                                <th>Открепить</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($competition->nominations as $nomination)
+                                <tr>
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $nomination->name }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.competitions.all.detach_nomination', ['competition_id' => $competition->id]) }}" class="text-danger"
+                                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $nomination->id }}').submit(); return false;">
+                                            <i class="mdi mdi-trash-can font-size-18"></i></a>
+                                        <form id="form_{{ $nomination->id }}" action="{{ route('admin.competitions.all.detach_nomination', ['competition_id' => $competition->id]) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            <input type="hidden" name="nomination_id" value="{{ $nomination->id }}">
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

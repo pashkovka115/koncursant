@@ -18,13 +18,15 @@ class CompetitionSeeder extends Seeder
         ];
         $competitions = [];
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
             $name = $titles[array_rand($titles)] . " $i";
             $competitions[] = [
                 'name' => $name,
                 'slug' => \Str::slug($name),
-                'competition_type_id' => random_int(1, 2),
+                'competition_type_id' => ($i % 2 == 0) ? 2 : 1,
                 'description' => $faker->paragraph(5),
+                'date_start' => '20.06.2021',
+                'date_end' => '26.06.2021',
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

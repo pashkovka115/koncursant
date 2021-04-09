@@ -25,6 +25,12 @@ Route::prefix('faq')->group(function (){
     Route::get('', [\App\Http\Controllers\FaqController::class, 'index'])->name('front.faq.index');
 });
 
+// Конкурсы
+Route::prefix('competitions')->group(function (){
+    Route::get('/professional', [\App\Http\Controllers\CompetitionController::class, 'index'])->name('front.competitions.index');
+    Route::get('/amateur', [\App\Http\Controllers\CompetitionController::class, 'indexFree'])->name('front.competitions.index_free');
+});
+
 // Контакты
 Route::get('contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('front.contacts.index');
 
@@ -114,6 +120,14 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
             Route::post('destroy/{id}', [\App\Http\Controllers\Admin\AgeGroupController::class, 'destroy'])->name('admin.competitions.age_group.destroy');
             Route::post('store', [\App\Http\Controllers\Admin\AgeGroupController::class, 'store'])->name('admin.competitions.age_group.store');
         });
+        // Номинации
+        Route::prefix('nominations')->group(function (){
+            Route::get('', [\App\Http\Controllers\Admin\NominationController::class, 'index'])->name('admin.competitions.nominations.index');
+            Route::get('edit/{id}', [\App\Http\Controllers\Admin\NominationController::class, 'edit'])->name('admin.competitions.nominations.edit');
+            Route::post('update/{id}', [\App\Http\Controllers\Admin\NominationController::class, 'update'])->name('admin.competitions.nominations.update');
+            Route::post('destroy/{id}', [\App\Http\Controllers\Admin\NominationController::class, 'destroy'])->name('admin.competitions.nominations.destroy');
+            Route::post('store', [\App\Http\Controllers\Admin\NominationController::class, 'store'])->name('admin.competitions.nominations.store');
+        });
         // Все конкурсы
         Route::prefix('all')->group(function (){
             Route::get('type/{id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'indexCompetitionType'])->name('admin.competitions.all.index_competition_type');
@@ -127,6 +141,9 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
 
             Route::post('attach-age-group/{competition_id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'attachAgeGroup'])->name('admin.competitions.all.attach_age_group');
             Route::post('detach-age-group/{competition_id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'detachAgeGroup'])->name('admin.competitions.all.detach_age_group');
+
+            Route::post('attach-nomination/{competition_id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'attachNomination'])->name('admin.competitions.all.attach_nomination');
+            Route::post('detach-nomination/{competition_id}', [\App\Http\Controllers\Admin\CompetitionController::class, 'detachNomination'])->name('admin.competitions.all.detach_nomination');
         });
         // Тарифы
         Route::prefix('tariffs')->group(function (){

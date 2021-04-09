@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AgeGroup;
 use App\Models\Competition;
 use App\Models\CompetitionType;
+use App\Models\Nomination;
 use Illuminate\Http\Request;
 
 
@@ -42,8 +43,7 @@ class CompetitionController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'description' => 'nullable|string',
-            'types' => 'array',
-            'types.*' => 'nullable|numeric',
+            'competition_type_id' => 'required|numeric',
         ]);
 
         if ($request->has('active')){
@@ -74,28 +74,26 @@ class CompetitionController extends Controller
 
     public function edit($id)
     {
-        $competition = Competition::with(['type', 'ageGroups'])->where('id', $id)->firstOrFail();
+        $competition = Competition::with(['type', 'ageGroups', 'nominations'])->where('id', $id)->firstOrFail();
         $types_all = CompetitionType::all(['id', 'name']);
         $age_groups = AgeGroup::all(['id', 'name']);
-
-//        dd($competition);
+        $nominations = Nomination::all(['id', 'name']);
 
         return view('admin.competitions.edit', [
             'competition' => $competition,
             'types_all' => $types_all,
-            'age_groups' => $age_groups
+            'age_groups' => $age_groups,
+            'nominations' => $nominations
         ]);
     }
 
 
     public function update(Request $request, $id)
     {
-//        dd($request->all());
         $data = $request->validate([
             'name' => 'required|string',
             'description' => 'nullable|string',
-//            'types' => 'array',
-            'type' => 'nullable|numeric',
+            'competition_type_id' => 'required|numeric',
         ]);
 
         if ($request->has('active')){
@@ -110,7 +108,7 @@ class CompetitionController extends Controller
             $data['img'] = $img;
         }
 
-        $competition = Competition::with(['types'])->where('id', $id)->firstOrFail();
+        $competition = Competition::where('id', $id)->firstOrFail();
 
         if ($request->has('delete_img')){
             $old_file = storage_path('app/public') . '/' . $competition->img;
@@ -121,14 +119,6 @@ class CompetitionController extends Controller
         }
 
         $competition->update($data);
-
-        $all_types_ids = array_keys(CompetitionType::all('id')->keyBy('id')->toArray());
-        if ($all_types_ids){
-            $competition->types()->detach($all_types_ids);
-            if (isset($data['types'])){
-                $competition->types()->attach($data['types']);
-            }
-        }
 
         flash('Успешно.')->success();
         if ($request->has('btn_save_list')){
@@ -157,6 +147,24 @@ class CompetitionController extends Controller
     }
 
 
+    public function attachNomination(Request $request, $id)
+    {
+        $data = $request->validate([
+            'nomination_id' => 'nullable|numeric'
+        ]);
+
+        $competition = Competition::with(['nominations'])->where('id', $id)->firstOrFail();
+
+        if (isset($data['nomination_id'])){
+            $competition->nominations()->attach($data['nomination_id']);
+        }
+
+        flash('Успешно.')->success();
+
+        return back();
+    }
+
+
     public function detachAgeGroup(Request $request, $id)
     {
         $data = $request->validate([
@@ -175,13 +183,29 @@ class CompetitionController extends Controller
     }
 
 
+    public function detachNomination(Request $request, $id)
+    {
+        $data = $request->validate([
+            'nomination_id' => 'nullable|numeric'
+        ]);
+
+        $competition = Competition::with(['nominations'])->where('id', $id)->firstOrFail();
+
+        if (isset($data['nomination_id'])){
+            $competition->nominations()->detach($data['nomination_id']);
+        }
+
+        flash('Успешно.')->success();
+
+        return back();
+    }
+
+
     public function destroy($id)
     {
-        $comp = Competition::with(['types', 'ageGroups'])->where('id', $id)->firstOrFail();
-        $all_types = array_keys(CompetitionType::all('id')->keyBy('id')->toArray());
+        $comp = Competition::with(['type', 'ageGroups'])->where('id', $id)->firstOrFail();
         $all_groups = array_keys(AgeGroup::all('id')->keyBy('id')->toArray());
 
-        $comp->types()->detach($all_types);
         $comp->ageGroups()->detach($all_groups);
 
         $comp->delete();

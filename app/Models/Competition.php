@@ -20,6 +20,7 @@ class Competition extends Model
         'slug',
         'active',
         'description',
+        'competition_type_id'
     ];
 
 
@@ -54,5 +55,11 @@ class Competition extends Model
     public function ageGroups()
     {
         return $this->belongsToMany(AgeGroup::class);
+    }
+
+    // Номинации
+    public function nominations()
+    {
+        return $this->belongsToMany(Nomination::class);
     }
 }

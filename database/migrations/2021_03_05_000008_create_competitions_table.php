@@ -17,6 +17,8 @@ class CreateCompetitionsTable extends Migration
             $table->string('slug')->unique();
             $table->unsignedBigInteger('competition_type_id');
             $table->string('img')->nullable();
+            $table->string('date_start')->nullable()->comment('Дата проведения');
+            $table->string('date_end')->nullable()->comment('Дата окончания подачи заявки');
             $table->enum('active', ['1', '0']);
             $table->longText('description')->nullable();
             $table->timestamps();

@@ -148,7 +148,7 @@
 
                         <div class="form-group my-3">
                             <label>Тип</label>
-                            <select name="types[]" class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Выбрать ...">
+                            <select name="competition_type_id" class="form-control" data-placeholder="Выбрать ...">
                                 @foreach($types as $t)
                                     <option value="{{ $t->id }}">{{ $t->name }}</option>
                                 @endforeach

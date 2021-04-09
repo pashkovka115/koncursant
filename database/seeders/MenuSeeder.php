@@ -101,7 +101,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Бесплатные конкурсы",
-                "link" => "#",
+                "link" => "/competitions/amateur",
                 "parent" => 0,
                 "sort" => 1,
                 "class" => null,
@@ -112,7 +112,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Конкурсы с участием профессионального жюри",
-                "link" => "#",
+                "link" => "/competitions/professional",
                 "parent" => 0,
                 "sort" => 2,
                 "class" => null,
@@ -167,7 +167,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Бесплатные конкурсы",
-                "link" => "#",
+                "link" => "/competitions/amateur",
                 "parent" => 2,
                 "sort" => 2,
                 "class" => null,
@@ -178,7 +178,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 "label" => "Конкурсы с участием профессионального жюри",
-                "link" => "#",
+                "link" => "/competitions/professional",
                 "parent" => 2,
                 "sort" => 3,
                 "class" => null,
