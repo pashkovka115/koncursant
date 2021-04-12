@@ -34,9 +34,9 @@ class CompetitionTypeController extends Controller
 
     public function edit($id)
     {
-        $competition = CompetitionType::where('id', $id)->firstOrFail();
+        $type = CompetitionType::where('id', $id)->firstOrFail();
 
-        return view('admin.competition_types.edit', ['competition' => $competition]);
+        return view('admin.competition_types.edit', compact('type'));
     }
 
 

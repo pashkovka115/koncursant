@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competition;
+use App\Models\Jury;
 use Illuminate\Http\Request;
 
 class CompetitionController extends Controller
@@ -27,5 +28,14 @@ class CompetitionController extends Controller
         })->get();
 
         return view('pages.competitions.index_free', compact('competitions'));
+    }
+
+
+    public function show($slug)
+    {
+        $competition = Competition::with(['type', 'ageGroups'])->where('slug', $slug)->firstOrFail();
+        $jury = Jury::all();
+
+        return view('pages.competitions.show', compact('competition', 'jury'));
     }
 }

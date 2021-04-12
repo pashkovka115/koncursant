@@ -24,6 +24,7 @@ class CompetitionSeeder extends Seeder
                 'name' => $name,
                 'slug' => \Str::slug($name),
                 'competition_type_id' => ($i % 2 == 0) ? 2 : 1,
+                'short_description' => 'Конкурс детского творчества по видеозаписям',
                 'description' => $faker->paragraph(5),
                 'date_start' => '20.06.2021',
                 'date_end' => '26.06.2021',

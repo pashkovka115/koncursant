@@ -2,10 +2,7 @@
 @section('title') Конкурс @endsection
 
 @section('header')
-    <!-- Summernote css -->
-    <link href="{{ URL::asset('/assets/libs/summernote/summernote.min.css')}}" rel="stylesheet" type="text/css" />
-    {{-- Select2 --}}
-    <link href="{{ URL::asset('/assets/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')
@@ -46,7 +43,7 @@
             <form enctype="multipart/form-data" action="{{ route('admin.competitions.all.update', ['id' => $competition->id]) }}" method="post">
                 @csrf
                 <div class="row">
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <div class="custom-control custom-checkbox mb-3">
                             <?php
                             $checked = '';
@@ -79,9 +76,8 @@
                         </div>
                     </div>
 
-
-
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
+                        <h5>Маленькое</h5>
                         <div class="custom-file">
                             <input name="img" type="file" class="custom-file-input" id="customFile">
                             <label class="custom-file-label" for="customFile">Выбрать файл</label>
@@ -96,8 +92,28 @@
                         @else
                             <img src="/assets/images/not-found.png" style="max-height: 180px; width: auto;">
                         @endif
+                        </div>
                     </div>
+
+                    <div class="col-sm-3">
+                        <h5>Большое</h5>
+                        <div class="custom-file">
+                            <input name="bg_img" type="file" class="custom-file-input" id="customFile2">
+                            <label class="custom-file-label" for="customFile2">Выбрать файл</label>
+                        </div>
+                        <div class="my-3">
+                        @if($competition->bg_img)
+                            <img src="/storage/{{ $competition->bg_img }}" style="max-height: 180px; max-width: 370px;">
+                                <div class="custom-control custom-checkbox mt-3">
+                                    <input type="checkbox" name="delete_bg_img" id="customCheck3" class="custom-control-input">
+                                    <label for="customCheck3" class="custom-control-label">Удалить изображение</label>
+                                </div>
+                        @else
+                            <img src="/assets/images/not-found.png" style="max-height: 180px; width: auto;">
+                        @endif
+                        </div>
                     </div>
+
                 </div>
 
 
@@ -232,19 +248,11 @@
 @endsection
 @section('footer')
     {{--  Text Editor  --}}
-    <!-- Summernote js -->
-    <script src="{{ URL::asset('/assets/libs/summernote/summernote.min.js')}}"></script>
     <!--tinymce js-->
     <script src="{{ URL::asset('/assets/libs/tinymce/tinymce.min.js')}}"></script>
     <!-- init js -->
-    <script src="{{ URL::asset('/assets/js/pages/form-editor.init.js')}}"></script>
+    <script src="{{ URL::asset('/assets/js/pages/jquery.form-editor.init.js')}}"></script>
     {{-- END Text Editor  --}}
-    {{-- Select2 --}}
-    <script src="{{ URL::asset('/assets/libs/select2/select2.min.js')}}"></script>
-    <script>
-        // Select2
-        $(".select2").select2();
-    </script>
 
     {{-- File Input --}}
     <script src="{{ URL::asset('/assets/libs/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>

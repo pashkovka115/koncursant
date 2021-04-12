@@ -2,10 +2,7 @@
 @section('title') Конкурс @endsection
 
 @section('header')
-    <!-- Summernote css -->
-    <link href="{{ URL::asset('/assets/libs/summernote/summernote.min.css')}}" rel="stylesheet" type="text/css" />
-    {{-- Select2 --}}
-    <link href="{{ URL::asset('/assets/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+
 @endsection
 
 @section('content')
@@ -28,7 +25,7 @@
 
                 <div class="form-group">
                     <label class="control-label">Тип</label>
-                    <select name="types[]" class="select2 form-control select2-multiple" multiple="multiple" data-placeholder="Выбрать ...">
+                    <select name="competition_type_id" class="form-control" data-placeholder="Выбрать ...">
                         @foreach($types as $type)
                             <option value="{{ $type->id }}">{{ $type->name }}</option>
                         @endforeach
@@ -62,17 +59,9 @@
 @endsection
 @section('footer')
     {{--  Text Editor  --}}
-    <!-- Summernote js -->
-    <script src="{{ URL::asset('/assets/libs/summernote/summernote.min.js')}}"></script>
     <!--tinymce js-->
     <script src="{{ URL::asset('/assets/libs/tinymce/tinymce.min.js')}}"></script>
     <!-- init js -->
-    <script src="{{ URL::asset('/assets/js/pages/form-editor.init.js')}}"></script>
+    <script src="{{ URL::asset('/assets/js/pages/jquery.form-editor.init.js')}}"></script>
     {{-- END Text Editor  --}}
-    {{-- Select2 --}}
-    <script src="{{ URL::asset('/assets/libs/select2/select2.min.js')}}"></script>
-    <script>
-        // Select2
-        $(".select2").select2();
-    </script>
 @endsection

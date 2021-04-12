@@ -17,9 +17,16 @@ class CompetitionType extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'type',
+        'conditions',
+        'email_description',
+        'reward',
+        'rank',
+        'nominations',
+        'diploma',
+        'cost',
     ];
-
 
 
     /**
@@ -43,10 +50,6 @@ class CompetitionType extends Model
         return 'slug';
     }
 
-    /*public function ageGroups()
-    {
-        return $this->belongsToMany(AgeGroup::class)->with('competitions');
-    }*/
 
     // Конкурсы
     public function competitions()

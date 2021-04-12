@@ -102,10 +102,15 @@ class CompetitionController extends Controller
             $data['active'] = '0';
         }
 
+        $folder = date('Y/m/d');
+
         if ($request->hasFile('img')){
-            $folder = date('Y/m/d');
             $img = $request->file('img')->store("images/competition/$folder");
             $data['img'] = $img;
+        }
+        if ($request->hasFile('bg_img')){
+            $img = $request->file('bg_img')->store("images/competition/$folder");
+            $data['bg_img'] = $img;
         }
 
         $competition = Competition::where('id', $id)->firstOrFail();
@@ -116,6 +121,13 @@ class CompetitionController extends Controller
                 unlink($old_file);
             }
             $data['img'] = null;
+        }
+        if ($request->has('delete_bg_img')){
+            $old_file = storage_path('app/public') . '/' . $competition->bg_img;
+            if (is_file($old_file)){
+                unlink($old_file);
+            }
+            $data['bg_img'] = null;
         }
 
         $competition->update($data);

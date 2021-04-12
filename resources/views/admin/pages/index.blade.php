@@ -105,12 +105,10 @@
     </script>
 
     {{--  Text Editor  --}}
-    <!-- Summernote js -->
-    <script src="{{ URL::asset('/assets/libs/summernote/summernote.min.js')}}"></script>
     <!--tinymce js-->
     <script src="{{ URL::asset('/assets/libs/tinymce/tinymce.min.js')}}"></script>
     <!-- init js -->
-    <script src="{{ URL::asset('/assets/js/pages/form-editor.init.js')}}"></script>
+    <script src="{{ URL::asset('/assets/js/pages/jquery.form-editor.init.js')}}"></script>
     {{-- END Text Editor  --}}
 
     <div id="myModal" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

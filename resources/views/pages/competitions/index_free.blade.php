@@ -39,7 +39,7 @@
                                     <p>Дата проведения: {{ $competition->date_start }}</p>
                                     <p>Дата окончания подачи заявки: {{ $competition->date_end }}</p>
                                 </div>
-                                <h3>{{ $competition->name }}</h3>
+                                <h3><a href="{{ route('front.competitions.show', ['slug' => $competition->slug]) }}" style="color: inherit">{{ $competition->name }}</a></h3>
                                 <ul class="tags2">
                                     @foreach($competition->nominations as $nomination)
                                         <li>{{ $nomination->name }}</li>
@@ -54,58 +54,7 @@
                                 <div class="desc">{!! mb_strimwidth(strip_tags($competition->description), 0, 146, '...') !!}</div>
                             </div>
                         @endforeach
-                        {{--<div class="contest-card">
-                            <div class="image">
-                                <img src="img/k2.png" alt="">
-                                <ul class="tags">
-                                    <li>Дошкольники</li>
-                                    <li>Школьники</li>
-                                    <li>Взрослые</li>
-                                </ul>
-                            </div>
-                            <div class="date">
-                                <p>Дата проведения: 20.06.2021</p>
-                                <p>Дата окончания подачи заявки: 20.06.2021</p>
-                            </div>
-                            <h3>ГОЛОС РОССИИ</h3>
-                            <ul class="tags2">
-                                <li><i class="demo-icon icon-mic"></i> вокал</li>
-                                <li><i class="demo-icon icon-ballet"></i> хореография</li>
-                                <li><i class="demo-icon icon-open-book"></i> театр</li>
-                                <li><i class="demo-icon icon-guitar"></i> музыка</li>
-                                <li><i class="demo-icon icon-painting"></i> рисование</li>
-                                <li><i class="demo-icon icon-ruler"></i> рукоделие</li>
-                            </ul>
-                            <div class="desc">
-                                <p>Конкурс детского творчества по видеозаписям. Конкурс детского творчества по видеозаписям. Конкурс детского творчества по видеозаписям.</p>
-                            </div>
-                        </div>
-                        <div class="contest-card">
-                            <div class="image">
-                                <img src="img/k3.png" alt="">
-                                <ul class="tags">
-                                    <li>Дошкольники</li>
-                                    <li>Школьники</li>
-                                    <li>Взрослые</li>
-                                </ul>
-                            </div>
-                            <div class="date">
-                                <p>Дата проведения: 20.06.2021</p>
-                                <p>Дата окончания подачи заявки: 20.06.2021</p>
-                            </div>
-                            <h3>ТИХАЯ МОЯ РОДИНА</h3>
-                            <ul class="tags2">
-                                <li><i class="demo-icon icon-mic"></i> вокал</li>
-                                <li><i class="demo-icon icon-ballet"></i> хореография</li>
-                                <li><i class="demo-icon icon-open-book"></i> театр</li>
-                                <li><i class="demo-icon icon-guitar"></i> музыка</li>
-                                <li><i class="demo-icon icon-painting"></i> рисование</li>
-                                <li><i class="demo-icon icon-ruler"></i> рукоделие</li>
-                            </ul>
-                            <div class="desc">
-                                <p>Конкурс детского творчества по видеозаписям. Конкурс детского творчества по видеозаписям. Конкурс детского творчества по видеозаписям.</p>
-                            </div>
-                        </div>--}}
+
                     </div>
                 </div>
             </div>

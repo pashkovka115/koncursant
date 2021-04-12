@@ -32,6 +32,6 @@ class CreateCompetitionNominationsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('competition_nominations');
+        Schema::dropIfExists('competition_nomination');
     }
 }

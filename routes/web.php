@@ -29,6 +29,7 @@ Route::prefix('faq')->group(function (){
 Route::prefix('competitions')->group(function (){
     Route::get('/professional', [\App\Http\Controllers\CompetitionController::class, 'index'])->name('front.competitions.index');
     Route::get('/amateur', [\App\Http\Controllers\CompetitionController::class, 'indexFree'])->name('front.competitions.index_free');
+    Route::get('/show/{slug}', [\App\Http\Controllers\CompetitionController::class, 'show'])->name('front.competitions.show');
 });
 
 // Контакты

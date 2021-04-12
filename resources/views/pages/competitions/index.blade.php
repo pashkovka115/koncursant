@@ -39,7 +39,7 @@
                                 <p>Дата проведения: {{ $competition->date_start }}</p>
                                 <p>Дата окончания подачи заявки: {{ $competition->date_end }}</p>
                             </div>
-                            <h3>{{ $competition->name }}</h3>
+                            <h3><a href="{{ route('front.competitions.show', ['slug' => $competition->slug]) }}" style="color: inherit">{{ $competition->name }}</a></h3>
                             <ul class="tags2">
                                 @foreach($competition->nominations as $nomination)
                                 <li>{{ $nomination->name }}</li>

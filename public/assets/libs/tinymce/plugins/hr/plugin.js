@@ -1,46 +1,39 @@
-/**
- * Copyright (c) Tiny Technologies, Inc. All rights reserved.
- * Licensed under the LGPL or a commercial license.
- * For LGPL see License.txt in the project root for license information.
- * For commercial licenses see https://www.tiny.cloud/
- *
- * Version: 5.4.0 (2020-06-30)
- */
 (function () {
-    'use strict';
+var hr = (function () {
+  'use strict';
 
-    var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
+  var global = tinymce.util.Tools.resolve('tinymce.PluginManager');
 
-    var register = function (editor) {
-      editor.addCommand('InsertHorizontalRule', function () {
-        editor.execCommand('mceInsertContent', false, '<hr />');
-      });
-    };
+  var register = function (editor) {
+    editor.addCommand('InsertHorizontalRule', function () {
+      editor.execCommand('mceInsertContent', false, '<hr />');
+    });
+  };
+  var $_agtgdrcnjkmcdux2 = { register: register };
 
-    var register$1 = function (editor) {
-      editor.ui.registry.addButton('hr', {
-        icon: 'horizontal-rule',
-        tooltip: 'Horizontal line',
-        onAction: function () {
-          return editor.execCommand('InsertHorizontalRule');
-        }
-      });
-      editor.ui.registry.addMenuItem('hr', {
-        icon: 'horizontal-rule',
-        text: 'Horizontal line',
-        onAction: function () {
-          return editor.execCommand('InsertHorizontalRule');
-        }
-      });
-    };
+  var register$1 = function (editor) {
+    editor.addButton('hr', {
+      icon: 'hr',
+      tooltip: 'Horizontal line',
+      cmd: 'InsertHorizontalRule'
+    });
+    editor.addMenuItem('hr', {
+      icon: 'hr',
+      text: 'Horizontal line',
+      cmd: 'InsertHorizontalRule',
+      context: 'insert'
+    });
+  };
+  var $_4c3f2acojkmcdux3 = { register: register$1 };
 
-    function Plugin () {
-      global.add('hr', function (editor) {
-        register(editor);
-        register$1(editor);
-      });
-    }
+  global.add('hr', function (editor) {
+    $_agtgdrcnjkmcdux2.register(editor);
+    $_4c3f2acojkmcdux3.register(editor);
+  });
+  function Plugin () {
+  }
 
-    Plugin();
+  return Plugin;
 
 }());
+})();

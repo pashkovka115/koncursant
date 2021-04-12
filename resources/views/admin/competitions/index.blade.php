@@ -8,13 +8,6 @@
             white-space: normal;
         }
     </style>
-    {{-- Select2 --}}
-    <link href="{{ URL::asset('/assets/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
-    <style>
-        ul.select2-selection__rendered{
-            min-width: 150px;
-        }
-    </style>
 @endsection
 @section('content')
 @component('admin.layouts.components.breadcrumb')
@@ -110,12 +103,10 @@
     </script>
 
     {{--  Text Editor  --}}
-    <!-- Summernote js -->
-    <script src="{{ URL::asset('/assets/libs/summernote/summernote.min.js')}}"></script>
     <!--tinymce js-->
     <script src="{{ URL::asset('/assets/libs/tinymce/tinymce.min.js')}}"></script>
     <!-- init js -->
-    <script src="{{ URL::asset('/assets/js/pages/form-editor.init.js')}}"></script>
+    <script src="{{ URL::asset('/assets/js/pages/jquery.form-editor.init.js')}}"></script>
     {{-- END Text Editor  --}}
 
     <div id="myModal" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

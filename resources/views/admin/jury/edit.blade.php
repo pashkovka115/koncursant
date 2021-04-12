@@ -2,8 +2,7 @@
 @section('title') Редактировать жюри @endsection
 
 @section('header')
-    <!-- Summernote css -->
-    <link href="{{ URL::asset('/assets/libs/summernote/summernote.min.css')}}" rel="stylesheet" type="text/css" />
+    
 @endsection
 
 @section('content')
@@ -67,21 +66,21 @@
                 <div class="form-group">
                     <label>Описание</label>
                     <div>
-                        <textarea id="elm1" name="description" rows="5" class="form-control">{{ $person->description }}</textarea>
+                        <textarea id="elm1" name="description" rows="5" class="form-control">{!! $person->description !!}</textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>Образование</label>
                     <div>
-                        <textarea id="elm2" name="ducation" rows="5" class="form-control">{{ $person->ducation }}</textarea>
+                        <textarea id="elm2" name="ducation" rows="5" class="form-control">{!! $person->ducation !!}</textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>География трудовой деятельности</label>
                     <div>
-                        <textarea name="geography_of_work" rows="5" class="form-control">{{ $person->geography_of_work }}</textarea>
+                        <textarea id="elm3" name="geography_of_work" rows="5" class="form-control">{!! $person->geography_of_work !!}</textarea>
                     </div>
                 </div>
 
@@ -100,12 +99,10 @@
 @endsection
 @section('footer')
 {{--  Text Editor  --}}
-    <!-- Summernote js -->
-    <script src="{{ URL::asset('/assets/libs/summernote/summernote.min.js')}}"></script>
     <!--tinymce js-->
     <script src="{{ URL::asset('/assets/libs/tinymce/tinymce.min.js')}}"></script>
     <!-- init js -->
-    <script src="{{ URL::asset('/assets/js/pages/form-editor.init.js')}}"></script>
+    <script src="{{ URL::asset('/assets/js/pages/jquery.form-editor.init.js')}}"></script>
 {{-- END Text Editor  --}}
 
 @endsection

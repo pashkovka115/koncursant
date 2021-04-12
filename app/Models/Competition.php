@@ -17,6 +17,7 @@ class Competition extends Model
     protected $fillable = [
         'name',
         'img',
+        'bg_img',
         'slug',
         'active',
         'description',
