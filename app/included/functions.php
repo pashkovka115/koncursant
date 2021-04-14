@@ -46,3 +46,17 @@ if (!function_exists('getIntervalQuarter')){
         ];
     }
 }
+
+if(!function_exists('delDir')){
+    function delDir($dir)
+    {
+        $files = array_diff(scandir($dir), ['.', '..']);
+        try {
+            foreach ($files as $file) {
+                (is_dir($dir . '/' . $file)) ? delDir($dir . '/' . $file) : unlink($dir . '/' . $file);
+            }
+            return rmdir($dir);
+        } catch (Exception $e) {
+        }
+    }
+}

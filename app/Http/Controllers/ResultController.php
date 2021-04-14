@@ -161,8 +161,8 @@ class ResultController extends Controller
         $bids = Bid::with(['participants', 'ageGroup', 'appraisal']) //->limit(5)
         ->where('type', $type)
             ->where('processe_state', '0') // Завершённая
-            ->where('updated_at', '>', ($year - 1) . '-12-31 00:00:00')
-            ->where('updated_at', '<', ($year + 1) . '-01-01 00:00:00')
+            /*->where('updated_at', '>', ($year - 1) . '-12-31 00:00:00')
+            ->where('updated_at', '<', ($year + 1) . '-01-01 00:00:00')*/
             ->whereHas('competition', function (Builder $query) use ($competition_slug) {
                 $query->where('slug', $competition_slug);
             });
@@ -174,6 +174,9 @@ class ResultController extends Controller
 
             $bids = $bids->where('updated_at', '>=', $start)
                 ->where('updated_at', '<=', $end);
+        }else{
+            $bids = $bids->where('updated_at', '>', ($year - 1) . '-12-31 00:00:00')
+                ->where('updated_at', '<', ($year + 1) . '-01-01 00:00:00');
         }
 
         $bids = $bids->get();
