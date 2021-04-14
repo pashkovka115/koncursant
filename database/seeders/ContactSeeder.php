@@ -80,6 +80,14 @@ class ContactSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'key' => 'youtube',
+                'value' => 'https://www.youtube.com/',
+                'value2' => 'x',
+                'description' => 'x',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         \DB::table('contacts')->insert($contacts);

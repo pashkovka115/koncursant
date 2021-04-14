@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BidUpdate;
 use App\Models\AgeGroup;
+use App\Models\Appraisal;
 use App\Models\Bid;
 use App\Models\Competition;
 use App\Models\Country;
@@ -122,27 +123,17 @@ class BidController extends Controller
     }
 
 
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show(Bid $bid)
-    {
-        //
-    }
-
-
     public function edit($id)
     {
-        $bid = Bid::with(['ageGroup', 'participants', 'teachers', 'competition', 'nomination'])->where('id', $id)->firstOrFail();
+        $bid = Bid::with([
+            'ageGroup',
+            'participants',
+            'teachers',
+            'competition',
+            'nomination',
+            'appraisal'
+        ])->where('id', $id)->firstOrFail();
+
         if (is_null($bid->participants)){
             $bid->participants = [];
         }
@@ -152,12 +143,13 @@ class BidController extends Controller
         $bid->new_state = '0';
         $bid->update();
 
-//        dd($bid);
         $competitions = Competition::all(['id', 'name']);
         $nominations = Nomination::all(['id', 'name']);
         $age_groups = AgeGroup::all(['id', 'name']);
         $tariffs = Tariff::all(['id', 'name']);
         $countries = Country::all(['id', 'name']);
+        $appraisals = Appraisal::all(['id', 'name']) ?? [];
+//        dd($appraisals);
 
         return view('admin.bids.edit', compact(
             'bid',
@@ -165,23 +157,18 @@ class BidController extends Controller
             'nominations',
             'age_groups',
             'tariffs',
-            'countries'
+            'countries',
+            'appraisals'
         ));
     }
 
 
-//    public function update(BidUpdate $request, $id)
-    public function update(Request $request, $id)
+    public function update(BidUpdate $request, $id)
     {
-//        dd($request->all());
-
-        $data = $request->all();
-//        $data = $request->validated();
+        $data = $request->validated();
 
         $bid = Bid::with(['teachers', 'participants'])->where('id', $id)->firstOrFail();
         $bid->update($data);
-
-//        $bid = Bid::with(['teachers', 'participants'])->where('id', $bid->id)->firstOrFail();
 
         // todo: переделать. сейчас добавляет. надо что бы обновляло
         if ($request->has('teacher_first_name')){

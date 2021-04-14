@@ -70,22 +70,22 @@
                 <div class="col-lg-6">
                     <div class="wrapper">
                         <div class="item">
-                            <div class="icn"><img src="img/icon/competition.svg" alt=""></div>
+                            <div class="icn"><img src="{{ asset('assets/front/img/icon/competition.svg') }}" alt=""></div>
                             <h3>Выберите интересующий Вас конкурс</h3>
                             <p>Квалифицированные педагоги, видные деятели культуры и искусства РФ</p>
                         </div>
                         <div class="item">
-                            <div class="icn"><img src="img/icon/checklist.svg" alt=""></div>
+                            <div class="icn"><img src="{{ asset('assets/front/img/icon/checklist.svg') }}" alt=""></div>
                             <h3>Ознакомьтесь с условиями участия и оставьте заявку</h3>
                             <p>Открытый просмотр видеозаписей выступлений для анализа полученных оценок</p>
                         </div>
                         <div class="item">
-                            <div class="icn"><img src="img/icon/time-management.svg" alt=""></div>
+                            <div class="icn"><img src="{{ asset('assets/front/img/icon/time-management.svg') }}" alt=""></div>
                             <h3>Получите подтверждение ее принятии со сроками исполнения</h3>
                             <p>Квалифицированные педагоги, видные деятели культуры и искусства РФ</p>
                         </div>
                         <div class="item">
-                            <div class="icn"><img src="img/icon/cup.svg" alt=""></div>
+                            <div class="icn"><img src="{{ asset('assets/front/img/icon/cup.svg') }}" alt=""></div>
                             <h3>Дождитесь указанной даты и получите результат на вашу эл.почту</h3>
                             <p>Открытый просмотр видеозаписей выступлений для анализа полученных оценок</p>
                         </div>
@@ -94,7 +94,7 @@
             </div>
         </div>
     </section>
-    <section class="advantage advantage-free-contest" style="background-image: url(img/bg3.png);">
+    <section class="advantage advantage-free-contest" style="background-image: url('{{ asset('assets/front/img/bg3.png') }}');">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 wrapper">
@@ -126,7 +126,7 @@
                 </div>
             </div>
         </div>
-        <a href="" class="red-link"><span>Конкурсы с участием<br /> профессионального жюри</span></a>
+        <a href="{{ route('front.competitions.index') }}" class="red-link"><span>Конкурсы с участием<br /> профессионального жюри</span></a>
     </section>
     <section class="discount">
         <div class="container">

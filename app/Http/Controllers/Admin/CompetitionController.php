@@ -14,7 +14,7 @@ class CompetitionController extends Controller
 {
     public function index()
     {
-        $competitions = Competition::all();
+        $competitions = Competition::with('type')->get();
         $types = CompetitionType::all(['id', 'name']);
 
         return view('admin.competitions.index', ['competitions' => $competitions, 'types' => $types]);

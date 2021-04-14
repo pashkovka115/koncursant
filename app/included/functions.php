@@ -26,3 +26,23 @@ if (!function_exists('array_cut')) {
         return $el;
     }
 }
+
+if (!function_exists('getIntervalQuarter')){
+    /**
+     * @param $timestamp
+     * @return array - границы квартала, номер квартала
+     * start - начало квартала
+     * end - конец квартала
+     * number - номер квартала
+     */
+    function getIntervalQuarter($timestamp)
+    {
+        $kv = (int)((date('n', $timestamp) - 1) / 3 + 1);
+        $year = date('y', $timestamp);
+        return [
+            'start' => date('Y-m-d', mktime(0, 0, 0, ($kv - 1) * 3 + 1, 1, $year)),
+            'end' => date('Y-m-d', mktime(0, 0, 0, ($kv) * 3 + 1, 0, $year)),
+            'number' => $kv
+        ];
+    }
+}

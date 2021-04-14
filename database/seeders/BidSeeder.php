@@ -2,13 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\Appraisal;
 use App\Models\Competition;
 use App\Models\CompetitionType;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class BidSeeder extends Seeder
 {
-    public function run()
+    public function run(Faker $faker)
     {
         $types = [
             [
@@ -27,63 +29,64 @@ class BidSeeder extends Seeder
                 'id' => 4,
                 'type' => 'professional'
             ],
+            [
+                'id' => 5,
+                'type' => 'amateur'
+            ],
+            [
+                'id' => 6,
+                'type' => 'professional'
+            ],
         ];
 
-        $bids = [];
+        $appraisals_ids = array_keys(Appraisal::get('id')->keyBy('id')->toArray());
 
-        for ($i = 1; $i <= 10; $i++) {
-            $item = $types[array_rand($types)];
+        for ($j = 1; $j <= 10; $j++) {
+            $bids = [];
 
-//            print_r($item);
-//            exit();
+            for ($i = 1; $i <= 100; $i++) {
+                $item = $types[array_rand($types)];
+                $date = $faker->dateTimeBetween($startDate = '-3 years', $endDate = 'now');
 
-            $bids[] = [
-                'type' => $item['type'],
+                $bids[] = [
+                    'type' => $item['type'],
 
-                'competition_id' => $item['id'],
-                'nomination_id' => 1,
-                'age_group_id' => 1,
-                'tariff_id' => ($i <= 5) ? rand(1, 4) : rand(5, 8),
+                    'competition_id' => $item['id'],
+                    'nomination_id' => 1,
+                    'age_group_id' => 1,
+                    'tariff_id' => ($i <= 5) ? rand(1, 4) : rand(5, 8),
 
-//                'cnt_people' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'musical_instrument' => 'Скрипка',
-                'musical_number' => 'Руслан и людмила',
-                'koll_name' => 'Солнечные васельки',
-                'educational_institution' => 'ДШИ имени С.В. Рахманинова',
+                    'musical_instrument' => 'Скрипка',
+                    'musical_number' => 'Руслан и людмила',
+                    'koll_name' => 'Солнечные васельки',
+                    'educational_institution' => 'ДШИ имени С.В. Рахманинова',
+                    'quantity_kollective_diploma' => 10,
 
-                'quantity_kollective_diploma' => 10,
-//                'cnt_person_diploma' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    // address
+                    'country_id' => 1,
+                    'state' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'city' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'street' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'house' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'apartment' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'postcode' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'email' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'phone' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
 
-                // user
-//                'participant_first_name' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-//                'participant_last_name' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'resource' => ($i % 2 == 0) ? 'ok' : 'youtube',
+                    'link_to_resource' => ($i % 2 == 0) ? 'https://ok.ru/video/2034366024199' : 'https://youtu.be/qnZYCGmUKss',
+                    'comment' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
 
-                // teacher
-//                'teacher_first_name' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-//                'teacher_second_name' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-//                'teacher_last_name' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-//                'teacher_job' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
+                    'appraisal_id' => $appraisals_ids[array_rand($appraisals_ids)], // todo: на время теста вывода на фронте по кварталам
+                    'processe_state' => '0', // todo: на время теста вывода на фронте по кварталам
+                    'new_state' => '0', // todo: на время теста вывода на фронте по кварталам
 
-                // address
-                'country_id' => 1,
-                'state' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'city' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'street' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'house' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'apartment' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'postcode' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'email' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-                'phone' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-
-                'resource' => ($i % 2 == 0) ? 'ok' : 'youtube',
-                'link_to_resource' => ($i % 2 == 0) ? 'https://ok.ru/video/2034366024199' : 'https://youtu.be/qnZYCGmUKss',
-                'comment' => 'juiuikhvdsaiucd uyiuy uyuiyvv',
-
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
+                    'created_at' => $date,
+                    'updated_at' => $date,
+                ];
+            }
+            \DB::table('bids')->insert($bids);
         }
 
-        \DB::table('bids')->insert($bids);
     }
 }

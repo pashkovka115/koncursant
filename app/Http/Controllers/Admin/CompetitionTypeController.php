@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CompetitionTypeUpdate;
 use App\Models\CompetitionType;
 use Illuminate\Http\Request;
 
@@ -40,20 +41,17 @@ class CompetitionTypeController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(CompetitionTypeUpdate $request, $id)
     {
-        $data = $request->validate([
-            'name' => 'required|string'
-        ]);
+        $data = $request->validated();
 
         CompetitionType::where('id', $id)->update($data);
 
         flash('Успешно.')->success();
         if ($request->has('btn_save_list')){
             return redirect()->route('admin.competitions.types.index');
-        }elseif ($request->has('btn_save_edit')){
-            return back();
         }
+        return back();
     }
 
 

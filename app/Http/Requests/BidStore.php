@@ -39,6 +39,8 @@ class BidStore extends FormRequest
             'quantity_kollective_diploma' => 'sometimes|nullable|string',
             'quantity_person_diploma' => 'sometimes|nullable',
 
+            'appraisal_id' => 'sometimes|nullable|numeric',
+
             // user
             'participant_first_name' => 'array',
             'participant_first_name.*' => 'sometimes|nullable|string',

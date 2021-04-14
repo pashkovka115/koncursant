@@ -49,13 +49,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#" class=" waves-effect">
-                        <i class="ri-customer-service-2-fill"></i>
-                        <span>===Обратный звонок</span>
-                    </a>
-                </li>
-
                 <li class="menu-title">Конкурсы</li>
 
                 <li>
@@ -69,10 +62,6 @@
                         @endforeach
                         <li><a href="{{ route('admin.competitions.all.index') }}">Все</a></li>
                         <li><a href="{{ route('admin.competitions.all.create') }}">Создать новый</a></li>
-                        <li><a href="{{ route('admin.competitions.types.index') }}">Типы</a></li>
-                        <li><a href="{{ route('admin.competitions.age_group.index') }}">Возрастные группы</a></li>
-                        <li><a href="{{ route('admin.competitions.nominations.index') }}">Номинации</a></li>
-                        <li><a href="{{ route('admin.competitions.tariffs.index') }}">Тарифы</a></li>
                     </ul>
                 </li>
 
@@ -82,7 +71,11 @@
                         <span>Настройки</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">======</a></li>
+                        <li><a href="{{ route('admin.competitions.types.index') }}">Типы конкурсов</a></li>
+                        <li><a href="{{ route('admin.competitions.age_group.index') }}">Возрастные группы</a></li>
+                        <li><a href="{{ route('admin.competitions.nominations.index') }}">Номинации</a></li>
+                        <li><a href="{{ route('admin.competitions.tariffs.index') }}">Тарифы</a></li>
+                        <li><a href="{{ route('admin.competitions.appraisal.index') }}">Оценки</a></li>
                     </ul>
                 </li>
 
@@ -134,7 +127,6 @@
                         <span>Настройки</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="#">===Значения</a></li>
                         <li><a href="{{ route('admin.settings.menu.index') }}">Меню</a></li>
                     </ul>
                 </li>

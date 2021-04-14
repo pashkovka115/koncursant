@@ -84,7 +84,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Оценка</label>
-                                    <input name="appraisal" class="form-control" type="text" value="{{ $bid->appraisal }}">
+                                    <select name="appraisal_id" class="form-control">
+                                        <option value="">===</option>
+                                        @foreach($appraisals as $appraisal)
+                                            <?php
+                                            $selected = '';
+                                            if ($bid->appraisal_id == $appraisal->id){
+                                                $selected = ' selected';
+                                            }
+                                            ?>
+                                            <option value="{{ $appraisal->id }}"{{ $selected }}>{{ $appraisal->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Статус</label>

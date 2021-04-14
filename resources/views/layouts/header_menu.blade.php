@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 wrapper">
-                <div class="logo-box"><a href=""><img src="{{ asset('assets/front/img/logo.svg') }}" alt=""></a></div>
+                <div class="logo-box"><a href="/"><img src="{{ asset('assets/front/img/logo.svg') }}" alt=""></a></div>
                 <button class="btn-menu"></button>
                 <div class="right-part">
                     <div class="top-pnl">

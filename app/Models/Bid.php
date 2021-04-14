@@ -37,21 +37,7 @@ class Bid extends Model
         'cnt_kollective_diploma',
         'cnt_person_diploma',
 
-        // user
-        /*'participant_first_name',
-        'participant_first_name.*',
-        'participant_last_name',
-        'participant_last_name.*',*/
-
-        // teacher
-        /*'teacher_first_name',
-        'teacher_first_name.*',
-        'teacher_second_name',
-        'teacher_second_name.*',
-        'teacher_last_name',
-        'teacher_last_name.*',
-        'teacher_job',
-        'teacher_job.*',*/
+        'appraisal_id',
 
         // address
         'country',
@@ -68,6 +54,11 @@ class Bid extends Model
         'link_to_resource',
         'comment',
     ];
+
+    public function appraisal()
+    {
+        return $this->belongsTo(Appraisal::class);
+    }
 
 
     public function competition()

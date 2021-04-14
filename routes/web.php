@@ -32,6 +32,14 @@ Route::prefix('competitions')->group(function (){
     Route::get('/show/{slug}', [\App\Http\Controllers\CompetitionController::class, 'show'])->name('front.competitions.show');
 });
 
+// Результаты
+Route::prefix('results')->group(function (){
+    Route::get('/free/{year?}', [\App\Http\Controllers\ResultController::class, 'index_free'])->name('front.results.index_free');
+    Route::get('/prof/{year?}', [\App\Http\Controllers\ResultController::class, 'index_prof'])->name('front.results.index_prof');
+    Route::get('/free/{competition_slug}/{year_bid}/{quarter?}', [\App\Http\Controllers\ResultController::class, 'show_free'])->name('front.results.show_free');
+    Route::get('/prof/{competition_slug}/{year_bid}/{quarter?}', [\App\Http\Controllers\ResultController::class, 'show_prof'])->name('front.results.show_prof');
+});
+
 // Контакты
 Route::get('contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('front.contacts.index');
 
@@ -153,6 +161,14 @@ Route::group(['middleware'=>\App\Http\Middleware\CheckRole::class, 'roles'=>['Ad
             Route::post('update/{id}', [\App\Http\Controllers\Admin\TariffController::class, 'update'])->name('admin.competitions.tariffs.update');
             Route::post('destroy/{id}', [\App\Http\Controllers\Admin\TariffController::class, 'destroy'])->name('admin.competitions.tariffs.destroy');
             Route::post('store', [\App\Http\Controllers\Admin\TariffController::class, 'store'])->name('admin.competitions.tariffs.store');
+        });
+        // Оценки
+        Route::prefix('appraisal')->group(function (){
+            Route::get('', [\App\Http\Controllers\Admin\AppraisalController::class, 'index'])->name('admin.competitions.appraisal.index');
+            Route::get('edit/{id}', [\App\Http\Controllers\Admin\AppraisalController::class, 'edit'])->name('admin.competitions.appraisal.edit');
+            Route::post('update/{id}', [\App\Http\Controllers\Admin\AppraisalController::class, 'update'])->name('admin.competitions.appraisal.update');
+            Route::post('destroy/{id}', [\App\Http\Controllers\Admin\AppraisalController::class, 'destroy'])->name('admin.competitions.appraisal.destroy');
+            Route::post('store', [\App\Http\Controllers\Admin\AppraisalController::class, 'store'])->name('admin.competitions.appraisal.store');
         });
     });
 

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title') Конкурсы @endsection
+@section('title') Оценки @endsection
 @section('header')
     <!-- DataTables -->
     <link href="{{ URL::asset('assets/datatables/datatables.bootstrap4/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
@@ -11,8 +11,8 @@
 @endsection
 @section('content')
 @component('admin.layouts.components.breadcrumb')
-    @slot('title') Список конкурсов @endslot
-    @slot('active') Список конкурсов @endslot
+    @slot('title') Список оценок @endslot
+    @slot('active') Список оценок @endslot
 @endcomponent
 
 <div class="card">
@@ -26,28 +26,24 @@
             <tr>
                 <th>№</th>
                 <th>Имя</th>
-                <th>Тип</th>
-                <th>Краткое описание</th>
                 <th>Действия</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($competitions as $competition)
+            @foreach($appraisals as $appraisal)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $competition->name }}</td>
-                    <td>{{ $competition->type->name }}</td>
-                    <td>{{ mb_strimwidth(strip_tags($competition->description), 0, 100, '...') }}</td>
+                    <td>{{ $appraisal->name }}</td>
                     <td>
-                        <a href="#" class="mr-3 text-primary"><i class="ri-eye-line font-size-18"></i></a>
-                        <a href="{{ route('admin.competitions.all.edit', ['id' => $competition->id]) }}" class="mr-3 text-warning">
+                        <a href="{{ route('admin.competitions.appraisal.edit', ['id' => $appraisal->id]) }}" class="mr-3 text-warning">
                             <i class="ri-pencil-fill font-size-18"></i>
                         </a>
 
-                        <a href="{{ route('admin.competitions.all.destroy', ['id' => $competition->id]) }}" class="text-danger"
-                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $competition->id }}').submit(); return false;">
+                        <a href="{{ route('admin.competitions.appraisal.destroy', ['id' => $appraisal->id]) }}"
+                           class="text-danger"
+                           onclick="if (confirm('Удалить?')) document.getElementById('form_{{ $appraisal->id }}').submit(); return false;">
                             <i class="mdi mdi-trash-can font-size-18"></i></a>
-                        <form id="form_{{ $competition->id }}" action="{{ route('admin.competitions.all.destroy', ['id' => $competition->id]) }}" method="POST" style="display: none;">
+                        <form id="form_{{ $appraisal->id }}" action="{{ route('admin.competitions.appraisal.destroy', ['id' => $appraisal->id]) }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                     </td>
@@ -58,8 +54,6 @@
             <tr>
                 <th>№</th>
                 <th>Имя</th>
-                <th>Тип</th>
-                <th>Краткое описание</th>
                 <th>Действия</th>
             </tr>
             </tfoot>
@@ -105,48 +99,21 @@
         });
     </script>
 
-    {{--  Text Editor  --}}
-    <!--tinymce js-->
-    <script src="{{ URL::asset('/assets/libs/tinymce/tinymce.min.js')}}"></script>
-    <!-- init js -->
-    <script src="{{ URL::asset('/assets/js/pages/jquery.form-editor.init.js')}}"></script>
-    {{-- END Text Editor  --}}
-
     <div id="myModal" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myModalLabel">Новый конкурс</h5>
+                    <h5 class="modal-title mt-0" id="myModalLabel">Новая оценка</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="save_form" action="{{ route('admin.competitions.all.store') }}" method="post">
+                    <form id="save_form" action="{{ route('admin.competitions.appraisal.store') }}" method="post">
                         @csrf
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" name="active" id="customCheck1" class="custom-control-input">
-                            <label for="customCheck1" class="custom-control-label">Показывать на сайте</label>
-                        </div>
                         <div class="form-group">
                             <label>Имя</label>
                             <input type="text" name="name" class="form-control" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Описание</label>
-                            <div>
-                                <textarea id="elm1" name="description" rows="5" class="form-control"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group my-3">
-                            <label>Тип</label>
-                            <select name="competition_type_id" class="form-control" data-placeholder="Выбрать ...">
-                                @foreach($types as $t)
-                                    <option value="{{ $t->id }}">{{ $t->name }}</option>
-                                @endforeach
-                            </select>
                         </div>
                     </form>
                 </div>
@@ -162,11 +129,5 @@
         $('#btnSave').click(function (){
             $('#save_form').submit();
         });
-    </script>
-    {{-- Select2 --}}
-    <script src="{{ URL::asset('/assets/libs/select2/select2.min.js')}}"></script>
-    <script>
-        // Select2
-        $(".select2").select2();
     </script>
 @endsection

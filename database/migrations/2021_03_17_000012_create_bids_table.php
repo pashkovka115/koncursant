@@ -61,7 +61,7 @@ class CreateBidsTable extends Migration
             $table->string('resource')->nullable();
             $table->string('link_to_resource')->nullable();
 
-            $table->string('appraisal')->nullable()->comment('оценка');
+            $table->unsignedBigInteger('appraisal_id')->nullable()->comment('оценка');
 
             $table->longText('comment')->nullable();
 
